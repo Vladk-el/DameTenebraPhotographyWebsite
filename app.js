@@ -13,8 +13,28 @@
             console.log('IndexController');
         })
     
-        .controller('PortfolioController', function ($scope) {
+        .controller('PortfolioController', function ($scope, $http) {
             console.log('PortfolioController');
+        
+            $scope.categories = [];
+        
+            $http.get('php/services/categories.php')
+            .success(function (data, status, headers, config) {
+                $scope.categories = data;
+                console.log(data);
+            })
+            .error(function (data, status, headers, config) {
+                console.log(status);
+                console.log("Error occured");
+            });
+            
+            // @Deprecated ==> make request from server, not client
+            $scope.getLastPhotoForCategory = function (category_id) {
+                $http({ url : 'php/services/last_photo_by_category.php?category=' + category_id})
+                .then(function (response)  {
+                    return response['photo_link'];
+                });
+            }
         })
 
         .config(function ($routeProvider, $locationProvider) {
@@ -31,6 +51,4 @@
             $locationProvider.html5Mode(true);
         });
     
-    // see https://docs.angularjs.org/api/ngRoute/service/$route#example
-
 })(window.angular);

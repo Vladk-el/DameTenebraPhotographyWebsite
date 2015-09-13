@@ -12,9 +12,11 @@
 
     print("[");
     while($r = mysqli_fetch_assoc($response)) {
-        print json_encode($r);
-        if($cpt < $row_count) {
-            print(",");
+        if($r != null && $r != "" && strlen(json_encode($r)) > 0 ) {
+            print json_encode($r);
+            if($cpt < $row_count) {
+                print(",");
+            }   
         }
         $cpt++;
     }

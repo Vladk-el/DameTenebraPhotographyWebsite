@@ -10,31 +10,19 @@
 <div class="container-fluid" style="text-align: center;">
 
     <div class="row">
-
-        <div class="col-sm-4" style="background-color:lavender;">
+        
+        
+        {{ categories }}
+        
+        <div class="col-sm-4" style="background-color:lavender;" ng-repeat="category in categories">
             <h2>Port of Honfleur</h2>
             <p>Port of Honfleur in dark and white style, enjoy this beautiful photo take with my
                 <mark>Canon 450 D</mark>
             </p>
-            <img src="http://dametenebra.com/img/full/Normandie0712_0042.jpg" class="img-rounded img-responsive" alt="Cinque Terre">
-        </div>
-        <div class="col-sm-4" style="background-color:lavender;">
-            <h2>Port of Honfleur</h2>
-            <p>Port of Honfleur in dark and white style, enjoy this beautiful photo take with my
-                <mark>Canon 450 D</mark>
-            </p>
-            <img src="http://dametenebra.com/img/full/Normandie0712_0042.jpg" class="img-rounded img-responsive" alt="Cinque Terre">
-        </div>
-        <div class="col-sm-4" style="background-color:lavender;">
-            <h2>Port of Honfleur</h2>
-            <p>Port of Honfleur in dark and white style, enjoy this beautiful photo take with my
-                <mark>Canon 450 D</mark>
-            </p>
-            <img src="http://dametenebra.com/img/full/Normandie0712_0042.jpg" class="img-rounded img-responsive" alt="Cinque Terre">
+            <img ng-src="{{ getLastPhotoForCategory() }}" class="img-rounded img-responsive" alt="Cinque Terre">
         </div>
 
-        <!-- Line 2 -->
-        
+        <!--
         <div class="col-sm-4" style="background-color:lavender;">
             <h2>Port of Honfleur</h2>
             <p>Port of Honfleur in dark and white style, enjoy this beautiful photo take with my
@@ -56,30 +44,8 @@
             </p>
             <img src="http://dametenebra.com/img/full/Normandie0712_0042.jpg" class="img-rounded img-responsive" alt="Cinque Terre">
         </div>
-        
-        <!-- Line 3 -->
-        
-        <div class="col-sm-4" style="background-color:lavender;">
-            <h2>Port of Honfleur</h2>
-            <p>Port of Honfleur in dark and white style, enjoy this beautiful photo take with my
-                <mark>Canon 450 D</mark>
-            </p>
-            <img src="http://dametenebra.com/img/full/Normandie0712_0042.jpg" class="img-rounded img-responsive" alt="Cinque Terre">
-        </div>
-        <div class="col-sm-4" style="background-color:lavender;">
-            <h2>Port of Honfleur</h2>
-            <p>Port of Honfleur in dark and white style, enjoy this beautiful photo take with my
-                <mark>Canon 450 D</mark>
-            </p>
-            <img src="http://dametenebra.com/img/full/Normandie0712_0042.jpg" class="img-rounded img-responsive" alt="Cinque Terre">
-        </div>
-        <div class="col-sm-4" style="background-color:lavender;">
-            <h2>Port of Honfleur</h2>
-            <p>Port of Honfleur in dark and white style, enjoy this beautiful photo take with my
-                <mark>Canon 450 D</mark>
-            </p>
-            <img src="http://dametenebra.com/img/full/Normandie0712_0042.jpg" class="img-rounded img-responsive" alt="Cinque Terre">
-        </div>
+
+        -->
 
     </div>
 
