@@ -13,9 +13,10 @@
             console.log('IndexController');
         })
     
-        .controller('PortfolioController', function ($scope, $http) {
+        .controller('PortfolioController', function ($scope, $http, $window) {
             console.log('PortfolioController');
         
+            $scope.screenSize = $window.innerHeight;
             $scope.categories = [];
         
             $http.get('php/services/categories.php')
@@ -46,9 +47,12 @@
                 .when('/portfolio', {
                     templateUrl: 'includes/portfolio.html',
                     controller: 'PortfolioController'
+                })
+                .otherwise({
+                    redirectTo : '/'
                 });
 
-            $locationProvider.html5Mode(true);
+            //$locationProvider.html5Mode(true);
         });
     
 })(window.angular);

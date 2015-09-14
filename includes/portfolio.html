@@ -2,25 +2,44 @@
 
     <div class="jumbotron">
         <h1> Portfolio </h1>
-        <p> Here is all ths themes i like to photography. Let's watch ;) </p>
+        <p> Here is all themes i like to photography. Let's watch ;) </p>
     </div>
 
 </div>
 
-<div class="container-fluid" style="text-align: center;">
+<div class="container-fluid" style="text-align: center;" ng-init="nb=0">
 
     <div class="row">
-        
-        
-        {{ categories }}
-        
-        <div class="col-sm-4" style="background-color:lavender;" ng-repeat="category in categories">
-            <h2>Port of Honfleur</h2>
-            <p>Port of Honfleur in dark and white style, enjoy this beautiful photo take with my
-                <mark>Canon 450 D</mark>
-            </p>
-            <img ng-src="{{ getLastPhotoForCategory() }}" class="img-rounded img-responsive" alt="Cinque Terre">
+
+        <div ng-repeat="category in categories" class="col-sm-4" ng-show="category.photo_width > category.photo_height">
+            <div>
+                <h2>{{ category.category_name }}</h2>
+                <p>
+                    {{ category.category_description }}
+                </p>
+                <img ng-src="img/full/{{ category.photo_link }}" class="img-rounded img-responsive" alt="Cinque Terre">
+            </div>
         </div>
+        
+    </div>
+    
+    <div class="row">
+        
+        <div ng-repeat="category in categories" class="col-sm-4" ng-show="category.photo_width < category.photo_height">
+            <div>
+                <h2>{{ category.category_name }}</h2>
+                <p>
+                    {{ category.category_description }}
+                </p>
+                <img ng-src="img/full/{{ category.photo_link }}" class="img-rounded img-responsive" alt="Cinque Terre">
+            </div>
+        </div>
+ 
+    </div>
+    
+    
+    
+        
 
         <!--
         <div class="col-sm-4" style="background-color:lavender;">
