@@ -18,7 +18,7 @@
                 <p>
                     {{ photo.photo_description }}
                 </p>
-                <a class="full" rel="gallery" href="img/full/{{ photo.photo_link }}" title="{{ photo.photo_name }}">
+                <a class="fancybox" rel="gallery" href="img/full/{{ photo.photo_link }}" title="{{ photo.photo_name }}" fancybox>
                     <img ng-src="img/full/{{ photo.photo_link }}" class="img-rounded img-responsive" alt="Cinque Terre">
                 </a>
             </div>
@@ -34,7 +34,7 @@
                 <p>
                     {{ photo.photo_description }}
                 </p>
-                <a class="full" rel="gallery" href="img/full/{{ photo.photo_link }}" title="{{ photo.photo_name }}">
+                <a class="fancybox" rel="gallery" href="img/full/{{ photo.photo_link }}" title="{{ photo.photo_name }}" fancybox>
                     <img ng-src="img/full/{{ photo.photo_link }}" class="img-rounded img-responsive" alt="Cinque Terre">
                 </a>
             </div>
@@ -44,10 +44,12 @@
 
 </div>
 
-<script type="text/javascript" src="lib/fancybox/jquery.fancybox-1.3.4.js"></script>
+
+<!--
 <script type="text/javascript" src="lib/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="lib/fancybox/jquery.easing-1.3.pack.js"></script>
 <script type="text/javascript" src="lib/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+
 <script type="text/javascript">
 
     $(document).ready(function() {
@@ -66,3 +68,4 @@
     });
     
 </script>
+-->

@@ -70,6 +70,14 @@
             });
         
         })
+    
+        .directive('fancybox',function(){
+            return {
+                link: function(scope, element, attrs) {
+                    $('.fancybox').fancybox();
+                }
+            }
+        })
 
         .config(function ($routeProvider, $locationProvider) {
             $routeProvider
