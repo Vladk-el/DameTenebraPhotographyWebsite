@@ -29,10 +29,12 @@
     <body style="text-align: center;" ng-app="ngApp">
         
         <div class="container-fluid" ng-controller="MainController">
+            
+            <div ng-include="'includes/navbar.html'"></div>
         
             <div ng-view></div>
                         
-            <footer ng-include="'includes/footer.html'"></footer>
+            <div ng-include="'includes/footer.html'"></div>
                             
         </div>
 

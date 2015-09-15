@@ -1,5 +1,16 @@
-/*.col-sm-4 img {
-    width: 100%;
-    height: auto;
-    overflow:hidden;
-}*/
+
+
+html, body, .jumbotron, .well  {
+	background-color: rgb(51, 51, 51);
+	color: white;
+}
+
+.footer {
+    position: fixed;
+    bottom: -4%;
+	width:95%;
+}
+
+.no-border {
+	border: none;
+}

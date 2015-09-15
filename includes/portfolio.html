@@ -13,7 +13,7 @@
 
         <div ng-repeat="category in categories" class="col-sm-4" ng-show="category.photo_width > category.photo_height">
             <div ng-click="go('/gallery/' + category.category_id )">
-                <h2>{{ category.category_name }}</h2>
+                <h3>{{ category.category_name }}</h3>
                 <p>
                     {{ category.category_description }}
                 </p>
@@ -27,7 +27,7 @@
         
         <div ng-repeat="category in categories" class="col-sm-4" ng-show="category.photo_width < category.photo_height">
             <div ng-click="go('/gallery/' + category.category_id )">
-                <h2>{{ category.category_name }}</h2>
+                <h3>{{ category.category_name }}</h3>
                 <p>
                     {{ category.category_description }}
                 </p>

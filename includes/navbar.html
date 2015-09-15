@@ -1,0 +1,23 @@
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#/">DameTenebra Photography</a>
+        </div>
+        <div>
+            <ul class="nav navbar-nav">
+                <li ng-class="{ active: isActive('/') }">
+                    <a href="#/">Home</a>
+                </li>
+                <li ng-class="{ active: isActive('/portfolio') }">
+                    <a href="#/portfolio">Portfolio</a>
+                </li>
+                <li ng-class="{ active: isActive('/gallery/1') }">
+                    <a href="#/gallery/1">Model</a>
+                </li>
+                <li ng-class="{ active: isActive('/contact') }">
+                    <a href="#/contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
