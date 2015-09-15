@@ -5,6 +5,7 @@
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="lib/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
         <link rel="stylesheet" type="text/css" href="css/style.css">
         
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
@@ -24,7 +25,9 @@
         <div class="container-fluid" ng-controller="MainController">
         
             <div ng-view></div>
-        
+            
+            <footer ng-include="'includes/footer.html'"></footer>
+                            
         </div>
 
     </body>

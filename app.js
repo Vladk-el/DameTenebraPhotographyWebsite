@@ -13,7 +13,7 @@
             console.log('IndexController');
         })
     
-        .controller('PortfolioController', function ($scope, $http, $window) {
+        .controller('PortfolioController', function ($scope, $http, $window, $location) {
             console.log('PortfolioController');
         
             $scope.screenSize = $window.innerHeight;
@@ -28,6 +28,10 @@
                 console.log(status);
                 console.log("Error occured");
             });
+        
+            $scope.go = function (path) {
+                $location.path(path);
+            }
             
             // @Deprecated ==> make request from server, not client
             $scope.getLastPhotoForCategory = function (category_id) {
@@ -36,6 +40,35 @@
                     return response['photo_link'];
                 });
             }
+        })
+    
+        .controller('GalleryController', function ($scope, $http, $routeParams) {
+            console.log('GalleryController');
+            console.log($routeParams);
+        
+            $scope.category_id = $routeParams.category_id;
+            $scope.category = {};
+            $scope.photos = [];
+        
+            $http.get('php/services/category.php?category=' + $scope.category_id)
+            .success(function (data, status, headers, config) {
+                $scope.category = data;
+            })
+            .error(function (data, status, headers, config) {
+                console.log(status);
+                console.log("Error occured");
+            });
+        
+            $http.get('php/services/photos.php?category=' + $scope.category_id)
+            .success(function (data, status, headers, config) {
+                $scope.photos = data;
+                console.log(data);
+            })
+            .error(function (data, status, headers, config) {
+                console.log(status);
+                console.log("Error occured");
+            });
+        
         })
 
         .config(function ($routeProvider, $locationProvider) {
@@ -47,6 +80,10 @@
                 .when('/portfolio', {
                     templateUrl: 'includes/portfolio.html',
                     controller: 'PortfolioController'
+                })
+                .when('/gallery/:category_id', {
+                    templateUrl: 'includes/gallery.html',
+                    controller: 'GalleryController'
                 })
                 .otherwise({
                     redirectTo : '/'
