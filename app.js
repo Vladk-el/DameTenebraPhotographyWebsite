@@ -41,7 +41,10 @@
         // @Deprecated ==> make request from server, not client
         $scope.getLastPhotoForCategory = function (category_id) {
             $http({
-                    url: 'php/services/last_photo_by_category.php?category=' + category_id
+                    url: 'php/services/last_photo_by_category.php?category=' + category_id,
+                    header: {
+                        'Content-Type': 'application/json; charset=UTF-8'
+                    }
                 })
                 .then(function (response) {
                     return response['photo_link'];
@@ -60,6 +63,7 @@
         $http.get('php/services/category.php?category=' + $scope.category_id)
             .success(function (data, status, headers, config) {
                 $scope.category = data;
+                console.log(data);
             })
             .error(function (data, status, headers, config) {
                 console.log(status);
@@ -76,6 +80,10 @@
                 console.log("Error occured");
             });
 
+    })
+
+    .controller('ContactController', function ($scope) {
+        console.log('ContactController');
     })
 
     .directive('fancybox', function () {
@@ -99,6 +107,10 @@
             .when('/gallery/:category_id', {
                 templateUrl: 'includes/gallery.html',
                 controller: 'GalleryController'
+            })
+            .when('/contact', {
+                templateUrl: 'includes/contact.html',
+                controller: 'ContactController'
             })
             .otherwise({
                 redirectTo: '/'

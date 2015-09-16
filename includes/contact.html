@@ -1,0 +1,101 @@
+<div class="container-fluid contact">
+
+    <div class="jumbotron">
+        <h1> Contact </h1>
+        <p>Want to contact me ? You can do it right now with this simple form ;)</p>
+    </div>
+
+
+    <form name="contact_form">
+
+        <div class="container">
+            <p>
+                <label>Your name*</label>
+            </p>
+            <p>
+                <input type="text" name="name" ng-model="contact.name" required />
+                <p class="error" ng-show="contact_form.name.$dirty && contact_form.name.$invalid">
+                    <span class="label label-danger" ng-show="contact_form.name.$error.required">
+                        Your name is required.
+                    </span>
+                </p>
+            </p>
+        </div>
+        
+        <div class="container">
+            <p>
+                <label>Your website</label>
+            </p>
+            <p>
+                <input type="text" name="website" ng-model="contact.website" />
+            </p>
+        </div>
+        
+        <div class="container">
+            <p>
+                <label>Your email*</label>
+            </p>
+            <p>
+                <input type="email" name="email" ng-model="user.email" required />
+                <p class="error" ng-show="contact_form.email.$dirty && contact_form.email.$invalid">
+                    <span class="label label-danger" ng-show="contact_form.email.$error.required">
+                        <span class="glyphicon glyphicon-remove"></span> Your email is required.
+                    </span>
+                    <span class="label label-danger" ng-show="contact_form.email.$error.email">
+                        <span class="glyphicon glyphicon-remove"></span> This looks like not to be a valid email.
+                    </span>
+                </p>
+                <p class="success" ng-show="contact_form.email.$dirty && !contact_form.email.$invalid">
+                    <span class="label label-success" ng-show="!contact_form.email.$error.dirty && !contact_form.email.$error.invalid">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </span>
+                </p>
+                
+            </p>
+        </div>
+        
+        <div class="container">
+            <p>
+                <label>Subject*</label>
+            </p>
+            <p>
+                <input type="text" name="subject" ng-model="contact.subject" required />
+                <p class="error" ng-show="contact_form.subject.$dirty && contact_form.subject.$invalid">
+                    <span class="label label-danger" ng-show="contact_form.subject.$error.required">
+                        Your subject is required.
+                    </span>
+                </p>
+            </p>
+           
+        </div>
+        
+        <div class="container">
+            <p>
+                <label>Message*</label>
+            </p>
+            <p>
+                <textarea rows="4" cols="50" name="message" ng-model="contact.message" required ></textarea>
+                <p class="error" ng-show="contact_form.message.$dirty && contact_form.message.$invalid">
+                    <span class="label label-danger" ng-show="contact_form.message.$error.required">
+                        Your message is required.
+                    </span>
+                </p>
+            </p>
+           
+        </div>
+
+        <div class="container">
+            <p>
+                (Fields with "*" need to be fill to continue)
+            </p>
+        </div>
+        
+        <div class="container">
+            <button type="button" class="btn btn-default">Send</button>
+        </div>
+
+
+    </form>
+
+
+</div>

@@ -6,6 +6,9 @@
       die('Erreur : ' . $e->getMessage());
     }
 
+    mysqli_set_charset($con, "utf8");
+    //printf("Jeu de caractères courant : %s\n", mysqli_character_set_name($con));
+
     $response = mysqli_query($con, 'SELECT * FROM category ORDER BY category_name;');
     $row_count = $response->num_rows;
     $cpt = 1;

@@ -6,6 +6,9 @@
       die('Erreur : ' . $e->getMessage());
     }
 
+    mysqli_set_charset($con, "utf8");
+    //printf("Jeu de caractères courant : %s\n", mysqli_character_set_name($con));
+
     $response = mysqli_query($con, 'SELECT * FROM photo WHERE category_photo = ' . $_GET['category'] . ' ORDER BY photo_date;');
     $row_count = $response->num_rows;
     $cpt = 1;
