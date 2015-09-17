@@ -1,5 +1,5 @@
 
-/*
+
 html, body, .jumbotron, .well  {
 	background-color: rgb(51, 51, 51);
 	color: white;
@@ -9,7 +9,7 @@ html, body, .jumbotron, .well  {
 	background-color: rgb(255, 255, 255);
 	color: black;
 }
-*/
+
 .footer {
     position: fixed;
     bottom: -4%;

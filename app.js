@@ -93,6 +93,14 @@
             }
         }
     })
+    
+    .controller('LinksController', function ($scope) {
+        console.log('LinksController');
+    })
+    
+    .controller('BiographyController', function ($scope) {
+        console.log('BiographyController');
+    })
 
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider
@@ -111,6 +119,14 @@
             .when('/contact', {
                 templateUrl: 'includes/contact.html',
                 controller: 'ContactController'
+            })
+            .when('/links', {
+                templateUrl: 'includes/links.html',
+                controller: 'LinksController'
+            })
+            .when('/biography', {
+                templateUrl: 'includes/biography.html',
+                controller: 'BiographyController'
             })
             .otherwise({
                 redirectTo: '/'
