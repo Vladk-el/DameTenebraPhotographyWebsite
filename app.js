@@ -96,6 +96,21 @@
     
     .controller('LinksController', function ($scope) {
         console.log('LinksController');
+        
+        function resizeDivLinks() {
+            var maxSize = null;
+            $(".divlinks").each(function () {
+                if(maxSize == null || $(this).height() > maxSize) {
+                    maxSize = $(this).height();
+                }
+            });
+            $(".divlinks").each(function () {
+                $(this).height(maxSize);
+            });
+            
+        }
+        
+        resizeDivLinks();
     })
     
     .controller('BiographyController', function ($scope) {

@@ -14,7 +14,7 @@
         <div ng-repeat="category in categories" class="col-sm-4" ng-show="category.photo_width > category.photo_height">
             <div ng-click="go('/gallery/' + category.category_id )">
                 <h3>{{ category.category_name }}</h3>
-                <p>
+                <p class="description">
                     {{ category.category_description }}
                 </p>
                 <img ng-src="img/full/{{ category.photo_link }}" class="img-rounded img-responsive" alt="Cinque Terre">
@@ -36,34 +36,5 @@
         </div>
  
     </div>
-    
-    
-    
-        
-
-        <!--
-        <div class="col-sm-4" style="background-color:lavender;">
-            <h2>Port of Honfleur</h2>
-            <p>Port of Honfleur in dark and white style, enjoy this beautiful photo take with my
-                <mark>Canon 450 D</mark>
-            </p>
-            <img src="http://dametenebra.com/img/full/Normandie0712_0042.jpg" class="img-rounded img-responsive" alt="Cinque Terre">
-        </div>
-        <div class="col-sm-4" style="background-color:lavender;">
-            <h2>Port of Honfleur</h2>
-            <p>Port of Honfleur in dark and white style, enjoy this beautiful photo take with my
-                <mark>Canon 450 D</mark>
-            </p>
-            <img src="http://dametenebra.com/img/full/Normandie0712_0042.jpg" class="img-rounded img-responsive" alt="Cinque Terre">
-        </div>
-        <div class="col-sm-4" style="background-color:lavender;">
-            <h2>Port of Honfleur</h2>
-            <p>Port of Honfleur in dark and white style, enjoy this beautiful photo take with my
-                <mark>Canon 450 D</mark>
-            </p>
-            <img src="http://dametenebra.com/img/full/Normandie0712_0042.jpg" class="img-rounded img-responsive" alt="Cinque Terre">
-        </div>
-
-        -->
 
 </div>

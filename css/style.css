@@ -1,4 +1,7 @@
 
+body {
+	text-align: center;
+}
 
 html, body, .jumbotron, .well  {
 	background-color: rgb(51, 51, 51);
@@ -18,6 +21,12 @@ html, body, .jumbotron, .well  {
 
 .no-border {
 	border: none;
+}
+
+.description {
+	overflow:hidden;
+    text-overflow:ellipsis;
+	white-space: nowrap;
 }
 
 /*
