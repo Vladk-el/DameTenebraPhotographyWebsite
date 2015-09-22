@@ -24,7 +24,7 @@
         $scope.screenSize = $window.innerHeight;
         $scope.categories = [];
 
-        $http.get('php/services/categories.php')
+        $http.get('php/services/category/categories.php?display=true')
             .success(function (data, status, headers, config) {
                 $scope.categories = data;
                 console.log(data);
@@ -37,19 +37,7 @@
         $scope.go = function (path) {
             $location.path(path);
         }
-
-        // @Deprecated ==> make request from server, not client
-        $scope.getLastPhotoForCategory = function (category_id) {
-            $http({
-                    url: 'php/services/last_photo_by_category.php?category=' + category_id,
-                    header: {
-                        'Content-Type': 'application/json; charset=UTF-8'
-                    }
-                })
-                .then(function (response) {
-                    return response['photo_link'];
-                });
-        }
+        
     })
 
     .controller('GalleryController', function ($scope, $http, $routeParams) {
@@ -60,7 +48,7 @@
         $scope.category = {};
         $scope.photos = [];
 
-        $http.get('php/services/category.php?category=' + $scope.category_id)
+        $http.get('php/services/category/category.php?category=' + $scope.category_id)
             .success(function (data, status, headers, config) {
                 $scope.category = data;
                 console.log(data);
@@ -70,7 +58,7 @@
                 console.log("Error occured");
             });
 
-        $http.get('php/services/photos.php?category=' + $scope.category_id)
+        $http.get('php/services/photo/photos_by_category.php?category=' + $scope.category_id)
             .success(function (data, status, headers, config) {
                 $scope.photos = data;
                 console.log(data);
@@ -99,7 +87,7 @@
         
         $scope.owners = [];
         
-        $http.get('php/services/owners.php')
+        $http.get('php/services/owner/owners.php?display=true')
             .success(function (data, status, headers, config) {
                 $scope.owners = data;
                 console.log(data);

@@ -7,7 +7,6 @@
     }
 
     mysqli_set_charset($con, "utf8");
-    //printf("Jeu de caractères courant : %s\n", mysqli_character_set_name($con));
 
     $categories = mysqli_query($con, 'SELECT * FROM category WHERE category_id = ' . $_GET['category'] . ';');
 

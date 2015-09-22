@@ -16,9 +16,12 @@
     while($r = mysqli_fetch_assoc($response)) {
         if($r != null && $r != "" && strlen(json_encode($r)) > 0 ) {
             
-            $links = mysqli_query($con, 'SELECT * FROM link WHERE link_owner_id = ' . $r['owner_id'] . ';');                   $r['links'] = array();
-            while($link = mysqli_fetch_array($links)){
-                array_push($r['links'], $link);
+            if($_GET['display'] != null) {
+                $links = mysqli_query($con, 'SELECT * FROM link WHERE link_owner_id = ' . $r['owner_id'] . ';');  
+                $r['links'] = array();
+                while($link = mysqli_fetch_array($links)){
+                    array_push($r['links'], $link);
+                }
             }
                         
             print json_encode($r);
