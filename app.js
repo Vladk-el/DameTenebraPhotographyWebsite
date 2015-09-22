@@ -94,8 +94,20 @@
         }
     })
     
-    .controller('LinksController', function ($scope) {
+    .controller('LinksController', function ($scope, $http) {
         console.log('LinksController');
+        
+        $scope.owners = [];
+        
+        $http.get('php/services/owners.php')
+            .success(function (data, status, headers, config) {
+                $scope.owners = data;
+                console.log(data);
+            })
+            .error(function (data, status, headers, config) {
+                console.log(status);
+                console.log("Error occured");
+            });
         
         function resizeDivLinks() {
             var maxSize = null;
