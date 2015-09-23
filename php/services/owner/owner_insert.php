@@ -5,7 +5,7 @@
     
     //var_dump($obj);
     
-    $sql = 'INSERT INTO `link`(`link_id`, `link_name`, `link_link`, `link_owner_id`) VALUES (null, "' . $obj->{'link_name'} . '", "' . $obj->{'link_link'} . '", ' . $obj->{'link_owner_id'} . ')'; 
+    $sql = 'INSERT INTO `owner`(`owner_id`, `owner_name`, `owner_description`) VALUES (null, "' . $obj->{'owner_name'} . '", "' . $obj->{'owner_description'} . '")'; 
 
     //print $sql;
     
@@ -22,6 +22,6 @@
         echo "Error: " . $sql . "<br>" . mysqli_error($con);
     }
 
-    mysqli_close($con);  
+    mysqli_close($con);   
 
 ?>

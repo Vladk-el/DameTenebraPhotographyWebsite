@@ -1,8 +1,17 @@
-@Test(enabled = true)
+	@Test(enabled = true)
 	public void php() {
 		
-		String getUrl = "http://localhost/dtpv2/php/services/link/link.php?link=12";
-		String urlPost = "http://localhost/dtpv2/php/services/link/link_insert.php";
+		//links
+//		String getUrl = "http://localhost/dtpv2/php/services/link/link.php?link=12";
+//		String urlPost = "http://localhost/dtpv2/php/services/link/link_insert.php";
+		
+		//owners
+		String getUrl = "http://localhost/dtpv2/php/services/owner/owner.php?owner=12";
+		String urlPost = "http://localhost/dtpv2/php/services/owner/owner_insert.php";
+		
+		//category
+//		String getUrl = "http://localhost/dtpv2/php/services/category/category.php?category=17";
+//		String urlPost = "http://localhost/dtpv2/php/services/category/category_insert.php";
 		
 		
 		Map<String, String> headers = new HashMap<>();
