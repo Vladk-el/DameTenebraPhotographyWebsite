@@ -3,11 +3,11 @@
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
     
-    //var_dump($obj);
+    var_dump($obj);
     
-    $sql = 'INSERT INTO `owner`(`owner_id`, `owner_name`, `owner_description`) VALUES (null, "' . $obj->{'owner_name'} . '", "' . $obj->{'owner_description'} . '")'; 
+    $sql = 'INSERT INTO `owner`(`owner_id`, `owner_name`, `owner_description`, `active`) VALUES (null, "' . $obj->{'owner_name'} . '", "' . $obj->{'owner_description'} . '", "' . $obj->{'active'} . '")'; 
 
-    //print $sql;
+    print $sql;
     
     try{
         $con = mysqli_connect('localhost', 'root', '', 'dametenebra');

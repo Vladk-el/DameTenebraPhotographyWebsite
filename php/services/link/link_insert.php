@@ -5,7 +5,7 @@
     
     //var_dump($obj);
     
-    $sql = 'INSERT INTO `link`(`link_id`, `link_name`, `link_link`, `link_owner_id`) VALUES (null, "' . $obj->{'link_name'} . '", "' . $obj->{'link_link'} . '", ' . $obj->{'link_owner_id'} . ')'; 
+    $sql = 'INSERT INTO `link`(`link_id`, `link_name`, `link_link`, `link_owner_id`, `active`) VALUES (null, "' . $obj->{'link_name'} . '", "' . $obj->{'link_link'} . '", ' . $obj->{'link_owner_id'} . ', "' . $obj->{'active'} . '")'; 
 
     //print $sql;
     

@@ -15,7 +15,8 @@
                                 `ouverture`="' . $obj->{'ouverture'} . '",
                                 `longueur_focale`="' . $obj->{'longueur_focale'} . '",
                                 `vitesse_ISO`="' . $obj->{'vitesse_ISO'} . '",
-                                `category_photo`="' . $obj->{'category_photo'} . '" 
+                                `category_photo`="' . $obj->{'category_photo'} . '",
+                                `active`="' . $obj->{'active'} . '" 
             WHERE `photo_id`="' . $obj->{'photo_id'} . '"';
 
     //print $sql;

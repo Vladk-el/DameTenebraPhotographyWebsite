@@ -5,7 +5,7 @@
     
     //var_dump($obj);
     
-    $sql = 'INSERT INTO `category`(`category_id`, `category_name`, `category_description`, `category_date`) VALUES (null, "' . $obj->{'category_name'} . '", "' . $obj->{'category_description'} . '", "' . $obj->{'category_date'} . '")'; 
+    $sql = 'INSERT INTO `category`(`category_id`, `category_name`, `category_description`, `category_date`, `active`) VALUES (null, "' . $obj->{'category_name'} . '", "' . $obj->{'category_description'} . '", "' . $obj->{'category_date'} . '", "' . $obj->{'active'} . '")'; 
 
     //print $sql;
     

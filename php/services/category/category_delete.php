@@ -5,11 +5,9 @@
     
     //var_dump($obj);
     
-    $sql = 'UPDATE `owner` SET 
-                                `owner_name`="' . $obj->{'owner_name'} . '",
-                                `owner_description`="' . $obj->{'owner_description'} . '",
-                                `active`="' . $obj->{'active'} . '" 
-            WHERE `owner_id`="' . $obj->{'owner_id'} . '"';
+    $sql = 'UPDATE `category` SET 
+                                `active`="0" 
+            WHERE `category_id`="' . $obj->{'category_id'} . '"';
 
     //print $sql;
     

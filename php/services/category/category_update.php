@@ -7,7 +7,8 @@
     
     $sql = 'UPDATE `category` SET 
                                 `category_name`="' . $obj->{'category_name'} . '",
-                                `category_description`="' . $obj->{'category_description'} . '"
+                                `category_description`="' . $obj->{'category_description'} . '",
+                                `active`="' . $obj->{'active'} . '" 
             WHERE `category_id`="' . $obj->{'category_id'} . '"';
 
     //print $sql;
