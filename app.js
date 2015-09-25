@@ -116,6 +116,10 @@
     .controller('BiographyController', function ($scope) {
         console.log('BiographyController');
     })
+    
+    .controller('LegalNoticeController', function ($scope) {
+        console.log('LegalNoticeController');
+    })
 
     .config(function ($routeProvider, $locationProvider) {
         $routeProvider
@@ -142,6 +146,10 @@
             .when('/biography', {
                 templateUrl: 'includes/biography.html',
                 controller: 'BiographyController'
+            })
+            .when('/legal_notice', {
+                templateUrl: 'includes/legal_notice.html',
+                controller: 'LegalNoticeController'
             })
             .otherwise({
                 redirectTo: '/'
