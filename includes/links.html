@@ -44,11 +44,11 @@
             <div id="collapse2" class="panel-collapse collapse">
                 <div class="row">
                     
-                    <div class="col-sm-6 jumbotron divlinks" ng-repeat="owner in owners">
+                    <div class="col-sm-6 jumbotron divlinks" ng-repeat="owner in owners" ng-show="owner.active == 1">
                         <h3> {{ owner.owner_name }} </h3>
                         <div>
                             <ul class="nav nav-stacked">
-                                <li ng-repeat="link in owner.links">
+                                <li ng-repeat="link in owner.links" ng-show="link.active == 1">
                                     <a href="{{ link.link_link }}" target="_blank"> {{ link.link_name }} </a>
                                 </li>
                             </ul>

@@ -11,7 +11,7 @@
 
     <div class="row">
 
-        <div ng-repeat="category in categories" class="col-sm-4" ng-show="category.photo_width > category.photo_height">
+        <div ng-repeat="category in categories" class="col-sm-4" ng-show="category.photo_width > category.photo_height && category.active == 1">
             <div ng-click="go('/gallery/' + category.category_id )">
                 <h3>{{ category.category_name }}</h3>
                 <p class="description">
@@ -25,7 +25,7 @@
     
     <div class="row">
         
-        <div ng-repeat="category in categories" class="col-sm-4" ng-show="category.photo_width < category.photo_height">
+        <div ng-repeat="category in categories" class="col-sm-4" ng-show="category.photo_width < category.photo_height && category.active == 1">
             <div ng-click="go('/gallery/' + category.category_id )">
                 <h3>{{ category.category_name }}</h3>
                 <p>
