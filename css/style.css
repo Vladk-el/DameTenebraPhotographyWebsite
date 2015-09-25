@@ -1,42 +1,50 @@
-
 body {
 	text-align: center;
 }
-
-html, body, .jumbotron, .well, .row, .panel, .panel-default>.panel-heading {
+html,
+body,
+.jumbotron,
+.well,
+.row,
+.panel,
+.panel-default>.panel-heading {
 	background-color: rgb(51, 51, 51);
 	color: white;
 }
-
+.jumbotron {
+    padding-top: 1em;
+	padding-bottom: 1em;
+}
 .contact {
 	background-color: rgb(255, 255, 255);
 	color: black;
 }
-
 .footer {
-    position: fixed;
-    bottom: -4%;
-	width:95%;
+	position: fixed;
+	bottom: -4%;
+	width: 95%;
 }
-
 .no-border {
 	border: none;
 }
-
 .description {
-	overflow:hidden;
-    text-overflow:ellipsis;
+	overflow: hidden;
+	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-
 .no-decoration {
 	text-decoration: none;
 }
-
-a:hover, .nav>li>a:hover {
-  	text-decoration:none;
-  	color: green;
+a:hover,
+.nav>li>a:hover {
+	text-decoration: none;
+	color: green;
 	background-color: rgb(51, 51, 51);
+}
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+	/*width: 70%;*/
+	margin: auto;
 }
 
 /*
