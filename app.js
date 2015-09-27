@@ -24,7 +24,7 @@
                 var temp = [];
                 for(var key in data) {
                     //$log.debug("key", key, "data[key]", data[key]);
-                    if(data[key].photo_width > data[key].photo_height) {
+                    if(data[key].photo_width > data[key].photo_height && data[key].active == "1") {
                         temp.push(data[key]);
                     }
                 }
@@ -91,6 +91,13 @@
 
     .controller('ContactController', function ($scope, $log) {
         $log.info('ContactController');
+        
+        $scope.submit = function() {
+            var data = $scope.fields;
+            $log.debug("HAHAHAHA");
+            $log.debug(data);
+        }
+        
     })
 
     .directive('fancybox', function () {

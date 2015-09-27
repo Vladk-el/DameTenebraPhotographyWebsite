@@ -6,14 +6,14 @@
     </div>
 
 
-    <form name="contact_form">
+    <form name="contact_form" ng-submit="submit()">
 
         <div class="container">
             <p>
                 <label>Your name*</label>
             </p>
             <p>
-                <input type="text" name="name" ng-model="contact.name" required />
+                <input type="text" name="name" ng-model="fields.name" required />
                 <p class="error" ng-show="contact_form.name.$dirty && contact_form.name.$invalid">
                     <span class="label label-danger" ng-show="contact_form.name.$error.required">
                         Your name is required.
@@ -27,7 +27,7 @@
                 <label>Your website</label>
             </p>
             <p>
-                <input type="text" name="website" ng-model="contact.website" />
+                <input type="text" name="website" ng-model="fields.website" />
             </p>
         </div>
         
@@ -36,7 +36,7 @@
                 <label>Your email*</label>
             </p>
             <p>
-                <input type="email" name="email" ng-model="user.email" required />
+                <input type="email" name="email" ng-model="fields.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required />
                 <p class="error" ng-show="contact_form.email.$dirty && contact_form.email.$invalid">
                     <span class="label label-danger" ng-show="contact_form.email.$error.required">
                         <span class="glyphicon glyphicon-remove"></span> Your email is required.
@@ -59,7 +59,7 @@
                 <label>Subject*</label>
             </p>
             <p>
-                <input type="text" name="subject" ng-model="contact.subject" required />
+                <input type="text" name="subject" ng-model="fields.subject" required />
                 <p class="error" ng-show="contact_form.subject.$dirty && contact_form.subject.$invalid">
                     <span class="label label-danger" ng-show="contact_form.subject.$error.required">
                         Your subject is required.
@@ -74,7 +74,7 @@
                 <label>Message*</label>
             </p>
             <p>
-                <textarea rows="4" cols="50" name="message" ng-model="contact.message" required ></textarea>
+                <textarea rows="4" cols="50" name="message" ng-model="fields.message" required ></textarea>
                 <p class="error" ng-show="contact_form.message.$dirty && contact_form.message.$invalid">
                     <span class="label label-danger" ng-show="contact_form.message.$error.required">
                         Your message is required.
@@ -91,8 +91,10 @@
         </div>
         
         <div class="container">
-            <button type="button" class="btn btn-default">Send</button>
+            <button type="submit" class="btn btn-default">Send</button>
         </div>
+
+        
 
 
     </form>
