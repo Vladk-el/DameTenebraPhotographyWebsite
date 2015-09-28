@@ -3,11 +3,11 @@
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
     
-    var_dump($obj);
+    //var_dump($obj);
     
-    $sql = 'INSERT INTO `message`(`id`, `pseudo`, `site`, `mail`, `subject`, `message`, `date`) VALUES (null, "' . $obj->{'pseudo'} . '", "' . $obj->{'site'} . '", "' . $obj->{'mail'} . '", "' . $obj->{'subject'} . '", "' . $obj->{'message'} . '", "' . $obj->{'date'} . '")'; 
-
-    print $sql;
+    $sql = 'INSERT INTO `message`(`id`, `name`, `website`, `email`, `subject`, `message`, `date`) VALUES (null, "' . $obj->{'name'} . '", "' . $obj->{'website'} . '", "' . $obj->{'email'} . '", "' . $obj->{'subject'} . '", "' . $obj->{'message'} . '", "' . $obj->{'date'} . '")'; 
+    
+    //print $sql;
     
     try{
         $con = mysqli_connect('localhost', 'root', '', 'dametenebra');
@@ -19,7 +19,7 @@
     if (mysqli_query($con, $sql)) {
         echo "success";
     } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($con);
+        echo "Error: " . $sql . "<br />" . mysqli_error($con);
     }
 
     mysqli_close($con);  
