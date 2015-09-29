@@ -1,1 +1,16 @@
 /img
+out/
+test-output/
+*.iml
+*.iws
+*.ipr
+target/
+.idea
+**/out/
+**/*.iml
+**/target/
+.project
+.classpath
+.settings/
+.metadata/
+.recommenders/
