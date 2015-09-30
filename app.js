@@ -19,7 +19,7 @@
         
         $scope.photos = [];
 
-        $http.get('php/services/photo/photos.php')
+        $http.get('php/services/photo/photos.php?display=true')
             .success(function (data, status, headers, config) {
                 var temp = [];
                 for(var key in data) {
