@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import java.lang.reflect.Type;
 import com.vladkel.dametenebra.utils.http.GetHelper;
 import com.vladkel.dametenebra.utils.http.PostHelper;
 
@@ -24,10 +24,12 @@ public class DAO<T> implements IDAO<T> {
 	private static String SUCCESS = "success";
 
 	private Class<T> clazz;
+	private Type type;
 	private Map<String, String> headers;
 	
-	public DAO(Class<T> clazz) {
+	public DAO(Class<T> clazz, Type type) {
 		this.clazz = clazz;
+		this.type = type;
 		headers = new HashMap<>();
 		headers.put("Content-Type", "application/json; charset=UTF-8");
 	}
@@ -40,12 +42,11 @@ public class DAO<T> implements IDAO<T> {
 				.append(DEFAULT_PATH)
 				.append(clazz.getSimpleName().toLowerCase())
 				.append("/")
-				.append(clazz.getSimpleName().toLowerCase().equalsIgnoreCase("category") ? "categories" : clazz.getSimpleName().toLowerCase() + "s") // => properties.getPlurials(clazz.getSimpleName())
+				.append(clazz.getSimpleName().toLowerCase().equalsIgnoreCase("category") ? CATEGORIES : clazz.getSimpleName().toLowerCase() + "s") // => properties.getPlurials(clazz.getSimpleName())
 				.append(PHP)
 				.toString();
-		System.out.println(url);
 		GetHelper helper = new GetHelper();
-		return new Gson().fromJson(helper.getAsString(url, headers), new TypeToken<List<T>>() {}.getType());
+		return new Gson().fromJson(helper.getAsString(url, headers), type);
 	}
 
 	/* (non-Javadoc)
@@ -63,7 +64,6 @@ public class DAO<T> implements IDAO<T> {
 				.append("=")
 				.append(id)
 				.toString();
-		System.out.println(url);
 		GetHelper helper = new GetHelper();
 		return new Gson().fromJson(helper.getAsString(url, headers), clazz);
 	}
@@ -80,7 +80,6 @@ public class DAO<T> implements IDAO<T> {
 				.append(INSERT)
 				.append(PHP)
 				.toString();
-		System.out.println(url);
 		PostHelper helper = new PostHelper();
 		return helper.postAsString(url, new Gson().toJson(object), headers).equalsIgnoreCase(SUCCESS) ? true : false;
 	}
@@ -97,7 +96,6 @@ public class DAO<T> implements IDAO<T> {
 				.append(UPDATE)
 				.append(PHP)
 				.toString();
-		System.out.println(url);
 		PostHelper helper = new PostHelper();
 		return helper.postAsString(url, new Gson().toJson(object), headers).equalsIgnoreCase(SUCCESS) ? true : false;
 	}
@@ -114,7 +112,6 @@ public class DAO<T> implements IDAO<T> {
 				.append(DELETE)
 				.append(PHP)
 				.toString();
-		System.out.println(url);
 		PostHelper helper = new PostHelper();
 		return helper.postAsString(url, new Gson().toJson(object), headers).equalsIgnoreCase(SUCCESS) ? true : false;
 	}
