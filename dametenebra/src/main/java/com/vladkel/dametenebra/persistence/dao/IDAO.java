@@ -16,6 +16,6 @@ public interface IDAO <T> {
 	
 	boolean update(T object);
 	
-	boolean delete(int id);
+	boolean delete(T object);
 	
 }
