@@ -1,7 +1,7 @@
 (function (angular) {
     'use strict';
 
-    angular.module('ngApp', ['ngRoute', 'toaster'])
+    angular.module('ngApp', ['ngRoute', 'indexService', 'portfolioService', 'galleryService', 'linkService', 'contactService'])
 
     .controller('MainController', function ($scope, $route, $routeParams, $location) {
         $scope.$route = $route;
@@ -14,7 +14,7 @@
         };
     })
 
-    .controller('IndexController', function ($scope, $http, $log) {
+/*    .controller('IndexController', function ($scope, $http, $log) {
        $log.info('IndexController');
         
         $scope.photos = [];
@@ -39,9 +39,9 @@
             .error(function (data, status, headers, config) {
                 $log.error(status);
             });
-    })
+    })*/
 
-    .controller('PortfolioController', function ($scope, $http, $location, $log) {
+/*    .controller('PortfolioController', function ($scope, $http, $location, $log) {
         $log.info('PortfolioController');
 
         $scope.categories = [];
@@ -59,9 +59,9 @@
             $location.path(path);
         }
         
-    })
+    })*/
 
-    .controller('GalleryController', function ($scope, $http, $routeParams, $log) {
+ /*   .controller('GalleryController', function ($scope, $http, $routeParams, $log) {
         $log.info('GalleryController');
         $log.debug($routeParams);
 
@@ -87,9 +87,9 @@
                 $log.error(status);
             });
 
-    })
+    })*/
 
-    .controller('ContactController', function ($scope, $log, $filter, $http, toaster, $location) {
+ /*   .controller('ContactController', function ($scope, $log, $filter, $http, toaster, $location) {
         $log.info('ContactController');
         
         $scope.submit = function() {
@@ -130,7 +130,7 @@
             return str.replace(/"/g, '\\"');
         }
         
-    })
+    })*/
 
     .directive('fancybox', function () {
         return {
@@ -140,7 +140,7 @@
         }
     })
     
-    .controller('LinksController', function ($scope, $http, $log) {
+/*    .controller('LinksController', function ($scope, $http, $log) {
         $log.info('LinksController');
         
         $scope.owners = [];
@@ -168,7 +168,7 @@
         }
         
         resizeDivLinks();
-    })
+    })*/
     
     .controller('BiographyController', function ($scope, $log) {
         $log.info('BiographyController');
