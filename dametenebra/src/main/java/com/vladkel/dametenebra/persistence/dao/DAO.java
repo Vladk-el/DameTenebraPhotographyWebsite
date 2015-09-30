@@ -34,9 +34,9 @@ public class DAO<T> implements IDAO<T> {
 		headers.put("Content-Type", "application/json; charset=UTF-8");
 	}
 	
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.vladkel.dametenebra.dao.IDAO#select()
-	 */
+	 **/
 	public List<T> select() {
 		String url = new StringBuilder()
 				.append(DEFAULT_PATH)
@@ -49,9 +49,9 @@ public class DAO<T> implements IDAO<T> {
 		return new Gson().fromJson(helper.getAsString(url, headers), type);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.vladkel.dametenebra.dao.IDAO#select(int)
-	 */
+	 **/
 	public T select(int id) {
 		String url = new StringBuilder()
 				.append(DEFAULT_PATH)
@@ -68,9 +68,9 @@ public class DAO<T> implements IDAO<T> {
 		return new Gson().fromJson(helper.getAsString(url, headers), clazz);
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.vladkel.dametenebra.dao.IDAO#insert(java.lang.Object)
-	 */
+	 **/
 	public boolean insert(T object) {
 		String url = new StringBuilder()
 				.append(DEFAULT_PATH)
@@ -84,9 +84,9 @@ public class DAO<T> implements IDAO<T> {
 		return helper.postAsString(url, new Gson().toJson(object), headers).equalsIgnoreCase(SUCCESS) ? true : false;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.vladkel.dametenebra.dao.IDAO#update(java.lang.Object)
-	 */
+	 **/
 	public boolean update(T object) {
 		String url = new StringBuilder()
 				.append(DEFAULT_PATH)
@@ -100,9 +100,9 @@ public class DAO<T> implements IDAO<T> {
 		return helper.postAsString(url, new Gson().toJson(object), headers).equalsIgnoreCase(SUCCESS) ? true : false;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc)
 	 * @see com.vladkel.dametenebra.dao.IDAO#delete(int)
-	 */
+	 **/
 	public boolean delete(T object) {
 		String url = new StringBuilder()
 				.append(DEFAULT_PATH)
