@@ -36,7 +36,7 @@ public class DAO<T> implements IDAO<T> {
 	
 	/** (non-Javadoc)
 	 * @see com.vladkel.dametenebra.dao.IDAO#select()
-	 **/
+	 */
 	public List<T> select() {
 		String url = new StringBuilder()
 				.append(DEFAULT_PATH)
@@ -51,7 +51,7 @@ public class DAO<T> implements IDAO<T> {
 
 	/** (non-Javadoc)
 	 * @see com.vladkel.dametenebra.dao.IDAO#select(int)
-	 **/
+	 */
 	public T select(int id) {
 		String url = new StringBuilder()
 				.append(DEFAULT_PATH)
@@ -70,7 +70,7 @@ public class DAO<T> implements IDAO<T> {
 
 	/** (non-Javadoc)
 	 * @see com.vladkel.dametenebra.dao.IDAO#insert(java.lang.Object)
-	 **/
+	 */
 	public boolean insert(T object) {
 		String url = new StringBuilder()
 				.append(DEFAULT_PATH)
@@ -86,7 +86,7 @@ public class DAO<T> implements IDAO<T> {
 
 	/** (non-Javadoc)
 	 * @see com.vladkel.dametenebra.dao.IDAO#update(java.lang.Object)
-	 **/
+	 */
 	public boolean update(T object) {
 		String url = new StringBuilder()
 				.append(DEFAULT_PATH)
@@ -102,7 +102,7 @@ public class DAO<T> implements IDAO<T> {
 
 	/** (non-Javadoc)
 	 * @see com.vladkel.dametenebra.dao.IDAO#delete(int)
-	 **/
+	 */
 	public boolean delete(T object) {
 		String url = new StringBuilder()
 				.append(DEFAULT_PATH)
