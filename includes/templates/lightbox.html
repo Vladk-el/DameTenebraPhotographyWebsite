@@ -1,0 +1,38 @@
+<div class="modal-body" ng-swipe-left="Lightbox.nextImage()" ng-swipe-right="Lightbox.prevImage()">
+    <div class="lightbox-nav">
+        <div>
+            <button class="close" style="color: white;" aria-hidden="true" ng-click="$dismiss()">×</button>
+        </div>
+        
+        <div class="lightbox-custom-caption">
+            <span class="btn btn-xs btn-default" style="color: white; background-color: rgb(51, 51, 51);" data-toggle="collapse" data-target="#img_{{Lightbox.index}}">
+                <strong>
+                    {{Lightbox.imageTitle}}
+                </strong>
+            </span>
+        </div>
+    </div>
+    <div id="img_{{Lightbox.index}}" class="collapse">
+                {{Lightbox.imageCaption}}
+            </div>
+    <div class="lightbox-image-container">
+        <!--<div class="lightbox-image-caption">
+            <span>{{Lightbox.imageCaption}}</span>
+        </div>-->
+        <img ng-if="!Lightbox.isVideo(Lightbox.image)" lightbox-src="{{Lightbox.imageUrl}}">
+        <div ng-if="Lightbox.isVideo(Lightbox.image)" class="embed-responsive embed-responsive-16by9">
+            <video ng-if="!Lightbox.isSharedVideo(Lightbox.image)" lightbox-src="{{Lightbox.imageUrl}}" controls autoplay></video>
+            <embed-video ng-if="Lightbox.isSharedVideo(Lightbox.image)" lightbox-src="{{Lightbox.imageUrl}}" ng-href="{{Lightbox.imageUrl}}" iframe-id="lightbox-video" class="embed-responsive-item">
+                <a ng-href="{{Lightbox.imageUrl}}">Watch video</a>
+            </embed-video>
+        </div>
+        
+        <p class="fancybox-nav fancybox-prev" ng-click="Lightbox.prevImage()">
+            <span></span>
+        </p>
+        <p class="fancybox-nav fancybox-next" ng-click="Lightbox.nextImage()">
+            <span></span>
+        </p>
+        
+    </div>
+</div>

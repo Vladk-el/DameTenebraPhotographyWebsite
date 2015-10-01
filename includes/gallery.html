@@ -18,7 +18,7 @@
                 <p class="description">
                     {{ photo.photo_description }}
                 </p>
-                <a class="fancybox" rel="gallery" href="img/full/{{ photo.photo_link }}" title="{{ photo.photo_name }}" description="{{ photo.photo_description }}" fancybox>
+                <a class="fancybox" rel="gallery" ng-click="openLightboxModal($index)" title="{{ photo.photo_name }}" description="{{ photo.photo_description }}" fancybox>
                     <img ng-src="img/full/{{ photo.photo_link }}" class="img-rounded img-responsive" alt="Cinque Terre">
                 </a>
             </div>
@@ -34,7 +34,7 @@
                 <p class="description">
                     {{ photo.photo_description }}
                 </p>
-                <a class="fancybox" rel="gallery" href="img/full/{{ photo.photo_link }}" title="{{ photo.photo_name }}" description="{{ photo.photo_description }}" fancybox>
+                <a class="fancybox" rel="gallery" ng-click="openLightboxModal($index)" title="{{ photo.photo_name }}" description="{{ photo.photo_description }}" fancybox>
                     <img ng-src="img/full/{{ photo.photo_link }}" class="img-rounded img-responsive" alt="Cinque Terre">
                 </a>
             </div>

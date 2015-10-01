@@ -132,13 +132,13 @@
         
     })*/
 
-    .directive('fancybox', function () {
+/*    .directive('fancybox', function () {
         return {
             link: function (scope, element, attrs) {
                 $('.fancybox').fancybox();
             }
         }
-    })
+    })*/
     
 /*    .controller('LinksController', function ($scope, $http, $log) {
         $log.info('LinksController');
