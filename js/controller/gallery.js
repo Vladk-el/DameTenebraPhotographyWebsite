@@ -9,8 +9,8 @@
     })
 
     .controller('GalleryController', function ($scope, $http, $routeParams, $log, Lightbox) {
-        $log.info('GalleryController');
-        $log.debug("$routeParams", $routeParams);
+        //$log.info('GalleryController');
+        //$log.debug("$routeParams", $routeParams);
 
         $scope.category_id = $routeParams.category_id;
         $scope.category = {};
@@ -37,7 +37,7 @@
                     img.caption = data[i].photo_description;
                     $scope.images.push(img);
                 }
-                $log.debug("$scope.images", $scope.images);
+                //$log.debug("$scope.images", $scope.images);
             })
             .error(function (data, status, headers, config) {
                 $log.error(status);

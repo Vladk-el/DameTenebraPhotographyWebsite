@@ -4,7 +4,7 @@
     angular.module('indexService', [])
     
     .controller('IndexController', function ($scope, $http, $log) {
-       $log.info('IndexController');
+       //$log.info('IndexController');
         
         $scope.photos = [];
 
@@ -23,7 +23,7 @@
                     temp[i]["index"] = index;
                     index++;
                 }   
-                $log.debug("photos ==>", $scope.photos);
+                //$log.debug("photos ==>", $scope.photos);
             })
             .error(function (data, status, headers, config) {
                 $log.error(status);

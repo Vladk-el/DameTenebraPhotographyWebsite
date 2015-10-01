@@ -171,11 +171,11 @@
     })*/
     
     .controller('BiographyController', function ($scope, $log) {
-        $log.info('BiographyController');
+        //$log.info('BiographyController');
     })
     
     .controller('LegalNoticeController', function ($scope, $log) {
-        $log.info('LegalNoticeController');
+        //$log.info('LegalNoticeController');
     })
 
     .config(function ($routeProvider, $locationProvider) {

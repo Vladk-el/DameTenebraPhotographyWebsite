@@ -4,7 +4,7 @@
     angular.module('contactService', ['toaster'])
     
     .controller('ContactController', function ($scope, $log, $filter, $http, toaster, $location) {
-        $log.info('ContactController');
+        //$log.info('ContactController');
         
         $scope.submit = function() {
             var form = $scope.fields;

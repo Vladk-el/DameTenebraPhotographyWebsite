@@ -4,14 +4,14 @@
     angular.module('linkService', [])
     
     .controller('LinksController', function ($scope, $http, $log) {
-        $log.info('LinksController');
+        //$log.info('LinksController');
         
         $scope.owners = [];
         
         $http.get('php/services/owner/owners.php?display=true')
             .success(function (data, status, headers, config) {
                 $scope.owners = data;
-                $log.debug(data);
+                //$log.debug(data);
             })
             .error(function (data, status, headers, config) {
                 $log.error(status);
@@ -27,7 +27,6 @@
             $(".divlinks").each(function () {
                 $(this).height(maxSize);
             });
-            
         }
         
         resizeDivLinks();
