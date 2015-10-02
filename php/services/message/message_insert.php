@@ -30,13 +30,8 @@
 
     /* /Email */
     
-    try{
-        $con = mysqli_connect('localhost', 'root', '', 'dametenebra');
-        mysqli_set_charset($con, "utf8");
-    }catch (Exception $e){
-        mail($mailToError, $subjectError, $body, $headers);
-        die('Erreur with db : ' . $e->getMessage());
-    }
+    /* Connexion */
+    include '../connection/connection.php';
 
     if (mysqli_query($con, $sql)) {
         echo "success";

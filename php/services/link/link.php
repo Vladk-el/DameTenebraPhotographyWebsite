@@ -1,10 +1,6 @@
 <?php
     /* Connexion */
-    try{
-        $con = mysqli_connect('localhost', 'root', '', 'dametenebra');
-    }catch (Exception $e){
-        die('Erreur : ' . $e->getMessage());
-    }
+    include '../connection/connection.php';
 
     mysqli_set_charset($con, "utf8");
 

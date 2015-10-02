@@ -30,8 +30,8 @@
                             }
                         });
                     } else {
-                        $log.error(status);
-                    toaster.pop('error', 'Error', 'A problem has been detected, please try again later.');
+                        $log.error(status + " ==> " + data);
+                        toaster.pop('error', 'Error', 'A problem has been detected, please try again later.');
                     }                
                 })
                 .error(function (data, status, headers, config) {
