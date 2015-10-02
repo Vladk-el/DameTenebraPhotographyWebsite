@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.gson.Gson;
 import java.lang.reflect.Type;
 import com.vladkel.dametenebra.utils.http.GetHelper;
@@ -14,6 +17,9 @@ import com.vladkel.dametenebra.utils.http.PostHelper;
  *
  */
 public class DAO<T> implements IDAO<T> {
+	
+	@SuppressWarnings("unused")
+	private static Logger log = LoggerFactory.getLogger(DAO.class);
 	
 	private static String DEFAULT_PATH = "http://localhost/dtpv2/php/services/"; //"http://www.dametenebra.com/php/services/";
 	private static String CATEGORIES = "categories"; // ==> set in property class
