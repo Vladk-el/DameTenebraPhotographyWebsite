@@ -20,13 +20,12 @@
         $r['photo_width'] = $width;
         $r['photo_height'] = $height;
         
-        if($width != 600 && $width != 900 && $height != 600 && $height != 900) {
+        if($width != 600 && $width != 900 || $height != 600 && $height != 900) {
             print json_encode($r);
             if($cpt < $row_count) {
                 print(",");
             }
         }
-
         
         $cpt++;
     }
