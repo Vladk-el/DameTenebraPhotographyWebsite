@@ -11,7 +11,7 @@
             
             form.date = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
             form.name = $scope.escapeQuotes(form.name);
-            form.website = $scope.escapeQuotes(form.website);
+            form.website = form.website != null ? $scope.escapeQuotes(form.website) : "";
             form.subject = $scope.escapeQuotes(form.subject);
             form.message = $scope.escapeQuotes(form.message);
             
@@ -20,7 +20,7 @@
             $http.post('php/services/message/message_insert.php', form)
                 .success(function (data, status, headers, config) {
                     //$log.debug(data);
-                    if(data == "success") {
+                    if(data.indexOf("success") != -1) {
                         toaster.pop({
                             type: 'success',
                             title: 'Thanks !',
