@@ -11,7 +11,7 @@
     print("[");
     while($r = mysqli_fetch_assoc($response)) {
         
-        if($_GET['display'] != null) {
+        if(!empty($_GET['display'])) {
         
             list($width, $height) = getimagesize("../../../img/full/" . $r['photo_link']);
             $r['photo_width'] = $width;

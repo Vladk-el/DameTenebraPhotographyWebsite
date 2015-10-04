@@ -4,7 +4,7 @@
 
     mysqli_set_charset($con, "utf8");
     //printf("Jeu de caractères courant : %s\n", mysqli_character_set_name($con));
-    if($_GET['display'] != null) {
+    if(!empty($_GET['display'])) {
         $response = mysqli_query($con, 'SELECT * FROM category ORDER BY category_name;');
     } else {
         $response = mysqli_query($con, 'SELECT * FROM category;');
@@ -16,7 +16,7 @@
     while($r = mysqli_fetch_assoc($response)) {
         if($r != null && $r != "" && strlen(json_encode($r)) > 0 ) {
             
-            if($_GET['display'] != null) {
+            if(!empty($_GET['display'])) {
                 $photo = mysqli_query($con, 'SELECT * FROM photo WHERE category_photo = ' . $r['category_id'] . ';');
                 if($photo->num_rows > 0){
                     $imgs = array();
