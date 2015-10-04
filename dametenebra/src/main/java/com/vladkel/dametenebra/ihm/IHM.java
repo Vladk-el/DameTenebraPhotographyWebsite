@@ -34,6 +34,6 @@ public interface IHM {
 	/**
 	 * Set up IHM to modify an object
 	 */
-	public void modify();
+	public void modify(Object object);
 	
 }

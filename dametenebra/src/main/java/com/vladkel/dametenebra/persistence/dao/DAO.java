@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import java.lang.reflect.Type;
 import com.vladkel.dametenebra.utils.http.GetHelper;
 import com.vladkel.dametenebra.utils.http.PostHelper;
+import com.vladkel.dametenebra.utils.properties.Property;
 
 /**
  * @author eliott
@@ -21,7 +22,7 @@ public class DAO<T> implements IDAO<T> {
 	@SuppressWarnings("unused")
 	private static Logger log = LoggerFactory.getLogger(DAO.class);
 	
-	private static String DEFAULT_PATH = "http://localhost/dtpv2/php/services/"; //"http://www.dametenebra.com/php/services/";
+	private static String DEFAULT_PATH = Property.getInstance().getProperties().getProperty("DEFAULT_PATH");//"http://localhost/dtpv2/php/services/"; //"http://www.dametenebra.com/php/services/";
 	private static String CATEGORIES = "categories"; // ==> set in property class
 	private static String INSERT = "_insert";
 	private static String UPDATE = "_update";
@@ -87,7 +88,11 @@ public class DAO<T> implements IDAO<T> {
 				.append(PHP)
 				.toString();
 		PostHelper helper = new PostHelper();
-		return helper.postAsString(url, new Gson().toJson(object), headers).equalsIgnoreCase(SUCCESS) ? true : false;
+		System.out.println("Category to json : " + new Gson().toJson(object));
+		String response = helper.postAsString(url, new Gson().toJson(object), headers);
+		System.out.println("INSERT RESPONSE : " + response);
+		boolean success = response.equalsIgnoreCase(SUCCESS) ? true : false;
+		return success;
 	}
 
 	/** (non-Javadoc)
@@ -103,7 +108,11 @@ public class DAO<T> implements IDAO<T> {
 				.append(PHP)
 				.toString();
 		PostHelper helper = new PostHelper();
-		return helper.postAsString(url, new Gson().toJson(object), headers).equalsIgnoreCase(SUCCESS) ? true : false;
+		System.out.println("Category to json : " + new Gson().toJson(object));
+		String response = helper.postAsString(url, new Gson().toJson(object), headers);
+		System.out.println("INSERT RESPONSE : " + response);
+		boolean success = response.equalsIgnoreCase(SUCCESS) ? true : false;
+		return success;
 	}
 
 	/** (non-Javadoc)
@@ -119,7 +128,11 @@ public class DAO<T> implements IDAO<T> {
 				.append(PHP)
 				.toString();
 		PostHelper helper = new PostHelper();
-		return helper.postAsString(url, new Gson().toJson(object), headers).equalsIgnoreCase(SUCCESS) ? true : false;
+		System.out.println("Category to json : " + new Gson().toJson(object));
+		String response = helper.postAsString(url, new Gson().toJson(object), headers);
+		System.out.println("INSERT RESPONSE : " + response);
+		boolean success = response.equalsIgnoreCase(SUCCESS) ? true : false;
+		return success;
 	}
 
 }

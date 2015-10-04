@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -45,6 +46,7 @@ public class IhmCategory implements IHM {
 	private JEditorPane text_desc_category;
 	private JButton add_category;
 	private String current_date;
+	private JCheckBox is_active;
 
 	private JButton save;
 	private JButton delete;
@@ -92,6 +94,7 @@ public class IhmCategory implements IHM {
 		add_category = null;
 		current_date = null;
 		modif = null;
+		is_active = null;
 
 		save = null;
 		delete = null;
@@ -113,6 +116,7 @@ public class IhmCategory implements IHM {
 		text_desc_category = new JEditorPane();
 		add_category = new JButton("Ajouter");
 		modif = new JButton("Modifier");
+		is_active = new JCheckBox("Rendre la catégorie visible sur le site ?");
 
 		save = new JButton("Sauvegarder");
 		delete = new JButton("Supprimer");
@@ -136,7 +140,7 @@ public class IhmCategory implements IHM {
 			data[i][1] = categories.get(i).getCategory_name();
 			data[i][2] = categories.get(i).getCategory_description();
 			data[i][3] = categories.get(i).getCategory_date();
-			data[i][4] = categories.get(i).getActive();
+			data[i][4] = categories.get(i).getActive() == 1 ? "oui" : "non";
 		}
 
 		String[] entete = { "Id", "Nom", "Description", "Date d'Ajout", "Visible" };
@@ -146,8 +150,10 @@ public class IhmCategory implements IHM {
 
 			public void mouseClicked(MouseEvent e) {
 				if (tab.getSelectedRow() != -1) {
-//					modify(categories.get(tab.getSelectedRow()));
-					JOptionPane.showMessageDialog(null, "Category " + categories.get(tab.getSelectedRow()).getCategory_name() + " selected for modification.");
+					modify(categories.get(tab.getSelectedRow()));
+					// JOptionPane.showMessageDialog(null, "Category " +
+					// categories.get(tab.getSelectedRow()).getCategory_name() +
+					// " selected for modification.");
 				}
 			}
 		});
@@ -165,7 +171,53 @@ public class IhmCategory implements IHM {
 	 */
 	@Override
 	public void create() {
-		// TODO Auto-generated method stub
+		init();
+		final JFrame modify = new JFrame();
+		modify.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		modify.setTitle("Ajouter une categorie");
+		modify.setSize(new Dimension(300, 400));
+		modify.setLocationRelativeTo(null);
+
+		JPanel mp = new JPanel();
+		modify.setContentPane(mp);
+		mp.setLayout(new FlowLayout());
+
+		text_name_category.setPreferredSize(new Dimension(250, 20));
+		text_desc_category.setPreferredSize(new Dimension(250, 80));
+
+		mp.add(title_name_category);
+		mp.add(text_name_category);
+		mp.add(title_desc_category);
+		mp.add(new JScrollPane(text_desc_category));
+		mp.add(is_active);
+		mp.add(add_category);
+
+		final Date date = new Date();
+		final DateFormat formate = new SimpleDateFormat("yyyy-MM-dd");
+
+		add_category.addMouseListener(new MouseAdapter() {
+
+			public void mouseClicked(MouseEvent arg0) {
+				Category category = new Category();
+				category.setCategory_id(0);
+				category.setCategory_name(text_name_category.getText());
+				category.setCategory_description(text_desc_category.getText());
+				category.setCategory_date(formate.format(date));
+				category.setActive(is_active.isSelected() ? 1 : 0);
+				if (dao.insert(category)) {
+					JOptionPane.showMessageDialog(null,
+							"La catégorie \"" + category.getCategory_name() + "\" a bien été ajoutée.");
+					modify.dispose();
+					jf_category.dispose();
+					displayAll();
+				} else {
+					JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
+				}
+			}
+
+		});
+
+		modify.setVisible(true);
 
 	}
 
@@ -175,9 +227,65 @@ public class IhmCategory implements IHM {
 	 * @see com.vladkel.dametenebra.ihm.IHM#modify()
 	 */
 	@Override
-	public void modify() {
-		// TODO Auto-generated method stub
+	public void modify(Object object) {
+		final Category category = (Category) object;
+		final JFrame modify = new JFrame();
+		modify.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		modify.setTitle("Modifier la categorie : " + category.getCategory_name());
+		modify.setSize(new Dimension(300, 400));
+		modify.setLocationRelativeTo(null);
 
+		JPanel mp = new JPanel();
+		modify.setContentPane(mp);
+		mp.setLayout(new FlowLayout());
+
+		text_name_category.setPreferredSize(new Dimension(250, 20));
+		text_desc_category.setPreferredSize(new Dimension(250, 80));
+
+		mp.add(title_name_category);
+		mp.add(text_name_category);
+		mp.add(title_desc_category);
+		mp.add(new JScrollPane(text_desc_category));
+		mp.add(is_active);
+		mp.add(save);
+		mp.add(delete);
+
+		text_name_category.setText(category.getCategory_name());
+		text_desc_category.setText(category.getCategory_description());
+		is_active.setSelected(category.getActive() == 1 ? true : false);
+
+		save.addMouseListener(new MouseAdapter() {
+
+			public void mouseClicked(MouseEvent e) {
+				category.setCategory_name(text_name_category.getText());
+				category.setCategory_description(text_desc_category.getText());
+				category.setActive(is_active.isSelected() ? 1 : 0);
+				if(dao.update(category)) {
+					javax.swing.JOptionPane.showMessageDialog(null, "La catégorie a bien été modifiée.");
+					modify.dispose();
+					jf_category.dispose();
+					displayAll();
+				} else {
+					JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
+				}
+			}
+		});
+
+		delete.addMouseListener(new MouseAdapter() {
+
+			public void mouseClicked(MouseEvent e) {
+				if(dao.delete(category)) {
+					javax.swing.JOptionPane.showMessageDialog(null, "La catégorie n'est maintenant plus visible sur le site.");
+					modify.dispose();
+					jf_category.dispose();
+					displayAll();
+				} else {
+					JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
+				}
+			}
+		});
+
+		modify.setVisible(true);
 	}
 
 }

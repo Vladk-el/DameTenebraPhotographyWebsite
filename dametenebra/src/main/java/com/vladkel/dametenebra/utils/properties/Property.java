@@ -32,9 +32,9 @@ public class Property {
 					"Une erreur est survenue durant le chargement du fichier de configuration. Veuillez réessayer s'il vous plait.");
 		}
 
-		for (Object str : getProperties().keySet()) {
-			System.out.println(str + " ==> " + get((String) str));
-		}
+//		for (Object str : getProperties().keySet()) {
+//			System.out.println(str + " ==> " + get((String) str));
+//		}
 
 	}
 
