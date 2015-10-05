@@ -5,7 +5,15 @@
     
     //var_dump($obj);
     
-    $sql = 'INSERT INTO `message`(`id`, `name`, `website`, `email`, `subject`, `message`, `date`) VALUES (null, "' . $obj->{'name'} . '", "' . $obj->{'website'} . '", "' . $obj->{'email'} . '", "' . $obj->{'subject'} . '", "' . $obj->{'message'} . '", "' . $obj->{'date'} . '")'; 
+    $sql = 'INSERT INTO `message`
+                                (`id`, `name`, `website`, `email`, `subject`, `message`, `date`) VALUES 
+                                    (null, "' . 
+                                    $obj->{'name'} . '", "' . 
+                                    $obj->{'website'} . '", "' . 
+                                    $obj->{'email'} . '", "' . 
+                                    $obj->{'subject'} . '", "' . 
+                                    $obj->{'message'} . '", "' . 
+                                    $obj->{'date'} . '")'; 
     
     //print $sql;
 

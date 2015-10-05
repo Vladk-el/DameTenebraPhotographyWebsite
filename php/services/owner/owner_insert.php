@@ -5,7 +5,12 @@
     
     var_dump($obj);
     
-    $sql = 'INSERT INTO `owner`(`owner_id`, `owner_name`, `owner_description`, `active`) VALUES (null, "' . $obj->{'owner_name'} . '", "' . $obj->{'owner_description'} . '", "' . $obj->{'active'} . '")'; 
+    $sql = 'INSERT INTO `owner`
+                            (`owner_id`, `owner_name`, `owner_description`, `active`) VALUES 
+                                (null, "' . 
+                                utf8_encode($obj->{'owner_name'}) . '", "' . 
+                                utf8_encode($obj->{'owner_description'}) . '", "' . 
+                                $obj->{'active'} . '")'; 
 
     print $sql;
     

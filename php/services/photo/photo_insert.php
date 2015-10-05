@@ -5,7 +5,21 @@
     
     //var_dump($obj);
     
-    $sql = 'INSERT INTO `photo`(`photo_id`, `photo_name`, `photo_description`, `photo_date`, `photo_link`, `photo_mini_link`, `appareil`, `obturation`, `ouverture`, `longueur_focale`, `vitesse_ISO`, `category_photo`, `active`) VALUES (null, "' . $obj->{'photo_name'} . '", "' . $obj->{'photo_description'} . '", "' . $obj->{'photo_date'} . '", "' . $obj->{'photo_link'} . '", "' . $obj->{'photo_mini_link'} . '", "' . $obj->{'appareil'} . '", "' . $obj->{'obturation'} . '", "' . $obj->{'ouverture'} . '", "' . $obj->{'longueur_focale'} . '", "' . $obj->{'vitesse_ISO'} . '", ' . $obj->{'category_photo'} . ', "' . $obj->{'active'} . '")'; 
+    $sql = 'INSERT INTO `photo`
+                            (`photo_id`, `photo_name`, `photo_description`, `photo_date`, `photo_link`, `photo_mini_link`, `appareil`, `obturation`, `ouverture`, `longueur_focale`, `vitesse_ISO`, `category_photo`, `active`) VALUES 
+                            (null, "' . 
+                            utf8_encode($obj->{'photo_name'}) . '", "' . 
+                            utf8_encode($obj->{'photo_description'}) . '", "' . 
+                            $obj->{'photo_date'} . '", "' . 
+                            utf8_encode($obj->{'photo_link'}) . '", "' . 
+                            utf8_encode($obj->{'photo_mini_link'}) . '", "' . 
+                            utf8_encode($obj->{'appareil'}) . '", "' . 
+                            utf8_encode($obj->{'obturation'}) . '", "' . 
+                            utf8_encode($obj->{'ouverture'}) . '", "' . 
+                            utf8_encode($obj->{'longueur_focale'}) . '", "' . 
+                            utf8_encode($obj->{'vitesse_ISO'}) . '", ' . 
+                            $obj->{'category_photo'} . ', "' . 
+                            $obj->{'active'} . '")'; 
 
     //print $sql;
     

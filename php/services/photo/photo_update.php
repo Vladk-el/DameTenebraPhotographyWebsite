@@ -6,15 +6,15 @@
     //var_dump($obj);
     
     $sql = 'UPDATE `photo` SET 
-                                `photo_name`="' . $obj->{'photo_name'} . '",
-                                `photo_description`="' . $obj->{'photo_description'} . '",
-                                `photo_link`="' . $obj->{'photo_link'} . '",
-                                `photo_mini_link`="' . $obj->{'photo_mini_link'} . '",
-                                `appareil`="' . $obj->{'appareil'} . '",
-                                `obturation`="' . $obj->{'obturation'} . '",
-                                `ouverture`="' . $obj->{'ouverture'} . '",
-                                `longueur_focale`="' . $obj->{'longueur_focale'} . '",
-                                `vitesse_ISO`="' . $obj->{'vitesse_ISO'} . '",
+                                `photo_name`="' . utf8_encode($obj->{'photo_name'}) . '",
+                                `photo_description`="' . utf8_encode($obj->{'photo_description'}) . '",
+                                `photo_link`="' . utf8_encode($obj->{'photo_link'}) . '",
+                                `photo_mini_link`="' . utf8_encode($obj->{'photo_mini_link'}) . '",
+                                `appareil`="' . utf8_encode($obj->{'appareil'}) . '",
+                                `obturation`="' . utf8_encode($obj->{'obturation'}) . '",
+                                `ouverture`="' . utf8_encode($obj->{'ouverture'}) . '",
+                                `longueur_focale`="' . utf8_encode($obj->{'longueur_focale'}) . '",
+                                `vitesse_ISO`="' . utf8_encode($obj->{'vitesse_ISO'}) . '",
                                 `category_photo`="' . $obj->{'category_photo'} . '",
                                 `active`="' . $obj->{'active'} . '" 
             WHERE `photo_id`="' . $obj->{'photo_id'} . '"';

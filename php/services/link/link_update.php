@@ -6,8 +6,8 @@
     //var_dump($obj);
     
     $sql = 'UPDATE `link` SET 
-                                `link_name`="' . $obj->{'link_name'} . '",
-                                `link_link`="' . $obj->{'link_link'} . '",
+                                `link_name`="' . utf8_encode($obj->{'link_name'}) . '",
+                                `link_link`="' . utf8_encode($obj->{'link_link'}) . '",
                                 `link_owner_id`="' . $obj->{'link_owner_id'} . '",
                                 `active`="' . $obj->{'active'} . '" 
             WHERE `link_id`="' . $obj->{'link_id'} . '"';

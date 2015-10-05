@@ -2,8 +2,6 @@
     /* Connexion */
     include '../connection/connection.php';
 
-    mysqli_set_charset($con, "utf8");
-
     $response = mysqli_query($con, 'SELECT * FROM photo');
     $row_count = $response->num_rows;
     $cpt = 1;

@@ -6,8 +6,8 @@
     //var_dump($obj);
     
     $sql = 'UPDATE `owner` SET 
-                                `owner_name`="' . $obj->{'owner_name'} . '",
-                                `owner_description`="' . $obj->{'owner_description'} . '",
+                                `owner_name`="' . utf8_encode($obj->{'owner_name'}) . '",
+                                `owner_description`="' . utf8_encode($obj->{'owner_description'}) . '",
                                 `active`="' . $obj->{'active'} . '" 
             WHERE `owner_id`="' . $obj->{'owner_id'} . '"';
 

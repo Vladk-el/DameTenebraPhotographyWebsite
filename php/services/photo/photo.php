@@ -2,8 +2,6 @@
     /* Connexion */
     include '../connection/connection.php';
 
-    mysqli_set_charset($con, "utf8");
-
     $photos = mysqli_query($con, 'SELECT * FROM photo WHERE photo_id = ' . $_GET['photo'] . ';');
 
     while($photo = mysqli_fetch_array($photos)){
