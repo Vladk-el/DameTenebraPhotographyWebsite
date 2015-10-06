@@ -1,4 +1,7 @@
 <?php
+
+    /* Connexion */
+    include '../connection/connection.php';
         
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
@@ -37,9 +40,6 @@
     mail($mailToContact, $subject, $body, $headers);
 
     /* /Email */
-    
-    /* Connexion */
-    include '../connection/connection.php';
 
     if (mysqli_query($con, $sql)) {
         echo "success";

@@ -35,8 +35,15 @@ public class DAOIT {
 		owner = new DAO<>(Owner.class, new TypeToken<List<Owner>>() {}.getType());
 		link = new DAO<>(Link.class, new TypeToken<List<Link>>() {}.getType());
 	}
-
+	
 	@Test(enabled=true)
+	public void testLogger() {
+		log.info("OK");
+		log.debug("OK");
+		log.error("OK");
+	}
+
+	@Test(enabled=false)
 	public void photo() {
 		log.info("################ START Photo TEST ################\n");
 		
@@ -68,7 +75,7 @@ public class DAOIT {
 		log.info("################ END Photo TEST ################\n\n");
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void category() {
 		log.info("################ START Category TEST ################\n");
 		
@@ -100,7 +107,7 @@ public class DAOIT {
 		log.info("################ END Category TEST ################\n\n");
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void owner() {
 		log.info("################ START Owner TEST ################\n");
 		
@@ -132,7 +139,7 @@ public class DAOIT {
 		log.info("################ END Owner TEST ################\n\n");
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void link() {
 		log.info("################ START Link TEST ################\n");
 		

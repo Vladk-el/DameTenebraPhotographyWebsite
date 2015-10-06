@@ -1,4 +1,7 @@
 <?php
+
+    /* Connexion */
+    include '../connection/connection.php';
         
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
@@ -8,15 +11,10 @@
     $sql = 'INSERT INTO `category`
                                 (`category_id`, `category_name`, `category_description`, `category_date`, `active`) VALUES 
                                     (null, "' . 
-                                    utf8_encode($obj->{'category_name'}) . '", "' . 
-                                    utf8_encode($obj->{'category_description'}) . '", "' . 
+                                    encodeToDB($obj->{'category_name'}) . '", "' . 
+                                    encodeToDB($obj->{'category_description'}) . '", "' . 
                                     $obj->{'category_date'} . '", "' . 
                                     $obj->{'active'} . '")'; 
-
-    //print $sql;
-    
-    /* Connexion */
-    include '../connection/connection.php';
 
     print $sql;
 

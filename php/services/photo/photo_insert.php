@@ -1,4 +1,7 @@
 <?php
+
+    /* Connexion */
+    include '../connection/connection.php';
         
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
@@ -8,23 +11,20 @@
     $sql = 'INSERT INTO `photo`
                             (`photo_id`, `photo_name`, `photo_description`, `photo_date`, `photo_link`, `photo_mini_link`, `appareil`, `obturation`, `ouverture`, `longueur_focale`, `vitesse_ISO`, `category_photo`, `active`) VALUES 
                             (null, "' . 
-                            utf8_encode($obj->{'photo_name'}) . '", "' . 
-                            utf8_encode($obj->{'photo_description'}) . '", "' . 
+                            encodeToDB($obj->{'photo_name'}) . '", "' . 
+                            encodeToDB($obj->{'photo_description'}) . '", "' . 
                             $obj->{'photo_date'} . '", "' . 
-                            utf8_encode($obj->{'photo_link'}) . '", "' . 
-                            utf8_encode($obj->{'photo_mini_link'}) . '", "' . 
-                            utf8_encode($obj->{'appareil'}) . '", "' . 
-                            utf8_encode($obj->{'obturation'}) . '", "' . 
-                            utf8_encode($obj->{'ouverture'}) . '", "' . 
-                            utf8_encode($obj->{'longueur_focale'}) . '", "' . 
-                            utf8_encode($obj->{'vitesse_ISO'}) . '", ' . 
+                            encodeToDB($obj->{'photo_link'}) . '", "' . 
+                            encodeToDB($obj->{'photo_mini_link'}) . '", "' . 
+                            encodeToDB($obj->{'appareil'}) . '", "' . 
+                            encodeToDB($obj->{'obturation'}) . '", "' . 
+                            encodeToDB($obj->{'ouverture'}) . '", "' . 
+                            encodeToDB($obj->{'longueur_focale'}) . '", "' . 
+                            encodeToDB($obj->{'vitesse_ISO'}) . '", ' . 
                             $obj->{'category_photo'} . ', "' . 
                             $obj->{'active'} . '")'; 
 
     //print $sql;
-    
-    /* Connexion */
-    include '../connection/connection.php';
 
     if (mysqli_query($con, $sql)) {
         echo "success";

@@ -7,4 +7,7 @@
     }catch (Exception $e){
       die('Erreur : ' . $e->getMessage());
     }
+
+    /* Utils */
+    include '../utils/utils.php';
 ?>

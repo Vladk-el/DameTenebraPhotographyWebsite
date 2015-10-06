@@ -1,21 +1,21 @@
 <?php
+
+    /* Connexion */
+    include '../connection/connection.php';
         
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
     
-    var_dump($obj);
+    //var_dump($obj);
     
     $sql = 'INSERT INTO `owner`
                             (`owner_id`, `owner_name`, `owner_description`, `active`) VALUES 
                                 (null, "' . 
-                                utf8_encode($obj->{'owner_name'}) . '", "' . 
-                                utf8_encode($obj->{'owner_description'}) . '", "' . 
+                                encodeToDB($obj->{'owner_name'}) . '", "' . 
+                                encodeToDB($obj->{'owner_description'}) . '", "' . 
                                 $obj->{'active'} . '")'; 
 
-    print $sql;
-    
-    /* Connexion */
-    include '../connection/connection.php';
+    //print $sql;
 
     if (mysqli_query($con, $sql)) {
         echo "success";
