@@ -6,7 +6,7 @@
     $json = file_get_contents('php://input');
     $obj = json_decode($json);
     
-    var_dump($obj);
+    //var_dump($obj);
     
     $sql = 'INSERT INTO `category`
                                 (`category_id`, `category_name`, `category_description`, `category_date`, `active`) VALUES 
@@ -16,7 +16,7 @@
                                     $obj->{'category_date'} . '", "' . 
                                     $obj->{'active'} . '")'; 
 
-    print $sql;
+    //print $sql;
 
     if (mysqli_query($con, $sql)) {
         echo "success";
