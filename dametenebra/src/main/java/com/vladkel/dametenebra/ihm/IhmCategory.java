@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -116,7 +115,7 @@ public class IhmCategory implements IHM {
 		text_desc_category = new JEditorPane();
 		add_category = new JButton("Ajouter");
 		modif = new JButton("Modifier");
-		is_active = new JCheckBox("Rendre la catégorie visible sur le site ?");
+		is_active = new JCheckBox("Rendre visible sur le site ?");
 
 		save = new JButton("Sauvegarder");
 		delete = new JButton("Supprimer");
@@ -260,7 +259,7 @@ public class IhmCategory implements IHM {
 				category.setCategory_name(text_name_category.getText());
 				category.setCategory_description(text_desc_category.getText());
 				category.setActive(is_active.isSelected() ? 1 : 0);
-				if(dao.update(category)) {
+				if (dao.update(category)) {
 					javax.swing.JOptionPane.showMessageDialog(null, "La catégorie a bien été modifiée.");
 					modify.dispose();
 					jf_category.dispose();
@@ -274,8 +273,9 @@ public class IhmCategory implements IHM {
 		delete.addMouseListener(new MouseAdapter() {
 
 			public void mouseClicked(MouseEvent e) {
-				if(dao.delete(category)) {
-					javax.swing.JOptionPane.showMessageDialog(null, "La catégorie n'est maintenant plus visible sur le site.");
+				if (dao.delete(category)) {
+					javax.swing.JOptionPane.showMessageDialog(null,
+							"La catégorie n'est maintenant plus visible sur le site.");
 					modify.dispose();
 					jf_category.dispose();
 					displayAll();

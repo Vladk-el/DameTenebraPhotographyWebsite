@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.vladkel.dametenebra.ihm.IhmCategory;
+import com.vladkel.dametenebra.ihm.IhmOwner;
 import com.vladkel.dametenebra.utils.properties.Property;
 
 /**
@@ -20,6 +21,7 @@ import com.vladkel.dametenebra.utils.properties.Property;
 public class DameTenebra implements ActionListener{
 
 	private IhmCategory category;
+	private IhmOwner owner;
 	
 	/* ihm */
 	private JFrame jf;
@@ -39,6 +41,7 @@ public class DameTenebra implements ActionListener{
 	public DameTenebra(){
 		
 		category = new IhmCategory();
+		owner = new IhmOwner();
 		
 		jf = new JFrame();
 		jf.setTitle("DameTénébra - Version 3.0 -  \u00A9 Eliott Laversin");
@@ -81,6 +84,10 @@ public class DameTenebra implements ActionListener{
 		consult_category.addActionListener(this);
 		add_photo.addActionListener(this);
 		consult_photo.addActionListener(this);
+		add_owner.addActionListener(this);
+		consult_owner.addActionListener(this);
+		add_link.addActionListener(this);
+		consult_link.addActionListener(this);
 		
 		jf.setVisible(true);
 	}
@@ -105,10 +112,10 @@ public class DameTenebra implements ActionListener{
 		
 		/* Owner */
 		if(e.getSource() == add_owner){
-			//owner.create();
+			owner.create();
 		}
 		if(e.getSource() == consult_owner){
-			//owner.displayAll();
+			owner.displayAll();
 		}
 		
 		/* Link */

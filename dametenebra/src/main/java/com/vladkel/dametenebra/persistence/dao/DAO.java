@@ -88,7 +88,7 @@ public class DAO<T> implements IDAO<T> {
 				.append(PHP)
 				.toString();
 		PostHelper helper = new PostHelper();
-		System.out.println("Category to json : " + new Gson().toJson(object));
+		System.out.println(clazz.getSimpleName() + " to json : " + new Gson().toJson(object));
 		String response = helper.postAsString(url, new Gson().toJson(object), headers);
 		System.out.println("INSERT RESPONSE : " + response);
 		boolean success = response.equalsIgnoreCase(SUCCESS) ? true : false;
@@ -108,9 +108,9 @@ public class DAO<T> implements IDAO<T> {
 				.append(PHP)
 				.toString();
 		PostHelper helper = new PostHelper();
-		System.out.println("Category to json : " + new Gson().toJson(object));
+		System.out.println(clazz.getSimpleName() + " to json : " + new Gson().toJson(object));
 		String response = helper.postAsString(url, new Gson().toJson(object), headers);
-		System.out.println("INSERT RESPONSE : " + response);
+		System.out.println("UPDATE RESPONSE : " + response);
 		boolean success = response.equalsIgnoreCase(SUCCESS) ? true : false;
 		return success;
 	}
@@ -128,9 +128,9 @@ public class DAO<T> implements IDAO<T> {
 				.append(PHP)
 				.toString();
 		PostHelper helper = new PostHelper();
-		System.out.println("Category to json : " + new Gson().toJson(object));
+		System.out.println(clazz.getSimpleName() + " to json : " + new Gson().toJson(object));
 		String response = helper.postAsString(url, new Gson().toJson(object), headers);
-		System.out.println("INSERT RESPONSE : " + response);
+		System.out.println("DELETE RESPONSE : " + response);
 		boolean success = response.equalsIgnoreCase(SUCCESS) ? true : false;
 		return success;
 	}
