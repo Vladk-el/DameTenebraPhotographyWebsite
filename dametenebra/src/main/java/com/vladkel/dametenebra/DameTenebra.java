@@ -3,14 +3,13 @@ package com.vladkel.dametenebra;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.vladkel.dametenebra.ihm.IhmCategory;
+import com.vladkel.dametenebra.ihm.IhmLink;
 import com.vladkel.dametenebra.ihm.IhmOwner;
 import com.vladkel.dametenebra.utils.properties.Property;
 
@@ -22,6 +21,7 @@ public class DameTenebra implements ActionListener{
 
 	private IhmCategory category;
 	private IhmOwner owner;
+	private IhmLink link;
 	
 	/* ihm */
 	private JFrame jf;
@@ -42,6 +42,7 @@ public class DameTenebra implements ActionListener{
 		
 		category = new IhmCategory();
 		owner = new IhmOwner();
+		link = new IhmLink();
 		
 		jf = new JFrame();
 		jf.setTitle("DameTénébra - Version 3.0 -  \u00A9 Eliott Laversin");
@@ -120,10 +121,10 @@ public class DameTenebra implements ActionListener{
 		
 		/* Link */
 		if(e.getSource() == add_link){
-			//link.create();
+			link.create();
 		}
 		if(e.getSource() == consult_link){
-			//link.displayAll();
+			link.displayAll();
 		}
 		
 	}

@@ -124,16 +124,16 @@ public class IhmOwner implements IHM {
 	@Override
 	public void displayAll() {
 		init();
-		jf_owner.setTitle("Consulter les categories");
+		jf_owner.setTitle("Consulter les owners");
 
-		final List<Owner> categories = dao.select();
-		Object[][] data = new Object[categories.size()][4];
+		final List<Owner> owners = dao.select();
+		Object[][] data = new Object[owners.size()][4];
 
-		for (int i = 0; i < categories.size(); i++) {
-			data[i][0] = categories.get(i).getOwner_id();
-			data[i][1] = categories.get(i).getOwner_name();
-			data[i][2] = categories.get(i).getOwner_description();
-			data[i][3] = categories.get(i).getActive() == 1 ? "oui" : "non";
+		for (int i = 0; i < owners.size(); i++) {
+			data[i][0] = owners.get(i).getOwner_id();
+			data[i][1] = owners.get(i).getOwner_name();
+			data[i][2] = owners.get(i).getOwner_description();
+			data[i][3] = owners.get(i).getActive() == 1 ? "oui" : "non";
 		}
 
 		String[] entete = { "Id", "Nom", "Description", "Visible" };
@@ -143,9 +143,9 @@ public class IhmOwner implements IHM {
 
 			public void mouseClicked(MouseEvent e) {
 				if (tab.getSelectedRow() != -1) {
-					modify(categories.get(tab.getSelectedRow()));
+					modify(owners.get(tab.getSelectedRow()));
 					// JOptionPane.showMessageDialog(null, "Owner " +
-					// categories.get(tab.getSelectedRow()).getOwner_name() +
+					// owners.get(tab.getSelectedRow()).getOwner_name() +
 					// " selected for modification.");
 				}
 			}
@@ -220,7 +220,7 @@ public class IhmOwner implements IHM {
 		final Owner owner = (Owner) object;
 		final JFrame modify = new JFrame();
 		modify.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		modify.setTitle("Modifier la categorie : " + owner.getOwner_name());
+		modify.setTitle("Modifier le photographe : " + owner.getOwner_name());
 		modify.setSize(new Dimension(300, 400));
 		modify.setLocationRelativeTo(null);
 
@@ -250,7 +250,7 @@ public class IhmOwner implements IHM {
 				owner.setOwner_description(text_desc_owner.getText());
 				owner.setActive(is_active.isSelected() ? 1 : 0);
 				if (dao.update(owner)) {
-					javax.swing.JOptionPane.showMessageDialog(null, "La photographe a bien été modifié.");
+					javax.swing.JOptionPane.showMessageDialog(null, "Le photographe a bien été modifié.");
 					modify.dispose();
 					jf_owner.dispose();
 					displayAll();
