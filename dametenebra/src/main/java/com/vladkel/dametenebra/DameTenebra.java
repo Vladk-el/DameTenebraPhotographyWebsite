@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import com.vladkel.dametenebra.ihm.IhmCategory;
 import com.vladkel.dametenebra.ihm.IhmLink;
 import com.vladkel.dametenebra.ihm.IhmOwner;
+import com.vladkel.dametenebra.ihm.IhmPhoto;
 import com.vladkel.dametenebra.utils.properties.Property;
 
 /**
@@ -20,6 +21,7 @@ import com.vladkel.dametenebra.utils.properties.Property;
 public class DameTenebra implements ActionListener{
 
 	private IhmCategory category;
+	private IhmPhoto photo;
 	private IhmOwner owner;
 	private IhmLink link;
 	
@@ -41,6 +43,7 @@ public class DameTenebra implements ActionListener{
 	public DameTenebra(){
 		
 		category = new IhmCategory();
+		photo = new IhmPhoto();
 		owner = new IhmOwner();
 		link = new IhmLink();
 		
@@ -105,10 +108,10 @@ public class DameTenebra implements ActionListener{
 		
 		/* Photo */
 		if(e.getSource() == add_photo){
-			//photo.create();
+			photo.create();
 		}
 		if(e.getSource() == consult_photo){
-			//photo.displayAll();
+			photo.displayAll();
 		}
 		
 		/* Owner */
