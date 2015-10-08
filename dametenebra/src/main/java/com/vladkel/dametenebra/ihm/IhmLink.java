@@ -165,9 +165,6 @@ public class IhmLink implements IHM {
 			public void mouseClicked(MouseEvent e) {
 				if (tab.getSelectedRow() != -1) {
 					modify(links.get(tab.getSelectedRow()));
-					// JOptionPane.showMessageDialog(null, "Link " +
-					// links.get(tab.getSelectedRow()).getLink_name() +
-					// " selected for modification.");
 				}
 			}
 		});

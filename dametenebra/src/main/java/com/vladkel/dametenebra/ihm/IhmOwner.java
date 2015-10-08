@@ -144,9 +144,6 @@ public class IhmOwner implements IHM {
 			public void mouseClicked(MouseEvent e) {
 				if (tab.getSelectedRow() != -1) {
 					modify(owners.get(tab.getSelectedRow()));
-					// JOptionPane.showMessageDialog(null, "Owner " +
-					// owners.get(tab.getSelectedRow()).getOwner_name() +
-					// " selected for modification.");
 				}
 			}
 		});

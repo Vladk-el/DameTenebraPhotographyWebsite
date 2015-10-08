@@ -150,9 +150,6 @@ public class IhmCategory implements IHM {
 			public void mouseClicked(MouseEvent e) {
 				if (tab.getSelectedRow() != -1) {
 					modify(categories.get(tab.getSelectedRow()));
-					// JOptionPane.showMessageDialog(null, "Category " +
-					// categories.get(tab.getSelectedRow()).getCategory_name() +
-					// " selected for modification.");
 				}
 			}
 		});
