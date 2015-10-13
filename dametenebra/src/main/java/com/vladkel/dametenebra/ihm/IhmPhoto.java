@@ -11,11 +11,11 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -32,7 +32,9 @@ import com.vladkel.dametenebra.utils.ftp.FtpClient;
 import com.vladkel.dametenebra.utils.ftp.threads.Retrieve;
 import com.vladkel.dametenebra.utils.ftp.threads.Store;
 import com.vladkel.dametenebra.utils.img.ImgManager;
+import com.vladkel.dametenebra.utils.listeners.photo.DeleteListener;
 import com.vladkel.dametenebra.utils.listeners.photo.OnOverListener;
+import com.vladkel.dametenebra.utils.listeners.photo.SaveListener;
 import com.vladkel.dametenebra.utils.properties.Property;
 
 /**
@@ -47,7 +49,7 @@ public class IhmPhoto implements IHM {
 	private FileUtils utils;
 
 	/* ihm */
-	private JFrame jf_photo;
+	public JFrame jf_photo;
 	private JPanel p_photo;
 	private JButton modif;
 	private GridBagLayout bl;
@@ -60,9 +62,9 @@ public class IhmPhoto implements IHM {
 	private JLabel title_category_photo;
 	private JComboBox<Category> text_category_photo;
 	private JButton add_photo;
-	private String current_date;
+	private JCheckBox is_active;
 
-	private JFrame modify;
+	public JFrame modify;
 
 	private JButton save;
 	private JButton delete;
@@ -119,8 +121,8 @@ public class IhmPhoto implements IHM {
 		text_category_photo = null;
 		add_photo = null;
 		img_mini = null;
+		is_active = null;
 
-		current_date = null;
 		modif = null;
 
 		save = null;
@@ -147,6 +149,7 @@ public class IhmPhoto implements IHM {
 		title_category_photo = new JLabel("Categorie concernée");
 		text_category_photo = new JComboBox<Category>(categories.toArray(new Category[categories.size()]));
 		add_photo = new JButton("Ajouter");
+		is_active = new JCheckBox("Rendre visible sur le site ?");
 
 		modif = new JButton("Détail");
 
@@ -234,12 +237,15 @@ public class IhmPhoto implements IHM {
 		mp.setLayout(new FlowLayout());
 
 		init();
+		
+		Dimension d = new Dimension(350, 20);
 
-		text_name_photo.setPreferredSize(new Dimension(350, 20));
-		text_desc_photo.setPreferredSize(new Dimension(350, 20));
-		text_link_photo.setPreferredSize(new Dimension(350, 20));
-		text_category_photo.setPreferredSize(new Dimension(350, 20));
-		title_category_photo.setPreferredSize(new Dimension(350, 20));
+		text_name_photo.setPreferredSize(d);
+		text_desc_photo.setPreferredSize(d);
+		text_link_photo.setPreferredSize(d);
+		text_category_photo.setPreferredSize(d);
+		title_category_photo.setPreferredSize(d);
+		is_active.setPreferredSize(d);
 
 		File mini = new File("data/img/mini/" + photo.getPhoto_mini_link());
 		img_mini = new JButton(new ImageIcon(mini.getAbsolutePath()));
@@ -255,6 +261,7 @@ public class IhmPhoto implements IHM {
 		mp.add(img_mini);
 		mp.add(title_category_photo);
 		mp.add(text_category_photo);
+		mp.add(is_active);
 
 		mp.add(save);
 		mp.add(delete);
@@ -262,6 +269,7 @@ public class IhmPhoto implements IHM {
 		text_name_photo.setText(photo.getPhoto_name());
 		text_desc_photo.setText(photo.getPhoto_description());
 		text_link_photo.setText(photo.getPhoto_link());
+		is_active.setSelected(photo.getActive() == 1 ? true : false);
 
 		for (int i = 0; i < categories.size(); i++) {
 			if (categories.get(i).getCategory_id() == photo.getCategory_photo()) {
@@ -298,43 +306,9 @@ public class IhmPhoto implements IHM {
 		
 		img_mini.addMouseListener(new OnOverListener(text_link_photo));
 
-		save.addMouseListener(new MouseAdapter() {
-
-			public void mouseClicked(MouseEvent e) {
-				photo.setPhoto_name(text_name_photo.getText());
-				photo.setPhoto_description(text_desc_photo.getText());
-				photo.setPhoto_link(
-						text_link_photo.getText().substring(text_link_photo.getText().lastIndexOf("\\") + 1));
-				photo.setPhoto_mini_link(photo.getPhoto_link());
-				photo.setCategory_photo(categories.get(text_category_photo.getSelectedIndex()).getCategory_id());
-
-				if (dao.update(photo)) {
-					store();
-					JOptionPane.showMessageDialog(null, "Votre photo à bien été modifiée.");
-					modify.dispose();
-					jf_photo.dispose();
-					displayAll();
-				} else {
-					JOptionPane.showMessageDialog(null,
-							"Un problème est survenu, veuillez vérifier l'intégrité des données et votre connexion internet.");
-				}
-
-			}
-		});
-
-		delete.addMouseListener(new MouseAdapter() {
-
-			public void mouseClicked(MouseEvent e) {
-				if (dao.delete(photo)) {
-					javax.swing.JOptionPane.showMessageDialog(null, "La photo n'est maintenant plus visible sur le site.");
-					modify.dispose();
-					jf_photo.dispose();
-					displayAll();
-				} else {
-					JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
-				}
-			}
-		});
+		save.addMouseListener(new SaveListener(this, photo));
+		
+		delete.addMouseListener(new DeleteListener(this, photo));
 
 		downloadFiles("img/full/" + photo.getPhoto_link(), "img/mini/" + photo.getPhoto_mini_link());
 
@@ -413,6 +387,30 @@ public class IhmPhoto implements IHM {
 			System.out.println("Files are already in cache, great !");
 			setIcon(new ImageIcon("data/img/mini/" + file.getName()));
 		}
+	}
+	
+	public IDAO<Photo> getDao() {
+		return dao;
+	}
+	
+	public String getPhotoName() {
+		return text_name_photo.getText();
+	}
+	
+	public String getPhotoDescription() {
+		return text_desc_photo.getText();
+	}
+	
+	public String getPhotoLink() {
+		return text_link_photo.getText().substring(text_link_photo.getText().lastIndexOf("\\") + 1);
+	}
+	
+	public int getPhotoCategory() {
+		return categories.get(text_category_photo.getSelectedIndex()).getCategory_id();
+	}
+	
+	public int getActive() {
+		return is_active.isSelected() ? 1 : 0;
 	}
 
 }

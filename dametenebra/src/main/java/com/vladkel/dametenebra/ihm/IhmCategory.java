@@ -25,6 +25,8 @@ import com.google.common.reflect.TypeToken;
 import com.vladkel.dametenebra.model.Category;
 import com.vladkel.dametenebra.persistence.dao.DAO;
 import com.vladkel.dametenebra.persistence.dao.IDAO;
+import com.vladkel.dametenebra.utils.listeners.category.DeleteListener;
+import com.vladkel.dametenebra.utils.listeners.category.SaveListener;
 
 /**
  * @author eliott
@@ -32,10 +34,10 @@ import com.vladkel.dametenebra.persistence.dao.IDAO;
  */
 public class IhmCategory implements IHM {
 
-	IDAO<Category> dao;
+	private IDAO<Category> dao;
 
 	/* ihm */
-	private JFrame jf_category;
+	public JFrame jf_category;
 	private JPanel p_category;
 	private JButton modif;
 	private GridBagLayout bl;
@@ -48,6 +50,8 @@ public class IhmCategory implements IHM {
 
 	private JButton save;
 	private JButton delete;
+	
+	public JFrame modify;
 
 	@SuppressWarnings("serial")
 	public IhmCategory() {
@@ -166,7 +170,7 @@ public class IhmCategory implements IHM {
 	@Override
 	public void create() {
 		init();
-		final JFrame modify = new JFrame();
+		modify = new JFrame();
 		modify.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		modify.setTitle("Ajouter une categorie");
 		modify.setSize(new Dimension(300, 400));
@@ -188,28 +192,12 @@ public class IhmCategory implements IHM {
 
 		final Date date = new Date();
 		final DateFormat formate = new SimpleDateFormat("yyyy-MM-dd");
-
-		add_category.addMouseListener(new MouseAdapter() {
-
-			public void mouseClicked(MouseEvent arg0) {
-				Category category = new Category();
-				category.setCategory_id(0);
-				category.setCategory_name(text_name_category.getText());
-				category.setCategory_description(text_desc_category.getText());
-				category.setCategory_date(formate.format(date));
-				category.setActive(is_active.isSelected() ? 1 : 0);
-				if (dao.insert(category)) {
-					JOptionPane.showMessageDialog(null,
-							"La catégorie \"" + category.getCategory_name() + "\" a bien été ajoutée.");
-					modify.dispose();
-					jf_category.dispose();
-					displayAll();
-				} else {
-					JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
-				}
-			}
-
-		});
+		
+		Category category = new Category();
+		category.setCategory_id(0);
+		category.setCategory_date(formate.format(date));
+		
+		add_category.addMouseListener(new SaveListener(this, category));
 
 		modify.setVisible(true);
 
@@ -223,7 +211,7 @@ public class IhmCategory implements IHM {
 	@Override
 	public void modify(Object object) {
 		final Category category = (Category) object;
-		final JFrame modify = new JFrame();
+		modify = new JFrame();
 		modify.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		modify.setTitle("Modifier la categorie : " + category.getCategory_name());
 		modify.setSize(new Dimension(300, 400));
@@ -248,39 +236,27 @@ public class IhmCategory implements IHM {
 		text_desc_category.setText(category.getCategory_description());
 		is_active.setSelected(category.getActive() == 1 ? true : false);
 
-		save.addMouseListener(new MouseAdapter() {
+		save.addMouseListener(new SaveListener(this, category));
 
-			public void mouseClicked(MouseEvent e) {
-				category.setCategory_name(text_name_category.getText());
-				category.setCategory_description(text_desc_category.getText());
-				category.setActive(is_active.isSelected() ? 1 : 0);
-				if (dao.update(category)) {
-					JOptionPane.showMessageDialog(null, "La catégorie a bien été modifiée.");
-					modify.dispose();
-					jf_category.dispose();
-					displayAll();
-				} else {
-					JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
-				}
-			}
-		});
-
-		delete.addMouseListener(new MouseAdapter() {
-
-			public void mouseClicked(MouseEvent e) {
-				if (dao.delete(category)) {
-					JOptionPane.showMessageDialog(null,
-							"La catégorie n'est maintenant plus visible sur le site.");
-					modify.dispose();
-					jf_category.dispose();
-					displayAll();
-				} else {
-					JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
-				}
-			}
-		});
+		delete.addMouseListener(new DeleteListener(this, category));
 
 		modify.setVisible(true);
 	}
+	
+	public IDAO<Category> getDao() {
+		return dao;
+	}
+	
+	public String getCategoryName() {
+		return text_name_category.getText();
+	}
+	
+	public String getCategoryDescription() {
+		return text_desc_category.getText();
+	}
 
+	public int getActive() {
+		return is_active.isSelected() ? 1 : 0;
+	}
+	
 }
