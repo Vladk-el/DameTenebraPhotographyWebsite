@@ -10,7 +10,7 @@
     while($r = mysqli_fetch_assoc($response)) {
         if($r != null && $r != "" && strlen(json_encode($r)) > 0 ) {
             
-            if($_GET['display'] != null) {
+            if(!empty($_GET['display'])) {
                 $links = mysqli_query($con, 'SELECT * FROM link WHERE link_owner_id = ' . $r['owner_id'] . ';');  
                 $r['links'] = array();
                 while($link = mysqli_fetch_array($links)){
