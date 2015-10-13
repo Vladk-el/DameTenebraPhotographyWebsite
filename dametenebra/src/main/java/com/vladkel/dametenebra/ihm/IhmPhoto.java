@@ -6,7 +6,6 @@ import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -58,8 +57,6 @@ public class IhmPhoto implements IHM {
 	private JTextField text_desc_photo;
 	private JLabel title_link_photo;
 	private JTextField text_link_photo;
-	private JLabel title_mini_photo;
-	private JTextField text_mini_photo;
 	private JLabel title_category_photo;
 	private JComboBox<Category> text_category_photo;
 	private JButton add_photo;
@@ -118,8 +115,6 @@ public class IhmPhoto implements IHM {
 		text_desc_photo = null;
 		title_link_photo = null;
 		text_link_photo = null;
-		title_mini_photo = null;
-		text_mini_photo = null;
 		title_category_photo = null;
 		text_category_photo = null;
 		add_photo = null;
@@ -149,8 +144,6 @@ public class IhmPhoto implements IHM {
 		text_desc_photo = new JTextField();
 		title_link_photo = new JLabel("Nom du fichier");
 		text_link_photo = new JTextField();
-		title_mini_photo = new JLabel("Nom de la miniature");
-		text_mini_photo = new JTextField();
 		title_category_photo = new JLabel("Categorie concernée");
 		text_category_photo = new JComboBox<Category>(categories.toArray(new Category[categories.size()]));
 		add_photo = new JButton("Ajouter");
@@ -355,7 +348,7 @@ public class IhmPhoto implements IHM {
 
 	public void store() {
 
-		storeOnCache();
+		//storeOnCache();
 		storeOnline();
 	}
 
@@ -381,21 +374,21 @@ public class IhmPhoto implements IHM {
 
 	}
 
-	public void storeOnCache() {
-
-		System.out.println("Storing in cache . . .");
-
-		File full = new File("data/img/full/" + new File(text_link_photo.getText()).getName());
-		File mini = new File("data/img/mini/" + new File(text_mini_photo.getText()).getName());
-		try {
-			utils.copyFile(new File(text_link_photo.getText()), full);
-			utils.copyFile(new File(text_mini_photo.getText()), mini);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		System.out.println("Storing in cache done.");
-
-	}
+//	public void storeOnCache() {
+//
+//		System.out.println("Storing in cache . . .");
+//
+//		File full = new File("data/img/full/" + new File(text_link_photo.getText()).getName());
+//		File mini = new File("data/img/mini/" + new File(text_link_photo.getText()).getName());
+//		try {
+//			utils.copyFile(new File(text_link_photo.getText()), full);
+//			utils.copyFile(new File(text_link_photo.getText()), mini);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println("Storing in cache done.");
+//
+//	}
 
 	public void downloadFiles(String src_full, String src_mini) {
 		File file = new File("data/" + src_mini);

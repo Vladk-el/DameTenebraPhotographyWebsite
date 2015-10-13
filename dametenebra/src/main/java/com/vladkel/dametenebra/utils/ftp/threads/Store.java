@@ -6,8 +6,8 @@ import java.io.IOException;
 import com.vladkel.dametenebra.utils.file.FileUtils;
 import com.vladkel.dametenebra.utils.ftp.FtpClient;
 
-public class Store implements Runnable{
-	
+public class Store implements Runnable {
+
 	FileUtils utils;
 	FtpClient client;
 	File src;
@@ -15,39 +15,38 @@ public class Store implements Runnable{
 	String repertory;
 	Thread next;
 
-	public Store(FtpClient c, File s, File f, String r){
+	public Store(FtpClient c, File s, File f, String r) {
 		client = c;
 		src = s;
 		file = f;
 		repertory = r;
 	}
-	
-	public Store(FtpClient c, File s, File f, String r, Thread t){
+
+	public Store(FtpClient c, File s, File f, String r, Thread t) {
 		client = c;
 		src = s;
 		file = f;
 		repertory = r;
 		next = t;
 	}
-	
-	//TODO don't copy nor delete anything, juste upload photos from data/img/{full || mini}/
+
 	public void run() {
-		
+
 		utils = new FileUtils();
-		
+
 		try {
 			utils.copyFile(src, file);
 		} catch (IOException e) {
 			System.out.println("Un problème est survenu dans la copie du fichier. Veuillez réessayer.");
 			e.printStackTrace();
 		}
-		
+
 		client.store(file.getName(), repertory, true);
 		utils.deleteFile(file);
-		if(next != null)
+		if (next != null) {
 			next.start();
-		
-	}
+		}
 
+	}
 
 }

@@ -44,7 +44,6 @@ public class IhmCategory implements IHM {
 	private JLabel title_desc_category;
 	private JEditorPane text_desc_category;
 	private JButton add_category;
-	private String current_date;
 	private JCheckBox is_active;
 
 	private JButton save;
@@ -91,7 +90,6 @@ public class IhmCategory implements IHM {
 		title_desc_category = null;
 		text_desc_category = null;
 		add_category = null;
-		current_date = null;
 		modif = null;
 		is_active = null;
 
