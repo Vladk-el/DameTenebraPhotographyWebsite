@@ -5,7 +5,7 @@ package com.vladkel.dametenebra.model;
  *
  */
 public class Category {
-	
+
 	private int category_id;
 
 	private String category_name;
@@ -15,7 +15,7 @@ public class Category {
 	private String category_date;
 
 	private int active;
-	
+
 	public Category() {
 		super();
 	}
@@ -93,5 +93,15 @@ public class Category {
 	 */
 	public void setActive(int active) {
 		this.active = active;
+	}
+
+	/**
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return category_name;
 	}
 }

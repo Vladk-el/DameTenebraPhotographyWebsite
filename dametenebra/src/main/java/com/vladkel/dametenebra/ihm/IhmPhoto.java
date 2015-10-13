@@ -1,16 +1,22 @@
 package com.vladkel.dametenebra.ihm;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,8 +28,12 @@ import com.vladkel.dametenebra.model.Category;
 import com.vladkel.dametenebra.model.Photo;
 import com.vladkel.dametenebra.persistence.dao.DAO;
 import com.vladkel.dametenebra.persistence.dao.IDAO;
+import com.vladkel.dametenebra.utils.file.FileUtils;
 import com.vladkel.dametenebra.utils.ftp.FtpClient;
 import com.vladkel.dametenebra.utils.ftp.threads.Retrieve;
+import com.vladkel.dametenebra.utils.ftp.threads.Store;
+import com.vladkel.dametenebra.utils.img.ImgManager;
+import com.vladkel.dametenebra.utils.listeners.photo.OnOverListener;
 import com.vladkel.dametenebra.utils.properties.Property;
 
 /**
@@ -35,6 +45,7 @@ public class IhmPhoto implements IHM {
 	private IDAO<Photo> dao;
 	private IDAO<Category> categoryDao;
 	private List<Category> categories;
+	private FileUtils utils;
 
 	/* ihm */
 	private JFrame jf_photo;
@@ -54,7 +65,6 @@ public class IhmPhoto implements IHM {
 	private JButton add_photo;
 	private String current_date;
 
-	private JFrame hover;
 	private JFrame modify;
 
 	private JButton save;
@@ -176,7 +186,7 @@ public class IhmPhoto implements IHM {
 					break;
 				}
 			}
-			
+
 			data[i][5] = photos.get(i).getActive() == 1 ? "oui" : "non";
 		}
 
@@ -216,35 +226,196 @@ public class IhmPhoto implements IHM {
 	 */
 	@Override
 	public void modify(Object object) {
-		// TODO Auto-generated method stub
+		final Photo photo = (Photo) object;
+		modify = new JFrame();
 
+		modify.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		modify.setTitle("Modifier la categorie : " + photo.getPhoto_name());
+		modify.setSize(new Dimension(380, 450));
+		modify.setLocationRelativeTo(null);
+		modify.setResizable(false);
+
+		JPanel mp = new JPanel();
+		modify.setContentPane(mp);
+		mp.setLayout(new FlowLayout());
+
+		init();
+
+		text_name_photo.setPreferredSize(new Dimension(350, 20));
+		text_desc_photo.setPreferredSize(new Dimension(350, 20));
+		text_link_photo.setPreferredSize(new Dimension(350, 20));
+		text_category_photo.setPreferredSize(new Dimension(350, 20));
+		title_category_photo.setPreferredSize(new Dimension(350, 20));
+
+		File mini = new File("data/img/mini/" + photo.getPhoto_mini_link());
+		img_mini = new JButton(new ImageIcon(mini.getAbsolutePath()));
+		img_mini.setBorder(BorderFactory.createEmptyBorder());
+		img_mini.setContentAreaFilled(false);
+
+		mp.add(title_name_photo);
+		mp.add(text_name_photo);
+		mp.add(title_desc_photo);
+		mp.add(text_desc_photo);
+		mp.add(title_link_photo);
+		mp.add(text_link_photo);
+		mp.add(img_mini);
+		mp.add(title_category_photo);
+		mp.add(text_category_photo);
+
+		mp.add(save);
+		mp.add(delete);
+
+		text_name_photo.setText(photo.getPhoto_name());
+		text_desc_photo.setText(photo.getPhoto_description());
+		text_link_photo.setText(photo.getPhoto_link());
+
+		for (int i = 0; i < categories.size(); i++) {
+			if (categories.get(i).getCategory_id() == photo.getCategory_photo()) {
+				text_category_photo.setSelectedIndex(i);
+				break;
+			}
+		}
+
+		final JFileChooser fc = new JFileChooser();
+
+		/**
+		 * Listeners
+		 */
+		
+		text_link_photo.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				int returnVal = fc.showOpenDialog(fc);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					File file = fc.getSelectedFile();
+					if (utils.isAnImage(file)) {
+						text_link_photo.setText(file.getName());
+						boolean imageIsResized = new ImgManager(file).resizeAndWrite();
+						if (imageIsResized) {
+							img_mini.setIcon(new ImageIcon("data/img/mini/" + file.getName()));
+							modify.repaint();
+						}
+					} else {
+						javax.swing.JOptionPane.showMessageDialog(null,
+								"Veuillez sélectionner un fichier image valide.");
+					}
+				}
+			}
+		});
+		
+		img_mini.addMouseListener(new OnOverListener(text_link_photo));
+
+		save.addMouseListener(new MouseAdapter() {
+
+			public void mouseClicked(MouseEvent e) {
+				photo.setPhoto_name(text_name_photo.getText());
+				photo.setPhoto_description(text_desc_photo.getText());
+				photo.setPhoto_link(
+						text_link_photo.getText().substring(text_link_photo.getText().lastIndexOf("\\") + 1));
+				photo.setPhoto_mini_link(photo.getPhoto_link());
+				photo.setCategory_photo(categories.get(text_category_photo.getSelectedIndex()).getCategory_id());
+
+				if (dao.update(photo)) {
+					store();
+					JOptionPane.showMessageDialog(null, "Votre photo à bien été modifiée.");
+					modify.dispose();
+					jf_photo.dispose();
+					displayAll();
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Un problème est survenu, veuillez vérifier l'intégrité des données et votre connexion internet.");
+				}
+
+			}
+		});
+
+		delete.addMouseListener(new MouseAdapter() {
+
+			public void mouseClicked(MouseEvent e) {
+				if (dao.delete(photo)) {
+					javax.swing.JOptionPane.showMessageDialog(null, "La photo n'est maintenant plus visible sur le site.");
+					modify.dispose();
+					jf_photo.dispose();
+					displayAll();
+				} else {
+					JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
+				}
+			}
+		});
+
+		downloadFiles("img/full/" + photo.getPhoto_link(), "img/mini/" + photo.getPhoto_mini_link());
+
+		modify.setVisible(true);
 	}
-	
+
 	public void setIcon(ImageIcon icon) {
 		img_mini.setIcon(icon);
 		modify.repaint();
 	}
-	
-	public void downloadFiles(String src_full, String src_mini){
+
+	public void store() {
+
+		storeOnCache();
+		storeOnline();
+	}
+
+	public void storeOnline() {
+		FtpClient client = null;
+
+		if (DameTenebra.server.equalsIgnoreCase("local")) {
+			client = new FtpClient("localhost", Property.getInstance().get("ftp.user"),
+					Property.getInstance().get("ftp.pwd"));
+		} else if (DameTenebra.server.equalsIgnoreCase("prod")) {
+			client = new FtpClient(Property.getInstance().get("ftp.url"), Property.getInstance().get("ftp.user"),
+					Property.getInstance().get("ftp.pwd"));
+		}
+
+		File img = new File(new File(text_link_photo.getText()).getName());
+		File img_mini = new File(new File(text_link_photo.getText()).getName());
+
+		Thread mini = new Thread(
+				new Store(client, new File("data/img/mini/" + text_link_photo.getText()), img_mini, "/www/img/mini"));
+		Thread full = new Thread(
+				new Store(client, new File("data/img/full/" + text_link_photo.getText()), img, "/www/img/full", mini));
+		full.start();
+
+	}
+
+	public void storeOnCache() {
+
+		System.out.println("Storing in cache . . .");
+
+		File full = new File("data/img/full/" + new File(text_link_photo.getText()).getName());
+		File mini = new File("data/img/mini/" + new File(text_mini_photo.getText()).getName());
+		try {
+			utils.copyFile(new File(text_link_photo.getText()), full);
+			utils.copyFile(new File(text_mini_photo.getText()), mini);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.println("Storing in cache done.");
+
+	}
+
+	public void downloadFiles(String src_full, String src_mini) {
 		File file = new File("data/" + src_mini);
 		FtpClient client = null;
-		if(!file.exists()){
-			if(DameTenebra.server.equalsIgnoreCase("local")){
-				client = new FtpClient("localhost", Property.getInstance().get("ftp.user"), Property.getInstance().get("ftp.pwd"));
+		if (!file.exists()) {
+			if (DameTenebra.server.equalsIgnoreCase("local")) {
+				client = new FtpClient("localhost", Property.getInstance().get("ftp.user"),
+						Property.getInstance().get("ftp.pwd"));
 			}
-			if(DameTenebra.server.equalsIgnoreCase("prod")){
-				client = new FtpClient(Property.getInstance().get("ftp.url"), 
-									   Property.getInstance().get("ftp.user"), 
-									   Property.getInstance().get("ftp.pwd")
-							 );
+			if (DameTenebra.server.equalsIgnoreCase("prod")) {
+				client = new FtpClient(Property.getInstance().get("ftp.url"), Property.getInstance().get("ftp.user"),
+						Property.getInstance().get("ftp.pwd"));
 			}
-			
-			Thread mini = new Thread(new Retrieve(client, file, "www/" + src_mini.substring(0, src_full.lastIndexOf("/"))));
+
+			Thread mini = new Thread(
+					new Retrieve(client, file, "www/" + src_mini.substring(0, src_full.lastIndexOf("/")), this));
 			file = new File("data/" + src_full);
-			Thread full = new Thread(new Retrieve(client, file, "www/" + src_full.substring(0, src_full.lastIndexOf("/")), mini));
+			Thread full = new Thread(
+					new Retrieve(client, file, "www/" + src_full.substring(0, src_full.lastIndexOf("/")), mini));
 			full.start();
-		}
-		else{
+		} else {
 			System.out.println("Files are already in cache, great !");
 			setIcon(new ImageIcon("data/img/mini/" + file.getName()));
 		}

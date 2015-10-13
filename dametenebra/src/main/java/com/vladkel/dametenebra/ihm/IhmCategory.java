@@ -257,7 +257,7 @@ public class IhmCategory implements IHM {
 				category.setCategory_description(text_desc_category.getText());
 				category.setActive(is_active.isSelected() ? 1 : 0);
 				if (dao.update(category)) {
-					javax.swing.JOptionPane.showMessageDialog(null, "La catégorie a bien été modifiée.");
+					JOptionPane.showMessageDialog(null, "La catégorie a bien été modifiée.");
 					modify.dispose();
 					jf_category.dispose();
 					displayAll();
@@ -271,7 +271,7 @@ public class IhmCategory implements IHM {
 
 			public void mouseClicked(MouseEvent e) {
 				if (dao.delete(category)) {
-					javax.swing.JOptionPane.showMessageDialog(null,
+					JOptionPane.showMessageDialog(null,
 							"La catégorie n'est maintenant plus visible sur le site.");
 					modify.dispose();
 					jf_category.dispose();

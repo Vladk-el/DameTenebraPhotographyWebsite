@@ -17,7 +17,11 @@ import javax.activation.MimetypesFileTypeMap;
  */
 public class FileUtils {
 
-	public static void copyFile(File src, File dest) throws IOException {
+	public FileUtils() {
+		super();
+	}
+
+	public void copyFile(File src, File dest) throws IOException {
 
 		InputStream in = new BufferedInputStream(new FileInputStream(src));
 		OutputStream out = new BufferedOutputStream(new FileOutputStream(dest));
@@ -33,7 +37,7 @@ public class FileUtils {
 	}
 
 	@Deprecated
-	public static void copyFile(String src, String dest) {
+	public void copyFile(String src, String dest) {
 
 		try {
 			Runtime.getRuntime().exec("cmd /c start COPY " + src + " " + dest);
@@ -43,13 +47,16 @@ public class FileUtils {
 
 	}
 
-	public static void deleteFile(File src) {
+	public void deleteFile(File src) {
 		src.delete();
 	}
 
-	public static boolean isAnImage(File file) {
-		String mimetype = new MimetypesFileTypeMap().getContentType(file);
+	public boolean isAnImage(File file) {
+		MimetypesFileTypeMap mtftp = new MimetypesFileTypeMap();
+		mtftp.addMimeTypes("image png tif jpg jpeg bmp");
+		String mimetype = mtftp.getContentType(file);
 		String type = mimetype.split("/")[0];
+		System.out.println("Type : " + type);
 		if (type.equals("image"))
 			return true;
 		return false;

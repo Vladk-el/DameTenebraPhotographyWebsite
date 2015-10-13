@@ -17,10 +17,19 @@ public class Retrieve implements Runnable{
 	Thread next;
 	IhmPhoto ihm;
 	
+	FileUtils utils;
+	
 	public Retrieve(FtpClient c, File f, String r){
 		client = c;
 		file = f;
 		repertory = r;
+	}
+	
+	public Retrieve(FtpClient c, File f, String r, IhmPhoto i){
+		client = c;
+		file = f;
+		repertory = r;
+		ihm = i;
 	}
 	
 	public Retrieve(FtpClient c, File f, String r, Thread t){
@@ -30,21 +39,15 @@ public class Retrieve implements Runnable{
 		next = t;
 	}
 	
-	public Retrieve(FtpClient c, File f, String r, Thread t, IhmPhoto i){
-		client = c;
-		file = f;
-		repertory = r;
-		next = t;
-		ihm = i;
-	}
-	
 	public void run() {
+		
+		utils = new FileUtils();
 		
 		client.retrieve(file.getName(), repertory, true);
 		try {
 			File temp = new File(file.getName());
-			FileUtils.copyFile(temp, file);
-			FileUtils.deleteFile(temp);
+			utils.copyFile(temp, file);
+			utils.deleteFile(temp);
 		} catch (IOException e) {
 			System.out.println("Un problème est survenu dans la copie du fichier. Veuillez réessayer.");
 			e.printStackTrace();
@@ -55,7 +58,7 @@ public class Retrieve implements Runnable{
 		}
 		else{
 			ihm.setIcon(new ImageIcon("data/img/mini/" + file.getName()));
-			System.out.println("New imgs : " + "data/img/mini/" + file.getName() + " && " + "data/img/full/" + file.getName());
+			System.out.println("New icon : " + "data/img/mini/" + file.getName());
 		}
 
 	}

@@ -8,6 +8,7 @@ import com.vladkel.dametenebra.utils.ftp.FtpClient;
 
 public class Store implements Runnable{
 	
+	FileUtils utils;
 	FtpClient client;
 	File src;
 	File file;
@@ -29,17 +30,20 @@ public class Store implements Runnable{
 		next = t;
 	}
 	
+	//TODO don't copy nor delete anything, juste upload photos from data/img/{full || mini}/
 	public void run() {
 		
+		utils = new FileUtils();
+		
 		try {
-			FileUtils.copyFile(src, file);
+			utils.copyFile(src, file);
 		} catch (IOException e) {
 			System.out.println("Un problème est survenu dans la copie du fichier. Veuillez réessayer.");
 			e.printStackTrace();
 		}
 		
 		client.store(file.getName(), repertory, true);
-		FileUtils.deleteFile(file);
+		utils.deleteFile(file);
 		if(next != null)
 			next.start();
 		
