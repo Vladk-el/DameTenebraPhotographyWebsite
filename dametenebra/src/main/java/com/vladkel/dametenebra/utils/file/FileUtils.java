@@ -51,11 +51,14 @@ public class FileUtils {
 		src.delete();
 	}
 
+	// TODO doesn't work on linux ... try this on windows ASAP
 	public boolean isAnImage(File file) {
 		MimetypesFileTypeMap mtftp = new MimetypesFileTypeMap();
 		mtftp.addMimeTypes("image png tif jpg jpeg bmp");
+		
 		String mimetype = mtftp.getContentType(file);
 		String type = mimetype.split("/")[0];
+		
 		System.out.println("Type : " + type);
 		if (type.equals("image"))
 			return true;

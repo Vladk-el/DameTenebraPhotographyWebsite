@@ -79,6 +79,7 @@ public class IhmPhoto implements IHM {
 		categoryDao = new DAO<Category>(Category.class, new TypeToken<List<Category>>() {
 		}.getType());
 		categories = categoryDao.select();
+		utils = new FileUtils();
 	}
 
 	/**
