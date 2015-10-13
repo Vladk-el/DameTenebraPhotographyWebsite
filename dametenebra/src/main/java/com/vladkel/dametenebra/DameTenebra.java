@@ -49,14 +49,14 @@ public class DameTenebra implements ActionListener{
 		
 		jf = new JFrame();
 		jf.setTitle("DameTénébra - Version 3.0 -  \u00A9 Eliott Laversin");
-		jf.setSize(450, 185);
+		jf.setSize(500, 185);
 		jf.setResizable(false);
 		jf.setLocationRelativeTo(null);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		p = new JPanel();
 		jf.setContentPane(p);
 		
-		Dimension d = new Dimension(210, 30); 
+		Dimension d = new Dimension(240, 30); 
 		
 		add_category = new JButton("Ajouter une catégorie");
 		add_category.setPreferredSize(d);

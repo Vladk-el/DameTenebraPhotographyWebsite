@@ -3,8 +3,10 @@ package com.vladkel.dametenebra.ihm;
 import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.util.List;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -15,10 +17,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import com.google.common.reflect.TypeToken;
+import com.vladkel.dametenebra.DameTenebra;
 import com.vladkel.dametenebra.model.Category;
 import com.vladkel.dametenebra.model.Photo;
 import com.vladkel.dametenebra.persistence.dao.DAO;
 import com.vladkel.dametenebra.persistence.dao.IDAO;
+import com.vladkel.dametenebra.utils.ftp.FtpClient;
+import com.vladkel.dametenebra.utils.ftp.threads.Retrieve;
+import com.vladkel.dametenebra.utils.properties.Property;
 
 /**
  * @author eliott
@@ -171,7 +177,7 @@ public class IhmPhoto implements IHM {
 				}
 			}
 			
-			data[i][5] = photos.get(i).getActive();
+			data[i][5] = photos.get(i).getActive() == 1 ? "oui" : "non";
 		}
 
 		String[] entete = { "Id", "Nom", "Description", "Date d'Ajout", "Categorie", "Visible" };
@@ -212,6 +218,36 @@ public class IhmPhoto implements IHM {
 	public void modify(Object object) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	public void setIcon(ImageIcon icon) {
+		img_mini.setIcon(icon);
+		modify.repaint();
+	}
+	
+	public void downloadFiles(String src_full, String src_mini){
+		File file = new File("data/" + src_mini);
+		FtpClient client = null;
+		if(!file.exists()){
+			if(DameTenebra.server.equalsIgnoreCase("local")){
+				client = new FtpClient("localhost", Property.getInstance().get("ftp.user"), Property.getInstance().get("ftp.pwd"));
+			}
+			if(DameTenebra.server.equalsIgnoreCase("prod")){
+				client = new FtpClient(Property.getInstance().get("ftp.url"), 
+									   Property.getInstance().get("ftp.user"), 
+									   Property.getInstance().get("ftp.pwd")
+							 );
+			}
+			
+			Thread mini = new Thread(new Retrieve(client, file, "www/" + src_mini.substring(0, src_full.lastIndexOf("/"))));
+			file = new File("data/" + src_full);
+			Thread full = new Thread(new Retrieve(client, file, "www/" + src_full.substring(0, src_full.lastIndexOf("/")), mini));
+			full.start();
+		}
+		else{
+			System.out.println("Files are already in cache, great !");
+			setIcon(new ImageIcon("data/img/mini/" + file.getName()));
+		}
 	}
 
 }
