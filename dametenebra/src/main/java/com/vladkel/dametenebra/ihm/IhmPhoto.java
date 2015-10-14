@@ -6,6 +6,9 @@ import java.awt.GridBagLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.swing.BorderFactory;
@@ -16,7 +19,6 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -213,7 +215,77 @@ public class IhmPhoto implements IHM {
 	 */
 	@Override
 	public void create() {
-		// TODO Auto-generated method stub
+		init();
+		modify = new JFrame();
+		modify.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		modify.setTitle("Ajouter une photo");
+		modify.setSize(new Dimension(380, 450));
+		modify.setLocationRelativeTo(null);
+		modify.setResizable(false);
+
+		JPanel mp = new JPanel();
+		modify.setContentPane(mp);
+		mp.setLayout(new FlowLayout());
+
+		text_name_photo.setPreferredSize(new Dimension(350, 20));
+		text_desc_photo.setPreferredSize(new Dimension(350, 20));
+		text_link_photo.setPreferredSize(new Dimension(350, 20));
+		text_category_photo.setPreferredSize(new Dimension(350, 20));
+		title_category_photo.setPreferredSize(new Dimension(350, 20));
+
+		img_mini = new JButton(new ImageIcon());
+		img_mini.setBorder(BorderFactory.createEmptyBorder());
+		img_mini.setContentAreaFilled(false);
+
+		mp.add(title_name_photo);
+		mp.add(text_name_photo);
+		mp.add(title_desc_photo);
+		mp.add(text_desc_photo);
+		mp.add(title_link_photo);
+		mp.add(text_link_photo);
+		mp.add(img_mini);
+		mp.add(title_category_photo);
+		mp.add(text_category_photo);
+
+		mp.add(add_photo);
+
+		final Date date = new Date();
+		final DateFormat formate = new SimpleDateFormat("yyyy-MM-dd");
+
+		text_category_photo.setSelectedIndex(0);
+
+		final JFileChooser fc = new JFileChooser();
+
+		text_link_photo.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent arg0) {
+				int returnVal = fc.showOpenDialog(fc);
+				if (returnVal == JFileChooser.APPROVE_OPTION) {
+					File file = fc.getSelectedFile();
+					if (utils.isAnImage(file)) {
+						text_link_photo.setText(file.getName());
+						boolean imageIsResized = new ImgManager(file).resizeAndWrite();
+						if (imageIsResized) {
+							img_mini.setIcon(new ImageIcon("data/img/mini/" + file.getName()));
+							modify.repaint();
+						}
+					} else {
+						javax.swing.JOptionPane.showMessageDialog(null,
+								"Veuillez sélectionner un fichier image valide.");
+					}
+				}
+			}
+
+		});
+		
+		img_mini.addMouseListener(new OnOverListener(text_link_photo));
+		
+		Photo photo = new Photo();
+		photo.setPhoto_id(0);
+		photo.setPhoto_date(formate.format(date));
+		
+		add_photo.addMouseListener(new SaveListener(this, photo));
+
+		modify.setVisible(true);
 
 	}
 
@@ -236,7 +308,7 @@ public class IhmPhoto implements IHM {
 		JPanel mp = new JPanel();
 		modify.setContentPane(mp);
 		mp.setLayout(new FlowLayout());
-		
+
 		Dimension d = new Dimension(350, 20);
 
 		text_name_photo.setPreferredSize(d);
@@ -282,7 +354,7 @@ public class IhmPhoto implements IHM {
 		/**
 		 * Listeners
 		 */
-		
+
 		text_link_photo.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent arg0) {
 				int returnVal = fc.showOpenDialog(fc);
@@ -302,11 +374,11 @@ public class IhmPhoto implements IHM {
 				}
 			}
 		});
-		
+
 		img_mini.addMouseListener(new OnOverListener(text_link_photo));
 
 		save.addMouseListener(new SaveListener(this, photo));
-		
+
 		delete.addMouseListener(new DeleteListener(this, photo));
 
 		downloadFiles("img/full/" + photo.getPhoto_link(), "img/mini/" + photo.getPhoto_mini_link());
@@ -321,7 +393,7 @@ public class IhmPhoto implements IHM {
 
 	public void store() {
 
-		//storeOnCache();
+		// storeOnCache();
 		storeOnline();
 	}
 
@@ -347,21 +419,23 @@ public class IhmPhoto implements IHM {
 
 	}
 
-//	public void storeOnCache() {
-//
-//		System.out.println("Storing in cache . . .");
-//
-//		File full = new File("data/img/full/" + new File(text_link_photo.getText()).getName());
-//		File mini = new File("data/img/mini/" + new File(text_link_photo.getText()).getName());
-//		try {
-//			utils.copyFile(new File(text_link_photo.getText()), full);
-//			utils.copyFile(new File(text_link_photo.getText()), mini);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		System.out.println("Storing in cache done.");
-//
-//	}
+	// public void storeOnCache() {
+	//
+	// System.out.println("Storing in cache . . .");
+	//
+	// File full = new File("data/img/full/" + new
+	// File(text_link_photo.getText()).getName());
+	// File mini = new File("data/img/mini/" + new
+	// File(text_link_photo.getText()).getName());
+	// try {
+	// utils.copyFile(new File(text_link_photo.getText()), full);
+	// utils.copyFile(new File(text_link_photo.getText()), mini);
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// }
+	// System.out.println("Storing in cache done.");
+	//
+	// }
 
 	public void downloadFiles(String src_full, String src_mini) {
 		File file = new File("data/" + src_mini);
@@ -387,35 +461,35 @@ public class IhmPhoto implements IHM {
 			setIcon(new ImageIcon("data/img/mini/" + file.getName()));
 		}
 	}
-	
+
 	public IDAO<Photo> getDao() {
 		return dao;
 	}
-	
+
 	public String getPhotoName() {
 		return text_name_photo.getText();
 	}
-	
+
 	public String getPhotoDescription() {
 		return text_desc_photo.getText();
 	}
-	
+
 	public String getPhotoLink() {
 		return text_link_photo.getText().substring(text_link_photo.getText().lastIndexOf("\\") + 1);
 	}
-	
+
 	public int getPhotoCategory() {
 		return categories.get(text_category_photo.getSelectedIndex()).getCategory_id();
 	}
-	
+
 	public int getActive() {
 		return is_active.isSelected() ? 1 : 0;
 	}
-	
+
 	public JFrame getMainFrame() {
 		return jf_photo;
 	}
-	
+
 	public JFrame getModifyFrame() {
 		return modify;
 	}

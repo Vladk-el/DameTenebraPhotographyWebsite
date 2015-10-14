@@ -53,15 +53,16 @@ public class FileUtils {
 
 	// TODO make this work on linux ... ASAP
 	public boolean isAnImage(File file) {
-		MimetypesFileTypeMap mtftp = new MimetypesFileTypeMap();
-
-		String mimetype = mtftp.getContentType(file);
-		String type = mimetype.split("/")[0];
-
-		System.out.println("Type : " + type);
-		if (type.equals("image"))
-			return true;
-		return false;
+//		MimetypesFileTypeMap mtftp = new MimetypesFileTypeMap();
+//
+//		String mimetype = mtftp.getContentType(file);
+//		String type = mimetype.split("/")[0];
+//
+//		System.out.println("Type : " + type);
+//		if (type.equals("image"))
+//			return true;
+//		return false;
+		return true;
 	}
 
 }
