@@ -9,6 +9,10 @@ import com.vladkel.dametenebra.ihm.IhmPhoto;
 import com.vladkel.dametenebra.utils.file.FileUtils;
 import com.vladkel.dametenebra.utils.ftp.FtpClient;
 
+/**
+ * @author eliott
+ *
+ */
 public class Retrieve implements Runnable{
 
 	FtpClient client;

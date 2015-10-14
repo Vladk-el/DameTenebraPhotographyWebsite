@@ -8,6 +8,10 @@ import javax.swing.JOptionPane;
 import com.vladkel.dametenebra.ihm.IhmPhoto;
 import com.vladkel.dametenebra.model.Photo;
 
+/**
+ * @author eliott
+ *
+ */
 public class SaveListener extends MouseAdapter {
 
 	private IhmPhoto ihm;

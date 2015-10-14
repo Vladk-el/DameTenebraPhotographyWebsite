@@ -8,6 +8,10 @@ import javax.swing.JOptionPane;
 import com.vladkel.dametenebra.ihm.IhmPhoto;
 import com.vladkel.dametenebra.model.Photo;
 
+/**
+ * @author eliott
+ *
+ */
 public class DeleteListener extends MouseAdapter {
 
 	private IhmPhoto ihm;

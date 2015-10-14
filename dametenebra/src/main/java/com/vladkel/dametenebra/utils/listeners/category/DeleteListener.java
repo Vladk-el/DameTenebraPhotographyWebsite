@@ -8,6 +8,10 @@ import javax.swing.JOptionPane;
 import com.vladkel.dametenebra.ihm.IhmCategory;
 import com.vladkel.dametenebra.model.Category;
 
+/**
+ * @author eliott
+ *
+ */
 public class DeleteListener extends MouseAdapter {
 
 	private IhmCategory ihm;
