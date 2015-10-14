@@ -16,6 +16,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -49,7 +50,7 @@ public class IhmPhoto implements IHM {
 	private FileUtils utils;
 
 	/* ihm */
-	public JFrame jf_photo;
+	private JFrame jf_photo;
 	private JPanel p_photo;
 	private JButton modif;
 	private GridBagLayout bl;
@@ -64,7 +65,7 @@ public class IhmPhoto implements IHM {
 	private JButton add_photo;
 	private JCheckBox is_active;
 
-	public JFrame modify;
+	private JFrame modify;
 
 	private JButton save;
 	private JButton delete;
@@ -235,8 +236,6 @@ public class IhmPhoto implements IHM {
 		JPanel mp = new JPanel();
 		modify.setContentPane(mp);
 		mp.setLayout(new FlowLayout());
-
-		init();
 		
 		Dimension d = new Dimension(350, 20);
 
@@ -411,6 +410,14 @@ public class IhmPhoto implements IHM {
 	
 	public int getActive() {
 		return is_active.isSelected() ? 1 : 0;
+	}
+	
+	public JFrame getMainFrame() {
+		return jf_photo;
+	}
+	
+	public JFrame getModifyFrame() {
+		return modify;
 	}
 
 }

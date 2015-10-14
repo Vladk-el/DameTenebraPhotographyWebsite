@@ -21,13 +21,9 @@ public class DeleteListener extends MouseAdapter {
 	public void mouseClicked(MouseEvent e) {
 		if (ihm.getDao().delete(photo)) {
 			javax.swing.JOptionPane.showMessageDialog(null, "La photo n'est maintenant plus visible sur le site.");
-			ihm.modify.dispose();
-			
-			while(ihm.jf_photo.isVisible()) {
-				ihm.jf_photo.dispose();
-			}
-			
-			//ihm.displayAll();
+			ihm.getModifyFrame().dispose();
+			ihm.getMainFrame().dispose();
+			ihm.displayAll();
 		} else {
 			JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
 		}

@@ -258,5 +258,6 @@ public class IhmCategory implements IHM {
 	public int getActive() {
 		return is_active.isSelected() ? 1 : 0;
 	}
+
 	
 }
