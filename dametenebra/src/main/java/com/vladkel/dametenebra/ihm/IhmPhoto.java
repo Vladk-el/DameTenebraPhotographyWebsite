@@ -77,7 +77,6 @@ public class IhmPhoto implements IHM {
 		}.getType());
 		categoryDao = new DAO<Category>(Category.class, new TypeToken<List<Category>>() {
 		}.getType());
-		categories = categoryDao.select();
 	}
 
 	/**
@@ -146,6 +145,7 @@ public class IhmPhoto implements IHM {
 		title_link_photo = new JLabel("Nom du fichier");
 		text_link_photo = new JTextField();
 		title_category_photo = new JLabel("Categorie concernée");
+		categories = categoryDao.select();
 		text_category_photo = new JComboBox<Category>(categories.toArray(new Category[categories.size()]));
 		add_photo = new JButton("Ajouter");
 		is_active = new JCheckBox("Rendre visible sur le site ?");
@@ -222,12 +222,15 @@ public class IhmPhoto implements IHM {
 		JPanel mp = new JPanel();
 		modify.setContentPane(mp);
 		mp.setLayout(new FlowLayout());
+		
+		Dimension d = new Dimension(350, 20);
 
-		text_name_photo.setPreferredSize(new Dimension(350, 20));
-		text_desc_photo.setPreferredSize(new Dimension(350, 20));
-		text_link_photo.setPreferredSize(new Dimension(350, 20));
-		text_category_photo.setPreferredSize(new Dimension(350, 20));
-		title_category_photo.setPreferredSize(new Dimension(350, 20));
+		text_name_photo.setPreferredSize(d);
+		text_desc_photo.setPreferredSize(d);
+		text_link_photo.setPreferredSize(d);
+		text_category_photo.setPreferredSize(d);
+		title_category_photo.setPreferredSize(d);
+		is_active.setPreferredSize(d);
 
 		img_mini = new JButton(new ImageIcon());
 		img_mini.setBorder(BorderFactory.createEmptyBorder());
@@ -242,6 +245,7 @@ public class IhmPhoto implements IHM {
 		mp.add(img_mini);
 		mp.add(title_category_photo);
 		mp.add(text_category_photo);
+		mp.add(is_active);
 
 		mp.add(add_photo);
 

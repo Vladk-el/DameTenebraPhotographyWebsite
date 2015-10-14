@@ -31,7 +31,7 @@ public class SaveListener extends MouseAdapter {
 		photo.setActive(ihm.getActive());
 
 		if (photo.getPhoto_id() == 0 ? ihm.getDao().insert(photo) : ihm.getDao().update(photo)) {
-			//ihm.store();
+			ihm.store();
 			JOptionPane.showMessageDialog(null, "Votre photo à bien été sauvegardée.");
 			ihm.getModifyFrame().dispose();
 			ihm.getMainFrame().dispose();

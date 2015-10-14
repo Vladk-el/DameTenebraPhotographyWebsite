@@ -59,7 +59,6 @@ public class IhmLink implements IHM {
 		}.getType());
 		ownerDao = new DAO<Owner>(Owner.class, new TypeToken<List<Owner>>() {
 		}.getType());
-		owners = ownerDao.select();
 	}
 
 	/**
@@ -122,6 +121,7 @@ public class IhmLink implements IHM {
 		add_link = new JButton("Ajouter");
 		modif = new JButton("Modifier");
 		title_link_owner = new JLabel("Photographe correspondant");
+		owners = ownerDao.select();
 		combo_link_owner = new JComboBox<Owner>(owners.toArray(new Owner[owners.size()]));
 		is_active = new JCheckBox("Rendre visible sur le site ?");
 
@@ -281,7 +281,6 @@ public class IhmLink implements IHM {
 				link.setLink_name(text_name_link.getText());
 				link.setLink_link(text_desc_link.getText());
 				link.setLink_owner_id(owners.get(combo_link_owner.getSelectedIndex()).getOwner_id());
-				System.out.println((Owner)combo_link_owner.getSelectedItem());
 				link.setActive(is_active.isSelected() ? 1 : 0);
 				if (dao.update(link)) {
 					javax.swing.JOptionPane.showMessageDialog(null, "Le lien a bien été modifié.");

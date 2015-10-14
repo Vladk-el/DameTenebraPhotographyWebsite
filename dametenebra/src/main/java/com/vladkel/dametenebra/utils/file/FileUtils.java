@@ -58,7 +58,6 @@ public class FileUtils {
 		String mimetype = mtftp.getContentType(file);
 		String type = mimetype.split("/")[0];
 
-		System.out.println("Type : " + type);
 		if (type.equals("image")) {
 			return true;
 		}

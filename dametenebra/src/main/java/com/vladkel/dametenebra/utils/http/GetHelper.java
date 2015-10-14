@@ -1,13 +1,11 @@
 package com.vladkel.dametenebra.utils.http;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
-import org.apache.http.auth.AuthenticationException;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -18,8 +16,6 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.util.EntityUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author eliott
@@ -27,8 +23,6 @@ import org.slf4j.LoggerFactory;
  */
 @SuppressWarnings("deprecation")
 public class GetHelper {
-
-	private static final Logger logger = LoggerFactory.getLogger(GetHelper.class);
 
 	protected int timeOut = 10000;
 
@@ -88,10 +82,8 @@ public class GetHelper {
 			HttpResponse response = httpClient.execute(get);
 			return response;
 
-		} catch (IOException e) {
-			logger.error("", e);
-		} catch (AuthenticationException e) {
-			logger.error("", e);
+		} catch (Exception e) {
+			System.out.println(e.toString());
 		}
 
 		return null;
@@ -124,7 +116,7 @@ public class GetHelper {
 			}
 
 		} catch (Exception e) {
-			logger.error("", e);
+			System.out.println(e.toString());
 		}
 
 		return responseBody;
@@ -147,7 +139,7 @@ public class GetHelper {
 			}
 
 		} catch (Exception e) {
-			logger.error("", e);
+			System.out.println(e.toString());
 		}
 
 		return responseBody;

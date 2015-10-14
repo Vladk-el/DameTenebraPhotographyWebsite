@@ -1,13 +1,11 @@
 package com.vladkel.dametenebra.utils.http;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.Map;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
-import org.apache.http.auth.AuthenticationException;
 import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -19,8 +17,6 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.util.EntityUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author eliott
@@ -28,8 +24,6 @@ import org.slf4j.LoggerFactory;
  */
 @SuppressWarnings("deprecation")
 public class PostHelper {
-
-	private static final Logger log = LoggerFactory.getLogger(PostHelper.class);
 
 	protected int timeOut = 10000;
 
@@ -100,10 +94,8 @@ public class PostHelper {
 			HttpResponse response = httpClient.execute(post);
 			return response;
 
-		} catch (IOException e) {
-			log.error("", e);
-		} catch (AuthenticationException e) {
-			log.error("", e);
+		} catch (Exception e) {
+			System.out.println(e.toString());
 		}
 
 		return null;
@@ -126,7 +118,7 @@ public class PostHelper {
 			}
 
 		} catch (Exception e) {
-			log.error("", e);
+			System.out.println(e.toString());
 		}
 
 		return responseBody;
@@ -150,7 +142,7 @@ public class PostHelper {
 			}
 
 		} catch (Exception e) {
-			log.error("", e);
+			System.out.println(e.toString());
 		}
 
 		return responseBody;
