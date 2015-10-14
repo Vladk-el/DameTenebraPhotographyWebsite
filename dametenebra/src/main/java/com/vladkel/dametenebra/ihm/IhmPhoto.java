@@ -35,6 +35,7 @@ import com.vladkel.dametenebra.utils.ftp.FtpClient;
 import com.vladkel.dametenebra.utils.ftp.threads.Retrieve;
 import com.vladkel.dametenebra.utils.ftp.threads.Store;
 import com.vladkel.dametenebra.utils.img.ImgManager;
+import com.vladkel.dametenebra.utils.listeners.photo.ChooseFileListener;
 import com.vladkel.dametenebra.utils.listeners.photo.DeleteListener;
 import com.vladkel.dametenebra.utils.listeners.photo.OnOverListener;
 import com.vladkel.dametenebra.utils.listeners.photo.SaveListener;
@@ -253,35 +254,18 @@ public class IhmPhoto implements IHM {
 		final DateFormat formate = new SimpleDateFormat("yyyy-MM-dd");
 
 		text_category_photo.setSelectedIndex(0);
-
-		final JFileChooser fc = new JFileChooser();
-
-		text_link_photo.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-				int returnVal = fc.showOpenDialog(fc);
-				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					File file = fc.getSelectedFile();
-					if (utils.isAnImage(file)) {
-						text_link_photo.setText(file.getName());
-						boolean imageIsResized = new ImgManager(file).resizeAndWrite();
-						if (imageIsResized) {
-							img_mini.setIcon(new ImageIcon("data/img/mini/" + file.getName()));
-							modify.repaint();
-						}
-					} else {
-						javax.swing.JOptionPane.showMessageDialog(null,
-								"Veuillez sélectionner un fichier image valide.");
-					}
-				}
-			}
-
-		});
-		
-		img_mini.addMouseListener(new OnOverListener(text_link_photo));
 		
 		Photo photo = new Photo();
 		photo.setPhoto_id(0);
 		photo.setPhoto_date(formate.format(date));
+		
+		/**
+		 * Listeners
+		 */
+
+		text_link_photo.addMouseListener(new ChooseFileListener(this));
+		
+		img_mini.addMouseListener(new OnOverListener(text_link_photo));
 		
 		add_photo.addMouseListener(new SaveListener(this, photo));
 
@@ -348,32 +332,12 @@ public class IhmPhoto implements IHM {
 				break;
 			}
 		}
-
-		final JFileChooser fc = new JFileChooser();
-
+		
 		/**
 		 * Listeners
 		 */
-
-		text_link_photo.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent arg0) {
-				int returnVal = fc.showOpenDialog(fc);
-				if (returnVal == JFileChooser.APPROVE_OPTION) {
-					File file = fc.getSelectedFile();
-					if (utils.isAnImage(file)) {
-						text_link_photo.setText(file.getName());
-						boolean imageIsResized = new ImgManager(file).resizeAndWrite();
-						if (imageIsResized) {
-							img_mini.setIcon(new ImageIcon("data/img/mini/" + file.getName()));
-							modify.repaint();
-						}
-					} else {
-						javax.swing.JOptionPane.showMessageDialog(null,
-								"Veuillez sélectionner un fichier image valide.");
-					}
-				}
-			}
-		});
+		
+		text_link_photo.addMouseListener(new ChooseFileListener(this));
 
 		img_mini.addMouseListener(new OnOverListener(text_link_photo));
 
@@ -438,9 +402,10 @@ public class IhmPhoto implements IHM {
 	// }
 
 	public void downloadFiles(String src_full, String src_mini) {
-		File file = new File("data/" + src_mini);
+		File file_mini = new File("data/" + src_mini);
+		File file_full = new File("data/" + src_full);
 		FtpClient client = null;
-		if (!file.exists()) {
+		if (!file_mini.exists()) {
 			if (DameTenebra.server.equalsIgnoreCase("local")) {
 				client = new FtpClient("localhost", Property.getInstance().get("ftp.user"),
 						Property.getInstance().get("ftp.pwd"));
@@ -451,14 +416,13 @@ public class IhmPhoto implements IHM {
 			}
 
 			Thread mini = new Thread(
-					new Retrieve(client, file, "www/" + src_mini.substring(0, src_full.lastIndexOf("/")), this));
-			file = new File("data/" + src_full);
+					new Retrieve(client, file_mini, "www/" + src_mini.substring(0, src_full.lastIndexOf("/")), this));
 			Thread full = new Thread(
-					new Retrieve(client, file, "www/" + src_full.substring(0, src_full.lastIndexOf("/")), mini));
+					new Retrieve(client, file_full, "www/" + src_full.substring(0, src_full.lastIndexOf("/")), mini));
 			full.start();
 		} else {
 			System.out.println("Files are already in cache, great !");
-			setIcon(new ImageIcon("data/img/mini/" + file.getName()));
+			setIcon(new ImageIcon("data/img/mini/" + file_mini.getName()));
 		}
 	}
 
@@ -494,4 +458,7 @@ public class IhmPhoto implements IHM {
 		return modify;
 	}
 
+	public JTextField getTextLinkPhoto() {
+		return text_link_photo;
+	}
 }
