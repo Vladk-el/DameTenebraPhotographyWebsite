@@ -16,7 +16,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -30,11 +29,9 @@ import com.vladkel.dametenebra.model.Category;
 import com.vladkel.dametenebra.model.Photo;
 import com.vladkel.dametenebra.persistence.dao.DAO;
 import com.vladkel.dametenebra.persistence.dao.IDAO;
-import com.vladkel.dametenebra.utils.file.FileUtils;
 import com.vladkel.dametenebra.utils.ftp.FtpClient;
 import com.vladkel.dametenebra.utils.ftp.threads.Retrieve;
 import com.vladkel.dametenebra.utils.ftp.threads.Store;
-import com.vladkel.dametenebra.utils.img.ImgManager;
 import com.vladkel.dametenebra.utils.listeners.photo.ChooseFileListener;
 import com.vladkel.dametenebra.utils.listeners.photo.DeleteListener;
 import com.vladkel.dametenebra.utils.listeners.photo.OnOverListener;
@@ -50,7 +47,6 @@ public class IhmPhoto implements IHM {
 	private IDAO<Photo> dao;
 	private IDAO<Category> categoryDao;
 	private List<Category> categories;
-	private FileUtils utils;
 
 	/* ihm */
 	private JFrame jf_photo;
@@ -82,7 +78,6 @@ public class IhmPhoto implements IHM {
 		categoryDao = new DAO<Category>(Category.class, new TypeToken<List<Category>>() {
 		}.getType());
 		categories = categoryDao.select();
-		utils = new FileUtils();
 	}
 
 	/**
@@ -254,19 +249,19 @@ public class IhmPhoto implements IHM {
 		final DateFormat formate = new SimpleDateFormat("yyyy-MM-dd");
 
 		text_category_photo.setSelectedIndex(0);
-		
+
 		Photo photo = new Photo();
 		photo.setPhoto_id(0);
 		photo.setPhoto_date(formate.format(date));
-		
+
 		/**
 		 * Listeners
 		 */
 
 		text_link_photo.addMouseListener(new ChooseFileListener(this));
-		
+
 		img_mini.addMouseListener(new OnOverListener(text_link_photo));
-		
+
 		add_photo.addMouseListener(new SaveListener(this, photo));
 
 		modify.setVisible(true);
@@ -332,11 +327,11 @@ public class IhmPhoto implements IHM {
 				break;
 			}
 		}
-		
+
 		/**
 		 * Listeners
 		 */
-		
+
 		text_link_photo.addMouseListener(new ChooseFileListener(this));
 
 		img_mini.addMouseListener(new OnOverListener(text_link_photo));
@@ -357,7 +352,6 @@ public class IhmPhoto implements IHM {
 
 	public void store() {
 
-		// storeOnCache();
 		storeOnline();
 	}
 
@@ -382,24 +376,6 @@ public class IhmPhoto implements IHM {
 		full.start();
 
 	}
-
-	// public void storeOnCache() {
-	//
-	// System.out.println("Storing in cache . . .");
-	//
-	// File full = new File("data/img/full/" + new
-	// File(text_link_photo.getText()).getName());
-	// File mini = new File("data/img/mini/" + new
-	// File(text_link_photo.getText()).getName());
-	// try {
-	// utils.copyFile(new File(text_link_photo.getText()), full);
-	// utils.copyFile(new File(text_link_photo.getText()), mini);
-	// } catch (IOException e) {
-	// e.printStackTrace();
-	// }
-	// System.out.println("Storing in cache done.");
-	//
-	// }
 
 	public void downloadFiles(String src_full, String src_mini) {
 		File file_mini = new File("data/" + src_mini);

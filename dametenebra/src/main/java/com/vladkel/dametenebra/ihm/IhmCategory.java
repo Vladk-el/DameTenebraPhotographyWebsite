@@ -15,7 +15,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -50,7 +49,7 @@ public class IhmCategory implements IHM {
 
 	private JButton save;
 	private JButton delete;
-	
+
 	public JFrame modify;
 
 	@SuppressWarnings("serial")
@@ -192,11 +191,11 @@ public class IhmCategory implements IHM {
 
 		final Date date = new Date();
 		final DateFormat formate = new SimpleDateFormat("yyyy-MM-dd");
-		
+
 		Category category = new Category();
 		category.setCategory_id(0);
 		category.setCategory_date(formate.format(date));
-		
+
 		add_category.addMouseListener(new SaveListener(this, category));
 
 		modify.setVisible(true);
@@ -242,15 +241,15 @@ public class IhmCategory implements IHM {
 
 		modify.setVisible(true);
 	}
-	
+
 	public IDAO<Category> getDao() {
 		return dao;
 	}
-	
+
 	public String getCategoryName() {
 		return text_name_category.getText();
 	}
-	
+
 	public String getCategoryDescription() {
 		return text_desc_category.getText();
 	}
@@ -259,5 +258,4 @@ public class IhmCategory implements IHM {
 		return is_active.isSelected() ? 1 : 0;
 	}
 
-	
 }
