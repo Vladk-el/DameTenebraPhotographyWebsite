@@ -174,6 +174,7 @@ public class IhmOwner implements IHM {
 
 		text_name_owner.setPreferredSize(new Dimension(250, 20));
 		text_desc_owner.setPreferredSize(new Dimension(250, 80));
+		is_active.setPreferredSize(new Dimension(250, 20));
 
 		mp.add(title_name_owner);
 		mp.add(text_name_owner);

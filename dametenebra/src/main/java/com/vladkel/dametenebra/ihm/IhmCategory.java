@@ -181,6 +181,7 @@ public class IhmCategory implements IHM {
 
 		text_name_category.setPreferredSize(new Dimension(250, 20));
 		text_desc_category.setPreferredSize(new Dimension(250, 80));
+		is_active.setPreferredSize(new Dimension(250, 20));
 
 		mp.add(title_name_category);
 		mp.add(text_name_category);

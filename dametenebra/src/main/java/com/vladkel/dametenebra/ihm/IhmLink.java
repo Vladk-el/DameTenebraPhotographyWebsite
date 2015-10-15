@@ -196,6 +196,7 @@ public class IhmLink implements IHM {
 		text_name_link.setPreferredSize(new Dimension(250, 20));
 		text_desc_link.setPreferredSize(new Dimension(250, 80));
 		combo_link_owner.setPreferredSize(new Dimension(250, 20));
+		is_active.setPreferredSize(new Dimension(250, 20));
 
 		mp.add(title_name_link);
 		mp.add(text_name_link);
