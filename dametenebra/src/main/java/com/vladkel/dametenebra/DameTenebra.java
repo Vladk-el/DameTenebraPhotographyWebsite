@@ -48,7 +48,7 @@ public class DameTenebra implements ActionListener{
 		link = new IhmLink();
 		
 		jf = new JFrame();
-		jf.setTitle("DameTénébra - Version 3.0 -  \u00A9 Eliott Laversin");
+		jf.setTitle("DameTénébra - Version 4.0.1 -  \u00A9 Eliott Laversin");
 		jf.setSize(500, 185);
 		jf.setResizable(false);
 		jf.setLocationRelativeTo(null);
