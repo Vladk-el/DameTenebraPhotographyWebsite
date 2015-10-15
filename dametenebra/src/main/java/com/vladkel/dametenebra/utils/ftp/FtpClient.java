@@ -163,8 +163,8 @@ public class FtpClient {
 			}
 		}
 
-		if (needABar)
-			return store(file, true);
+//		if (needABar)
+//			return store(file, true);
 		
 		return store(file);
 	}
@@ -271,8 +271,9 @@ public class FtpClient {
 			}
 		}
 
-		if (needABar)
-			return retrieve(file, true);
+//		if (needABar)
+//			return retrieve(file, true);
+		
 		return retrieve(file);
 	}
 
