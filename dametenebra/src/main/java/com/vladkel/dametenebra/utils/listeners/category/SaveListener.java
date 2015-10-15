@@ -26,13 +26,19 @@ public class SaveListener extends MouseAdapter {
 		category.setCategory_name(ihm.getCategoryName());
 		category.setCategory_description(ihm.getCategoryDescription());
 		category.setActive(ihm.getActive());
-		if (category.getCategory_id() == 0 ? ihm.getDao().insert(category) : ihm.getDao().update(category)) {
-			JOptionPane.showMessageDialog(null, "La catégorie a bien été sauvegardée.");
-			ihm.modify.dispose();
-			ihm.jf_category.dispose();
-			ihm.displayAll();
+		
+		if(category.getCategory_name().length() > 0) {
+			if (category.getCategory_id() == 0 ? ihm.getDao().insert(category) : ihm.getDao().update(category)) {
+				JOptionPane.showMessageDialog(null, "La catégorie a bien été sauvegardée.");
+				ihm.modify.dispose();
+				ihm.jf_category.dispose();
+				ihm.displayAll();
+			} else {
+				JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
+			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
+			ihm.modify.dispose();
 		}
+		
 	}
 }

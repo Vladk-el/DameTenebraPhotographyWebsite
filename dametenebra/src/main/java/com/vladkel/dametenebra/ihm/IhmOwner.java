@@ -190,15 +190,20 @@ public class IhmOwner implements IHM {
 				owner.setOwner_name(text_name_owner.getText());
 				owner.setOwner_description(text_desc_owner.getText());
 				owner.setActive(is_active.isSelected() ? 1 : 0);
-				if (dao.insert(owner)) {
-					JOptionPane.showMessageDialog(null,
-							"Le photographe \"" + owner.getOwner_name() + "\" a bien été ajouté.");
-					modify.dispose();
-					jf_owner.dispose();
-					displayAll();
+				if(owner.getOwner_name().length() > 0) {
+					if (dao.insert(owner)) {
+						JOptionPane.showMessageDialog(null,
+								"Le photographe \"" + owner.getOwner_name() + "\" a bien été ajouté.");
+						modify.dispose();
+						jf_owner.dispose();
+						displayAll();
+					} else {
+						JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
+					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
+					modify.dispose();
 				}
+				
 			}
 
 		});
@@ -246,13 +251,18 @@ public class IhmOwner implements IHM {
 				owner.setOwner_name(text_name_owner.getText());
 				owner.setOwner_description(text_desc_owner.getText());
 				owner.setActive(is_active.isSelected() ? 1 : 0);
-				if (dao.update(owner)) {
-					javax.swing.JOptionPane.showMessageDialog(null, "Le photographe a bien été modifié.");
-					modify.dispose();
-					jf_owner.dispose();
-					displayAll();
+				
+				if(owner.getOwner_name().length() > 0) {
+					if (dao.update(owner)) {
+						javax.swing.JOptionPane.showMessageDialog(null, "Le photographe a bien été modifié.");
+						modify.dispose();
+						jf_owner.dispose();
+						displayAll();
+					} else {
+						JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
+					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
+					modify.dispose();
 				}
 			}
 		});

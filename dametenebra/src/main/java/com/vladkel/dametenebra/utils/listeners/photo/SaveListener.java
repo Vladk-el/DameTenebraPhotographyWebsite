@@ -30,15 +30,23 @@ public class SaveListener extends MouseAdapter {
 		photo.setCategory_photo(ihm.getPhotoCategory());
 		photo.setActive(ihm.getActive());
 
-		if (photo.getPhoto_id() == 0 ? ihm.getDao().insert(photo) : ihm.getDao().update(photo)) {
-			ihm.store();
-			JOptionPane.showMessageDialog(null, "Votre photo à bien été sauvegardée.");
-			ihm.getModifyFrame().dispose();
-			ihm.getMainFrame().dispose();
-			ihm.displayAll();
+		if (photo.getPhoto_name().length() > 0 && photo.getPhoto_link().length() > 0) {
+			if (photo.getPhoto_id() == 0 ? ihm.getDao().insert(photo) : ihm.getDao().update(photo)) {
+				ihm.store();
+				JOptionPane.showMessageDialog(null, "Votre photo à bien été sauvegardée.");
+				ihm.getModifyFrame().dispose();
+				ihm.getMainFrame().dispose();
+				ihm.displayAll();
+			} else {
+				JOptionPane.showMessageDialog(null,
+						"Un problème est survenu, veuillez vérifier l'intégrité des données et votre connexion internet.");
+			}
 		} else {
-			JOptionPane.showMessageDialog(null,
-					"Un problème est survenu, veuillez vérifier l'intégrité des données et votre connexion internet.");
+			if (photo.getPhoto_name().length() == 0 && photo.getPhoto_link().length() == 0) {
+				ihm.getModifyFrame().dispose();
+			} else {
+				JOptionPane.showMessageDialog(null, "Veuillez donner un nom et un fichier à vote photo.");
+			}
 		}
 
 	}

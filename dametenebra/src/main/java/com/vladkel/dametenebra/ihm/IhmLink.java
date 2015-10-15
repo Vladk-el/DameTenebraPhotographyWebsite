@@ -215,15 +215,21 @@ public class IhmLink implements IHM {
 				link.setLink_link(text_desc_link.getText());
 				link.setLink_owner_id(((Owner)combo_link_owner.getSelectedItem()).getOwner_id());
 				link.setActive(is_active.isSelected() ? 1 : 0);
-				if (dao.insert(link)) {
-					JOptionPane.showMessageDialog(null,
-							"Le lien \"" + link.getLink_name() + "\" a bien été ajouté.");
-					modify.dispose();
-					jf_link.dispose();
-					displayAll();
+				
+				if(link.getLink_name().length() > 0 && link.getLink_link().length() > 0) {
+					if (dao.insert(link)) {
+						JOptionPane.showMessageDialog(null,
+								"Le lien \"" + link.getLink_name() + "\" a bien été ajouté.");
+						modify.dispose();
+						jf_link.dispose();
+						displayAll();
+					} else {
+						JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
+					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
+					modify.dispose();
 				}
+				
 			}
 
 		});
@@ -282,13 +288,18 @@ public class IhmLink implements IHM {
 				link.setLink_link(text_desc_link.getText());
 				link.setLink_owner_id(owners.get(combo_link_owner.getSelectedIndex()).getOwner_id());
 				link.setActive(is_active.isSelected() ? 1 : 0);
-				if (dao.update(link)) {
-					javax.swing.JOptionPane.showMessageDialog(null, "Le lien a bien été modifié.");
-					modify.dispose();
-					jf_link.dispose();
-					displayAll();
+				
+				if(link.getLink_name().length() > 0 && link.getLink_link().length() > 0) {
+					if (dao.update(link)) {
+						javax.swing.JOptionPane.showMessageDialog(null, "Le lien a bien été modifié.");
+						modify.dispose();
+						jf_link.dispose();
+						displayAll();
+					} else {
+						JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
+					}
 				} else {
-					JOptionPane.showMessageDialog(null, "Une erreur est survenue, veuillez réessayer ultérieurement.");
+					modify.dispose();
 				}
 			}
 		});
