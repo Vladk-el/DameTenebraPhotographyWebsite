@@ -7,6 +7,7 @@
         $scope.$route = $route;
         $scope.$location = $location;
         $scope.$routeParams = $routeParams;
+        $scope.currenDate = new Date();
 
         $scope.isActive = function (viewLocation) {
             var active = (viewLocation === $location.path());
