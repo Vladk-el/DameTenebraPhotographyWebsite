@@ -1,6 +1,9 @@
 <?php
+    
+    /* Connexion */
+    include '../connection/connection.php';
         
-    $json = file_get_contents('php://input');
+    $json = file_get_contents_utf8('php://input');
     $obj = json_decode($json);
     
     //var_dump($obj);
@@ -10,9 +13,6 @@
             WHERE `owner_id`="' . $obj->{'owner_id'} . '"';
 
     //print $sql;
-    
-    /* Connexion */
-    include '../connection/connection.php';
 
     if (mysqli_query($con, $sql)) {
         echo "success";
