@@ -3,7 +3,7 @@
     /* Connexion */
     include '../connection/connection.php';
         
-    $json = file_get_contents('php://input');
+    $json = file_get_contents_utf8('php://input');
     $obj = json_decode($json);
     
     //var_dump($obj);
