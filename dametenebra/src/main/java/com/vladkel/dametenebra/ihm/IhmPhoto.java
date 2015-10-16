@@ -283,7 +283,7 @@ public class IhmPhoto implements IHM {
 		modify = new JFrame();
 
 		modify.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		modify.setTitle("Modifier la categorie : " + photo.getPhoto_name());
+		modify.setTitle("Modifier la photo : " + photo.getPhoto_name());
 		modify.setSize(new Dimension(380, 450));
 		modify.setLocationRelativeTo(null);
 		modify.setResizable(false);

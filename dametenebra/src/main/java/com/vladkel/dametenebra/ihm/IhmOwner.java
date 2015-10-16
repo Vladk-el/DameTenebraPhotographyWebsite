@@ -124,7 +124,7 @@ public class IhmOwner implements IHM {
 	@Override
 	public void displayAll() {
 		init();
-		jf_owner.setTitle("Consulter les owners");
+		jf_owner.setTitle("Consulter les photographes");
 
 		final List<Owner> owners = dao.select();
 		Object[][] data = new Object[owners.size()][4];

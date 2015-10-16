@@ -137,7 +137,7 @@ public class IhmLink implements IHM {
 	@Override
 	public void displayAll() {
 		init();
-		jf_link.setTitle("Consulter les links");
+		jf_link.setTitle("Consulter les liens");
 
 		final List<Link> links = dao.select();
 		Object[][] data = new Object[links.size()][5];
