@@ -50,3 +50,7 @@ a:hover,
 .modal-content {
 	background-color: rgb(51, 51, 51);
 }
+
+.h3links {
+	cursor: pointer;
+}
