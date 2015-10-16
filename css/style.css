@@ -54,3 +54,12 @@ a:hover,
 .h3links {
 	cursor: pointer;
 }
+
+@font-face {
+  font-family: 'OldEnglishTextMT';
+  src: url('polices/myfont.ttf') format('truetype');
+}
+
+.titleSpecialFont {
+	font-family: 'OldEnglishTextMT';
+}
