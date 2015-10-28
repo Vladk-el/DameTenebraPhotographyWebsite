@@ -57,7 +57,7 @@ a:hover,
 
 @font-face {
   font-family: 'OldEnglishTextMT';
-  src: url('polices/myfont.ttf') format('truetype');
+  src: url('polices/ufonts.com_old-english-text-mt.ttf') format('truetype');
 }
 
 .titleSpecialFont {
