@@ -45,8 +45,8 @@
                         <span class="glyphicon glyphicon-remove"></span> This looks like not to be a valid email.
                     </span>
                 </p>
-                <p class="success" ng-show="contact_form.email.$dirty && !contact_form.email.$invalid">
-                    <span class="label label-success" ng-show="!contact_form.email.$error.dirty && !contact_form.email.$error.invalid">
+                <p class="success" ng-show="contact_form.email.$dirty && contact_form.email.$valid">
+                    <span class="label label-success">
                         <span class="glyphicon glyphicon-ok"></span>
                     </span>
                 </p>
