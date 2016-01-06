@@ -42,8 +42,8 @@ public class IhmLink implements IHM {
 	private GridBagLayout bl;
 	private JLabel title_name_link;
 	private JTextField text_name_link;
-	private JLabel title_desc_link;
-	private JEditorPane text_desc_link;
+	private JLabel title_link_link;
+	private JEditorPane text_link_link;
 	private JButton add_link;
 	private JCheckBox is_active;
 	private JLabel title_link_owner;
@@ -92,8 +92,8 @@ public class IhmLink implements IHM {
 		bl = null;
 		title_name_link = null;
 		text_name_link = null;
-		title_desc_link = null;
-		text_desc_link = null;
+		title_link_link = null;
+		text_link_link = null;
 		add_link = null;
 		modif = null;
 		title_link_owner = null;
@@ -116,8 +116,8 @@ public class IhmLink implements IHM {
 		bl = new GridBagLayout();
 		title_name_link = new JLabel("Nom");
 		text_name_link = new JTextField();
-		title_desc_link = new JLabel("Description");
-		text_desc_link = new JEditorPane();
+		title_link_link = new JLabel("Link");
+		text_link_link = new JEditorPane();
 		add_link = new JButton("Ajouter");
 		modif = new JButton("Modifier");
 		title_link_owner = new JLabel("Photographe correspondant");
@@ -194,14 +194,14 @@ public class IhmLink implements IHM {
 		mp.setLayout(new FlowLayout());
 
 		text_name_link.setPreferredSize(new Dimension(250, 20));
-		text_desc_link.setPreferredSize(new Dimension(250, 80));
+		text_link_link.setPreferredSize(new Dimension(250, 80));
 		combo_link_owner.setPreferredSize(new Dimension(250, 20));
 		is_active.setPreferredSize(new Dimension(250, 20));
 
 		mp.add(title_name_link);
 		mp.add(text_name_link);
-		mp.add(title_desc_link);
-		mp.add(new JScrollPane(text_desc_link));
+		mp.add(title_link_link);
+		mp.add(new JScrollPane(text_link_link));
 		mp.add(title_link_owner);
 		mp.add(combo_link_owner);
 		mp.add(is_active);
@@ -213,7 +213,7 @@ public class IhmLink implements IHM {
 				Link link = new Link();
 				link.setLink_id(0);
 				link.setLink_name(text_name_link.getText());
-				link.setLink_link(text_desc_link.getText());
+				link.setLink_link(text_link_link.getText());
 				link.setLink_owner_id(((Owner)combo_link_owner.getSelectedItem()).getOwner_id());
 				link.setActive(is_active.isSelected() ? 1 : 0);
 				
@@ -258,13 +258,13 @@ public class IhmLink implements IHM {
 		mp.setLayout(new FlowLayout());
 
 		text_name_link.setPreferredSize(new Dimension(250, 20));
-		text_desc_link.setPreferredSize(new Dimension(250, 80));
+		text_link_link.setPreferredSize(new Dimension(250, 80));
 		combo_link_owner.setPreferredSize(new Dimension(250, 20));
 
 		mp.add(title_name_link);
 		mp.add(text_name_link);
-		mp.add(title_desc_link);
-		mp.add(new JScrollPane(text_desc_link));
+		mp.add(title_link_link);
+		mp.add(new JScrollPane(text_link_link));
 		mp.add(title_link_owner);
 		mp.add(combo_link_owner);
 		mp.add(is_active);
@@ -272,7 +272,7 @@ public class IhmLink implements IHM {
 		mp.add(delete);
 
 		text_name_link.setText(link.getLink_name());
-		text_desc_link.setText(link.getLink_link());
+		text_link_link.setText(link.getLink_link());
 		is_active.setSelected(link.getActive() == 1 ? true : false);
 		
 		for(int i = 0; i < owners.size(); i++){
@@ -286,7 +286,7 @@ public class IhmLink implements IHM {
 
 			public void mouseClicked(MouseEvent e) {
 				link.setLink_name(text_name_link.getText());
-				link.setLink_link(text_desc_link.getText());
+				link.setLink_link(text_link_link.getText());
 				link.setLink_owner_id(owners.get(combo_link_owner.getSelectedIndex()).getOwner_id());
 				link.setActive(is_active.isSelected() ? 1 : 0);
 				
