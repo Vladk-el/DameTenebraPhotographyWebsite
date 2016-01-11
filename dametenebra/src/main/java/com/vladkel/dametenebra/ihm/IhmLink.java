@@ -116,7 +116,7 @@ public class IhmLink implements IHM {
 		bl = new GridBagLayout();
 		title_name_link = new JLabel("Nom");
 		text_name_link = new JTextField();
-		title_link_link = new JLabel("Link");
+		title_link_link = new JLabel("Lien");
 		text_link_link = new JEditorPane();
 		add_link = new JButton("Ajouter");
 		modif = new JButton("Modifier");

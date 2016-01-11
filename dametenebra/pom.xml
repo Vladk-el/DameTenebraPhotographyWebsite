@@ -4,7 +4,7 @@
 
 	<groupId>com.vladkel</groupId>
 	<artifactId>dametenebra</artifactId>
-	<version>4.0.1</version>
+	<version>4.0.2</version>
 
 	<name>DameTenebra</name>
 	<description>DameTenebra soft to rules website db</description>

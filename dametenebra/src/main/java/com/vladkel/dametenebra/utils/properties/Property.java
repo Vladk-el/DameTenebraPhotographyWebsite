@@ -1,7 +1,9 @@
 package com.vladkel.dametenebra.utils.properties;
 
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Properties;
 
 import javax.swing.JOptionPane;
@@ -54,5 +56,18 @@ public class Property {
 
 	public String get(String str) {
 		return properties.getProperty(str);
+	}
+	
+	public void setProperty(String key, String value) {
+		properties.put(key, value);
+		try (
+				OutputStream out = new FileOutputStream(FILE_LOCATION);
+			)
+		{
+			properties.store(out, null);
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
