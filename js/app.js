@@ -14,11 +14,11 @@
             return active;
         };
     })
-    
+
     .controller('BiographyController', function ($scope, $log) {
         //$log.info('BiographyController');
     })
-    
+
     .controller('LegalNoticeController', function ($scope, $log) {
         //$log.info('LegalNoticeController');
     })
@@ -56,6 +56,16 @@
             .otherwise({
                 redirectTo: '/'
             });
+    })
+
+    .filter('objectToArray', function () {
+        return function (input) {
+            var out = [];
+            for (var i in input) {
+                out.push(input[i]);
+            }
+            return out;
+        }
     });
 
 })(window.angular);
