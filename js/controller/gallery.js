@@ -8,7 +8,7 @@
         LightboxProvider.templateUrl = 'includes/templates/lightbox.html';
     })
 
-    .controller('GalleryController', function ($scope, $http, $routeParams, $log, Lightbox) {
+    .controller('GalleryController', function ($scope, $http, $routeParams, $log, $filter, Lightbox) {
         //$log.info('GalleryController');
         //$log.debug("$routeParams", $routeParams);
 
@@ -28,16 +28,14 @@
 
         $http.get('php/services/photo/photos_by_category.php?category=' + $scope.category_id)
             .success(function (data, status, headers, config) {
-                $scope.photos = data;
-                //$log.debug(data);
-                for (var i in data) {
+                $scope.photos = $filter('orderBy')(data, 'photo_date', true);
+                for (var i in $scope.photos) {
                     var img = {};
-                    img.url = "img/full/" + data[i].photo_link;
-                    img.title = data[i].photo_name;
-                    img.caption = data[i].photo_description;
+                    img.url = "img/full/" + $scope.photos[i].photo_link;
+                    img.title = $scope.photos[i].photo_name;
+                    img.caption = $scope.photos[i].photo_description;
                     $scope.images.push(img);
                 }
-                //$log.debug("$scope.images", $scope.images);
             })
             .error(function (data, status, headers, config) {
                 $log.error(status);
