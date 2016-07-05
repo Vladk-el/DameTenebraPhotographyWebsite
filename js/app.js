@@ -69,3 +69,10 @@
     });
 
 })(window.angular);
+
+//Mobile navbar close on click
+$(document).on('click','#navbar.in',function(e) {
+    if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {
+        $(this).collapse('hide');
+    }
+});
