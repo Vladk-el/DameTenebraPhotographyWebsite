@@ -12,18 +12,26 @@
 	},
 	"author": "ela",
 	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/Vladk-el/dtpv2/issues"
+	"devDependencies": {
+		"grunt": "latest",
+		"grunt-contrib-clean": "latest",
+		"grunt-contrib-concat": "latest",
+		"grunt-contrib-uglify": "latest",
+		"grunt-contrib-watch": "latest",
+		"grunt-ng-annotate": "latest",
+		"grunt-contrib-copy": "latest"
 	},
-	"homepage": "https://github.com/Vladk-el/dtpv2#readme",
 	"dependencies": {
 		"angular": "^1.4.7",
 		"angular-animate": "^1.4.7",
 		"angular-route": "^1.4.7",
 		"angular-touch": "^1.4.7",
 		"angularjs-toaster": "^1.2.0",
-		"toastr": "latest",
 		"bootstrap": "^3.3.5",
 		"jquery": "^2.1.4"
-	}
+	},
+	"bugs": {
+		"url": "https://github.com/Vladk-el/dtpv2/issues"
+	},
+	"homepage": "https://github.com/Vladk-el/dtpv2#readme"
 }

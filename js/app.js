@@ -1,78 +1,78 @@
 (function (angular) {
-    'use strict';
+	'use strict';
 
-    angular.module('ngApp', ['ngRoute', 'indexService', 'portfolioService', 'galleryService', 'linkService', 'contactService'])
+	angular.module('ngApp', ['ngRoute', 'indexService', 'portfolioService', 'galleryService', 'linkService', 'contactService'])
 
-    .controller('MainController', function ($scope, $route, $routeParams, $location) {
-        $scope.$route = $route;
-        $scope.$location = $location;
-        $scope.$routeParams = $routeParams;
-        $scope.currenDate = new Date();
+	.controller('MainController', function ($scope, $route, $routeParams, $location) {
+		$scope.$route = $route;
+		$scope.$location = $location;
+		$scope.$routeParams = $routeParams;
+		$scope.currenDate = new Date();
 
-        $scope.isActive = function (viewLocation) {
-            var active = (viewLocation === $location.path());
-            return active;
-        };
-    })
+		$scope.isActive = function (viewLocation) {
+			var active = (viewLocation === $location.path());
+			return active;
+		};
+	})
 
-    .controller('BiographyController', function ($scope, $log) {
-        //$log.info('BiographyController');
-    })
+	.controller('BiographyController', function ($scope, $log) {
+		//$log.info('BiographyController');
+	})
 
-    .controller('LegalNoticeController', function ($scope, $log) {
-        //$log.info('LegalNoticeController');
-    })
+	.controller('LegalNoticeController', function ($scope, $log) {
+		//$log.info('LegalNoticeController');
+	})
 
-    .config(function ($routeProvider, $locationProvider) {
-        $routeProvider
-            .when('/', {
-                templateUrl: 'includes/index.html',
-                controller: 'IndexController'
-            })
-            .when('/portfolio', {
-                templateUrl: 'includes/portfolio.html',
-                controller: 'PortfolioController'
-            })
-            .when('/gallery/:category_id', {
-                templateUrl: 'includes/gallery.html',
-                controller: 'GalleryController'
-            })
-            .when('/contact', {
-                templateUrl: 'includes/contact.html',
-                controller: 'ContactController'
-            })
-            .when('/links', {
-                templateUrl: 'includes/links.html',
-                controller: 'LinksController'
-            })
-            .when('/biography', {
-                templateUrl: 'includes/biography.html',
-                controller: 'BiographyController'
-            })
-            .when('/legal_notice', {
-                templateUrl: 'includes/legal_notice.html',
-                controller: 'LegalNoticeController'
-            })
-            .otherwise({
-                redirectTo: '/'
-            });
-    })
+	.config(function ($routeProvider, $locationProvider) {
+		$routeProvider
+			.when('/', {
+				templateUrl: 'partials/index.html',
+				controller: 'IndexController'
+			})
+			.when('/portfolio', {
+				templateUrl: 'partials/portfolio.html',
+				controller: 'PortfolioController'
+			})
+			.when('/gallery/:category_id', {
+				templateUrl: 'partials/gallery.html',
+				controller: 'GalleryController'
+			})
+			.when('/contact', {
+				templateUrl: 'partials/contact.html',
+				controller: 'ContactController'
+			})
+			.when('/links', {
+				templateUrl: 'partials/links.html',
+				controller: 'LinksController'
+			})
+			.when('/biography', {
+				templateUrl: 'partials/biography.html',
+				controller: 'BiographyController'
+			})
+			.when('/legal_notice', {
+				templateUrl: 'partials/legal_notice.html',
+				controller: 'LegalNoticeController'
+			})
+			.otherwise({
+				redirectTo: '/'
+			});
+	})
 
-    .filter('objectToArray', function () {
-        return function (input) {
-            var out = [];
-            for (var i in input) {
-                out.push(input[i]);
-            }
-            return out;
-        }
-    });
+	.filter('objectToArray', function () {
+		return function (input) {
+			var out = [];
+			for (var i in input) {
+				out.push(input[i]);
+			}
+			return out;
+		}
+	});
 
 })(window.angular);
 
 //Mobile navbar close on click
-$(document).on('click','#navbar.in',function(e) {
-    if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {
-        $(this).collapse('hide');
-    }
+$(document).on('click', '#navbar.in', function (e) {
+	if ($(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle') {
+		$(this).collapse('hide');
+	}
 });

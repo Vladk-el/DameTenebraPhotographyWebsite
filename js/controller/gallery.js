@@ -5,7 +5,7 @@
 
 	.config(function (LightboxProvider) {
 		// set a custom template
-		LightboxProvider.templateUrl = 'includes/templates/lightbox.html';
+		LightboxProvider.templateUrl = 'partials/templates/lightbox.html';
 	})
 
 	.controller('GalleryController', function ($scope, $http, $routeParams, $log, $filter, Lightbox) {
