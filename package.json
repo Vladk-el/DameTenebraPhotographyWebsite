@@ -1,0 +1,29 @@
+{
+	"name": "dame-tenebra-website",
+	"version": "2.0.2",
+	"description": "Dame Ténébra photography website",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Vladk-el/dtpv2.git"
+	},
+	"author": "ela",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Vladk-el/dtpv2/issues"
+	},
+	"homepage": "https://github.com/Vladk-el/dtpv2#readme",
+	"dependencies": {
+		"angular": "^1.4.7",
+		"angular-animate": "^1.4.7",
+		"angular-route": "^1.4.7",
+		"angular-touch": "^1.4.7",
+		"angularjs-toaster": "^1.2.0",
+		"toastr": "latest",
+		"bootstrap": "^3.3.5",
+		"jquery": "^2.1.4"
+	}
+}
