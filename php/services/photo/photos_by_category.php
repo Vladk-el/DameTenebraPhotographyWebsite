@@ -2,24 +2,27 @@
     /* Connexion */
     include '../connection/connection.php';
 
-    $response = mysqli_query($con, 'SELECT * FROM photo WHERE category_photo = ' . $_GET['category'] . ' ORDER BY photo_date;');
+    $response = mysqli_query($con, 'SELECT * FROM photo WHERE category_photo = ' . $_GET['category'] . ' ORDER BY photo_date DESC;');
     $row_count = $response->num_rows;
-    $cpt = 1;
 
-    print("[");
-    while($r = mysqli_fetch_assoc($response)) {
+	$h = [];
+	$v = [];
+
+    while($row = mysqli_fetch_assoc($response)) {
         
-        list($width, $height) = getimagesize("../../../img/full/" . $r['photo_link']);
-        $r['photo_width'] = $width;
-        $r['photo_height'] = $height;
-        
-        print json_encode($r);
-        if($cpt < $row_count) {
-            print(",");
-        }
-        $cpt++;
+        list($width, $height) = getimagesize("../../../img/full/" . $row['photo_link']);
+        $row['photo_width'] = $width;
+        $row['photo_height'] = $height;
+		
+		if($width > $height) {
+			array_push($h, $row);
+		} else {
+			array_push($v, $row);
+		}
+		
     }
-    print("]");
+
+	print json_encode(array_merge($h, $v));
 
     mysqli_close($con);
 ?>

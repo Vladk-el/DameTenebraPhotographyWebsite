@@ -4,26 +4,22 @@
 
     $response = mysqli_query($con, 'SELECT * FROM photo');
     $row_count = $response->num_rows;
-    $cpt = 1;
 
-    print("[");
-    while($r = mysqli_fetch_assoc($response)) {
-        
-        if(!empty($_GET['display'])) {
-        
-            list($width, $height) = getimagesize("../../../img/full/" . $r['photo_link']);
-            $r['photo_width'] = $width;
-            $r['photo_height'] = $height;
-        
-        }
-        
-        print json_encode($r);
-        if($cpt < $row_count) {
-            print(",");
-        }
-        $cpt++;
-    }
-    print("]");
+	$photos = [];
+
+	if(!empty($_GET['display'])) {
+		while($row = mysqli_fetch_assoc($response)) {
+
+			list($width, $height) = getimagesize("../../../img/full/" . $row['photo_link']);
+			$row['photo_width'] = $width;
+			$row['photo_height'] = $height;
+
+			array_push($photos, $row);
+
+		}
+	}
+
+    print json_encode($photos);
 
     mysqli_close($con);
 ?>
