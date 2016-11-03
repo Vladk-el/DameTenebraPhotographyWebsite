@@ -20,5 +20,7 @@ conf.properties
 node_modules/
 npm-debug.log
 
-# nodejs libs
+# nodejs libs & grunt generation
 lib/vendor
+css/client.css
+js/client.js
