@@ -10,15 +10,19 @@
 
     while($row = mysqli_fetch_assoc($response)) {
         
-        list($width, $height) = getimagesize("../../../img/full/" . $row['photo_link']);
-        $row['photo_width'] = $width;
-        $row['photo_height'] = $height;
+        $size = getimagesize("../../../img/full/" . $row['photo_link']);
 		
-		if($width > $height) {
-			array_push($h, $row);
-		} else {
-			array_push($v, $row);
+		if($size) { 
+			list($width, $height) = $size;
+			$row['photo_width'] = $width;
+			$row['photo_height'] = $height;
+			if($width > $height) {
+				array_push($h, $row);
+			} else {
+				array_push($v, $row);
+			}
 		}
+        
 		
     }
 
