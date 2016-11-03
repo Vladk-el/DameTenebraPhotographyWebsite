@@ -19,3 +19,6 @@ conf.properties
 # nodejs shits
 node_modules/
 npm-debug.log
+
+# nodejs libs
+lib/vendor

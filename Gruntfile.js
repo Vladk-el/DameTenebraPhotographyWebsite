@@ -7,43 +7,43 @@ module.exports = function (grunt) {
 			jquery: {
 				expand: true,
 				src: './node_modules/jquery/dist/*',
-				dest: './lib/jquery/',
+				dest: './lib/vendor/jquery/',
 				flatten: true
 			},
 			angular: {
 				expand: true,
 				src: './node_modules/angular/*',
-				dest: './lib/angular/',
+				dest: './lib/vendor/angular/',
 				flatten: true
 			},
 			angular_animate: {
 				expand: true,
 				src: './node_modules/angular-animate/*',
-				dest: './lib/angular-animate/',
+				dest: './lib/vendor/angular-animate/',
 				flatten: true
 			},
 			angular_route: {
 				expand: true,
 				src: './node_modules/angular-route/*',
-				dest: './lib/angular-route/',
+				dest: './lib/vendor/angular-route/',
 				flatten: true
 			},
 			angular_touch: {
 				expand: true,
 				src: './node_modules/angular-touch/*',
-				dest: './lib/angular-touch/',
+				dest: './lib/vendor/angular-touch/',
 				flatten: true
 			},
 			bootstrap: {
 				expand: true,
 				cwd: './node_modules/bootstrap/dist/',
 				src: '**/*',
-				dest: './lib/bootstrap/'
+				dest: './lib/vendor/bootstrap/'
 			},
 			angularjs_toaster: {
 				expand: true,
 				src: './node_modules/angularjs-toaster/*',
-				dest: './lib/angularjs-toaster/',
+				dest: './lib/vendor/angularjs-toaster/',
 				flatten: true
 			}
 		},
@@ -96,7 +96,7 @@ module.exports = function (grunt) {
 		clean: {
 			js: ['./js/client.js'],
 			css: ['./css/client.css'],
-			lib: ['./lib/angular', './lib/angular-animate', './lib/angular-route', './lib/angular-touch', './lib/angularjs-toaster', './lib/bootstrap', './lib/jquery']
+			lib: ['./lib/vendor']
 		},
 		watch: {
 			scripts: {
