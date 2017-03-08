@@ -21,8 +21,8 @@ body,
 }
 .footer {
 	position: fixed;
-	bottom: -4%;
-	width: 95%;
+	bottom: -0.7em;
+	width: 100%;
 }
 .no-border {
 	border: none;
