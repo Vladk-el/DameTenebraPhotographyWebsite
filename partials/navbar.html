@@ -1,38 +1,33 @@
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand titleSpecialFont" href="#/">DameTenebra Photography</a>
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li ng-class="{ active: isActive('/') }">
-                    <a href="#/">Home</a>
-                </li>
-                <li ng-class="{ active: isActive('/links') }">
-                    <a href="#/links">Links</a>
-                </li>
-                <li ng-class="{ active: isActive('/biography') }">
-                    <a href="#/biography">Biography</a>
-                </li>
-                <li ng-class="{ active: isActive('/portfolio') }">
-                    <a href="#/portfolio">Portfolio</a>
-                </li>
-                <li ng-class="{ active: isActive('/gallery/1') }">
-                    <a href="#/gallery/1">Model</a>
-                </li>
-                <li ng-class="{ active: isActive('/contact') }">
-                    <a href="#/contact">Contact</a>
-                </li>
-                <li ng-class="{ active: isActive('/legal_notice') }">
-                    <a href="#/legal_notice">Legal Notice</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+<nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md bg-faded">
+	<div class="navbar-header">
+		<a class="navbar-brand titleSpecialFont" href="#/">DameTenebra Photography</a>
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	</div>
+	<div id="navbar" class="navbar-collapse collapse">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item" ng-class="{ active: isActive('/') }">
+				<a class="nav-link" href="#/">Home</a>
+			</li>
+			<li class="nav-item" ng-class="{ active: isActive('/links') }">
+				<a class="nav-link" href="#/links">Links</a>
+			</li>
+			<li class="nav-item" ng-class="{ active: isActive('/biography') }">
+				<a class="nav-link" href="#/biography">Biography</a>
+			</li>
+			<li class="nav-item" ng-class="{ active: isActive('/portfolio') }">
+				<a class="nav-link" href="#/portfolio">Portfolio</a>
+			</li>
+			<li class="nav-item" ng-class="{ active: isActive('/gallery/1') }">
+				<a class="nav-link" href="#/gallery/1">Model</a>
+			</li>
+			<li class="nav-item" ng-class="{ active: isActive('/contact') }">
+				<a class="nav-link" href="#/contact">Contact</a>
+			</li>
+			<li class="nav-item" ng-class="{ active: isActive('/legal_notice') }">
+				<a class="nav-link" href="#/legal_notice">Legal Notice</a>
+			</li>
+		</ul>
+	</div>
 </nav>
