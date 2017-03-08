@@ -12,7 +12,7 @@ body,
 	color: white;
 }
 .jumbotron {
-    padding-top: 1em;
+	padding-top: 1em;
 	padding-bottom: 1em;
 }
 .contact {
@@ -46,20 +46,21 @@ a:hover,
 	/*width: 70%;*/
 	margin: auto;
 }
-
 .modal-content {
 	background-color: rgb(51, 51, 51);
 }
-
 .h3links {
 	cursor: pointer;
 }
-
 @font-face {
-  font-family: 'OldEnglishTextMT';
-  src: url('polices/ufonts.com_old-english-text-mt.ttf') format('truetype');
+	font-family: 'OldEnglishTextMT';
+	src: url('polices/ufonts.com_old-english-text-mt.ttf') format('truetype');
 }
-
 .titleSpecialFont {
 	font-family: 'OldEnglishTextMT';
+}
+.img-title {
+	max-height: 2em;
+	height: 2em;
+	line-height: 2em;
 }
