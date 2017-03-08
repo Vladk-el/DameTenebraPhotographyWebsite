@@ -10,7 +10,7 @@
 
 		$http.get('php/services/owner/owners.php?display=true')
 			.then(function (response) {
-				$scope.owners = response;
+				$scope.owners = response.data;
 				//$log.debug(response);
 			})
 			.catch(function (error) {

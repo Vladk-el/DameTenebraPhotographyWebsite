@@ -1,6 +1,7 @@
 body {
-	text-align: center;
+    text-align: center;
 }
+
 html,
 body,
 .jumbotron,
@@ -8,58 +9,81 @@ body,
 .row,
 .panel,
 .panel-default>.panel-heading {
-	background-color: rgb(51, 51, 51);
-	color: white;
+    background-color: rgb(51, 51, 51);
+    color: white;
 }
+
 .jumbotron {
-	padding-top: 1em;
-	padding-bottom: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
 }
+
 .contact {
-	/*background-color: rgb(255, 255, 255);*/
-	color: black;
+    /*background-color: rgb(255, 255, 255);*/
+    color: black;
 }
+
 .footer {
-	position: fixed;
-	bottom: -0.7em;
-	width: 100%;
+    position: fixed;
+    bottom: -0.7em;
+    width: 100%;
 }
+
 .no-border {
-	border: none;
+    border: none;
 }
+
 .description {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
+
 .no-decoration {
-	text-decoration: none;
+    text-decoration: none;
 }
+
 a:hover,
 .nav>li>a:hover {
-	text-decoration: none;
-	color: green;
-	background-color: rgb(51, 51, 51);
+    text-decoration: none;
+    color: green;
+    background-color: rgb(51, 51, 51);
 }
+
 .carousel-inner > .carousel-item > img,
 .carousel-inner > .carousel-item > a > img {
-	margin: auto;
+    margin: auto;
 }
+
 .modal-content {
-	background-color: rgb(51, 51, 51);
+    background-color: rgb(51, 51, 51);
 }
+
 .h3links {
-	cursor: pointer;
+    cursor: pointer;
 }
+
 @font-face {
-	font-family: 'OldEnglishTextMT';
-	src: url('polices/ufonts.com_old-english-text-mt.ttf') format('truetype');
+    font-family: 'OldEnglishTextMT';
+    src: url('polices/ufonts.com_old-english-text-mt.ttf') format('truetype');
 }
+
 .titleSpecialFont {
-	font-family: 'OldEnglishTextMT';
+    font-family: 'OldEnglishTextMT';
 }
+
 .img-title {
-	max-height: 2em;
-	height: 2em;
-	line-height: 2em;
+    max-height: 2em;
+    height: 2em;
+    line-height: 2em;
+}
+
+.card,
+.card-header {
+    background-color: rgb(51, 51, 51);
+}
+
+.list-group-item.active {
+    background-color: #478798;
+    border-color: #478798;
 }
