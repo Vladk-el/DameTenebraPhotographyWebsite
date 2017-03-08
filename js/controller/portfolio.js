@@ -10,7 +10,7 @@
 
 		$http.get('php/services/category/categories.php?display=true')
 			.then(function (response) {
-				$scope.categories = response;
+				$scope.categories = response.data;
 				//$log.debug(data);
 			})
 			.catch(function (error) {

@@ -13,11 +13,9 @@
 	<div class="row">
 
 		<div ng-repeat="photo in photos" class="col-sm-4" ng-show="photo.photo_width > photo.photo_height && photo.active == 1">
-			<div>
+			<div title="{{ photo.photo_description }}">
 				<h3 class="img-title" ng-bind="photo.photo_name"></h3>
-				<a class="fancybox" rel="gallery" ng-click="openLightboxModal($index)" title="{{ photo.photo_name }}" description="{{ photo.photo_description }}" fancybox>
-					<img ng-src="img/full/{{ photo.photo_link }}" class="img-rounded img-responsive" alt="Cinque Terre">
-				</a>
+				<img ng-src="img/full/{{ photo.photo_link }}" class="img-fluid" alt="{{ photo.photo_name }}">
 			</div>
 		</div>
 
@@ -26,11 +24,9 @@
 	<div class="row">
 
 		<div ng-repeat="photo in photos" class="col-sm-4" ng-show="photo.photo_width < photo.photo_height && photo.active == 1">
-			<div>
+			<div title="{{ photo.photo_description }}">
 				<h3 class="img-title" ng-bind="photo.photo_name"></h3>
-				<a class="fancybox" rel="gallery" ng-click="openLightboxModal($index)" title="{{ photo.photo_name }}" description="{{ photo.photo_description }}" fancybox>
-					<img ng-src="img/full/{{ photo.photo_link }}" class="img-rounded img-responsive" alt="Cinque Terre">
-				</a>
+				<img ng-src="img/full/{{ photo.photo_link }}" class="img-fluid" alt="{{ photo.photo_name }}">
 			</div>
 		</div>
 

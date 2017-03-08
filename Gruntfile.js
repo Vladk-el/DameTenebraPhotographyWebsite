@@ -34,6 +34,12 @@ module.exports = function (grunt) {
 				dest: './lib/vendor/angular-touch/',
 				flatten: true
 			},
+			tether: {
+				expand: true,
+				cwd: './node_modules/tether/dist/',
+				src: '**/*',
+				dest: './lib/vendor/tether/'
+			},
 			bootstrap: {
 				expand: true,
 				cwd: './node_modules/bootstrap/dist/',
@@ -127,7 +133,7 @@ module.exports = function (grunt) {
 	// Définition des tâches Grunt
 	grunt.registerTask('js', ['clean:js', 'concat:js_dev']);
 	grunt.registerTask('css', ['clean:css', 'concat:css_dev']);
-	grunt.registerTask('move_vendor', ['copy:jquery', 'copy:angular', 'copy:angular_animate', 'copy:angular_route', 'copy:angular_touch', 'copy:bootstrap', 'copy:angularjs_toaster']);
+	grunt.registerTask('move_vendor', ['copy:jquery', 'copy:angular', 'copy:angular_animate', 'copy:angular_route', 'copy:angular_touch', 'copy:tether', 'copy:bootstrap', 'copy:angularjs_toaster']);
 
 	grunt.registerTask('dev', ['clean:lib', 'move_vendor', 'clean:css', 'concat:css_dev', 'clean:js', 'concat:js_dev']);
 	grunt.registerTask('prod', ['clean:lib', 'move_vendor', 'clean:css', 'clean:js', 'concat:css_prod', 'concat:js_prod', 'ngAnnotate:dist', 'uglify:dist']);

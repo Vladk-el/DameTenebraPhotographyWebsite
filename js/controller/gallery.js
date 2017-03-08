@@ -19,8 +19,8 @@
 
 		$http.get('php/services/category/category.php?category=' + $scope.category_id)
 			.then(function (response) {
-				$scope.category = response;
-				//$log.debug(response);
+				$scope.category = response.data;
+				$log.debug(response);
 			})
 			.catch(function (error) {
 				$log.error(error);
@@ -28,7 +28,7 @@
 
 		$http.get('php/services/photo/photos_by_category.php?category=' + $scope.category_id)
 			.then(function (response) {
-				$scope.photos = response;
+				$scope.photos = response.data;
 				for (var i in $scope.photos) {
 					var img = {};
 					img.url = "img/full/" + $scope.photos[i].photo_link;
