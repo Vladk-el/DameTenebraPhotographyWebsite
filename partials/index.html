@@ -1,81 +1,35 @@
 <div class="container-fluid">
 
-    <div class="jumbotron reduce-jumbotron ">
-        <h1> Welcome </h1>
-        <p>To my photography website</p>
-    </div>
+	<div class="jumbotron reduce-jumbotron ">
+		<h1> Welcome </h1>
+		<p>To my photography website</p>
+	</div>
 
 </div>
 
 <div class="container-fluid">
-    <div id="indexCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
-        <!-- Indicators -->
-        <ol class="carousel-indicators">
-            <li ng-repeat="photo in photos" data-target="#indexCarousel" data-slide-to="0" class="{{ photo.index == 0 ? 'active' : '' }}"></li>
-        </ol>
 
-        <!-- Wrapper for slides -->
-        <div class="carousel-inner" role="listbox">
-            <div ng-repeat="photo in photos" class="item {{ photo.index == 0 ? 'active' : '' }}">
-                <img ng-src="img/full/{{ photo.photo_link }}" alt="{{ photo.photo_name }}">
-            </div>
-        </div>
+	<div id="indexCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
 
-        <!-- Left and right controls -->
-        <a class="left carousel-control" data-target="#indexCarousel" role="button" data-slide="prev" ng-non-bindable>
-            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-        </a>
-        <a class="right carousel-control" data-target="#indexCarousel" role="button" data-slide="next" ng-non-bindable>
-            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-        </a>
-    </div>
-</div>
+		<ol class="carousel-indicators">
+			<li ng-repeat="photo in photos" data-target="#indexCarousel" data-slide-to="{{ $index }}" ng-class="{ 'active': photo.index == 0 }"></li>
+		</ol>
 
-<!--
-<div class="container-fluid" style="text-align: center;">
+		<div class="carousel-inner" role="listbox">
+			<div class="carousel-item" ng-repeat="photo in photos" ng-class="{ 'active': photo.index == 0 }">
+				<img class="d-block img-fluid" ng-src="img/full/{{ photo.photo_link }}" alt="{{ photo.photo_name }}">
+			</div>
+		</div>
 
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="jumbotron">
-                <a href="#/links">
-                    <h2>Links</h2>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="jumbotron">
-                <a href="#/contact">
-                    <h2>Contact</h2>
-                </a>
-            </div>
-        </div>
-    </div>
+		<a class="carousel-control-prev" data-target="#indexCarousel" role="button" data-slide="prev" ng-non-bindable>
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" data-target="#indexCarousel" role="button" data-slide="next" ng-non-bindable>
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
 
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="jumbotron">
-                <a href="#/biography">
-                    <h2>Biography</h2>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="jumbotron">
-                <a href="#/portfolio">
-                    <h2>Portfolio</h2>
-                </a>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="jumbotron">
-                <a href="#/gallery/1">
-                    <h2>Model</h2>
-                </a>
-            </div>
-        </div>
-    </div>
+	</div>
 
 </div>
--->

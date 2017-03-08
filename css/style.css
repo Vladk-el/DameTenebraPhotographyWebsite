@@ -41,9 +41,8 @@ a:hover,
 	color: green;
 	background-color: rgb(51, 51, 51);
 }
-.carousel-inner > .item > img,
-.carousel-inner > .item > a > img {
-	/*width: 70%;*/
+.carousel-inner > .carousel-item > img,
+.carousel-inner > .carousel-item > a > img {
 	margin: auto;
 }
 .modal-content {

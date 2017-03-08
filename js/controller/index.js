@@ -1,20 +1,22 @@
 (function () {
 	'use strict';
 
-	angular.module('indexService', [])
+	angular.module('indexService', ['ngAnimate', 'ui.bootstrap'])
 
 	.controller('IndexController', function ($scope, $http, $log) {
 		//$log.info('IndexController');
 
 		$scope.photos = [];
 
+		// URGENT - make this in BACK 
 		$http.get('php/services/photo/photos.php?display=true')
 			.then(function (response) {
+				var data = response.data;
 				var temp = [];
-				for (var key in response) {
-					//$log.debug("key", key, "response[key]", response[key]);
-					if (response[key].photo_width > response[key].photo_height && response[key].active == "1") {
-						temp.push(response[key]);
+				for (var key in data) {
+					//$log.debug("key", key, "data[key]", data[key]);
+					if (data[key].photo_width > data[key].photo_height && data[key].active == "1") {
+						temp.push(data[key]);
 					}
 				}
 				var index = 0;
