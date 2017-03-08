@@ -1,26 +1,26 @@
 (function () {
-    'use strict';
-    
-    angular.module('portfolioService', [])
-    
-    .controller('PortfolioController', function ($scope, $http, $location, $log) {
-        //$log.info('PortfolioController');
+	'use strict';
 
-        $scope.categories = [];
+	angular.module('portfolioService', [])
 
-        $http.get('php/services/category/categories.php?display=true')
-            .success(function (data, status, headers, config) {
-                $scope.categories = data;
-                //$log.debug(data);
-            })
-            .error(function (data, status, headers, config) {
-                $log.error(status);
-            });
+	.controller('PortfolioController', function ($scope, $http, $location, $log) {
+		//$log.info('PortfolioController');
 
-        $scope.go = function (path) {
-            $location.path(path);
-        }
-        
-    });
-    
+		$scope.categories = [];
+
+		$http.get('php/services/category/categories.php?display=true')
+			.then(function (response) {
+				$scope.categories = response;
+				//$log.debug(data);
+			})
+			.catch(function (error) {
+				$log.error(error);
+			});
+
+		$scope.go = function (path) {
+			$location.path(path);
+		}
+
+	});
+
 })(angular);

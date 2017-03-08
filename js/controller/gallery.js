@@ -18,17 +18,17 @@
 		$scope.images = [];
 
 		$http.get('php/services/category/category.php?category=' + $scope.category_id)
-			.success(function (data, status, headers, config) {
-				$scope.category = data;
-				//$log.debug(data);
+			.then(function (response) {
+				$scope.category = response;
+				//$log.debug(response);
 			})
-			.error(function (data, status, headers, config) {
-				$log.error(status);
+			.catch(function (error) {
+				$log.error(error);
 			});
 
 		$http.get('php/services/photo/photos_by_category.php?category=' + $scope.category_id)
-			.success(function (data, status, headers, config) {
-				$scope.photos = data;
+			.then(function (response) {
+				$scope.photos = response;
 				for (var i in $scope.photos) {
 					var img = {};
 					img.url = "img/full/" + $scope.photos[i].photo_link;
@@ -37,8 +37,8 @@
 					$scope.images.push(img);
 				}
 			})
-			.error(function (data, status, headers, config) {
-				$log.error(status);
+			.catch(function (error) {
+				$log.error(error);
 			});
 
 		$scope.openLightboxModal = function (index) {

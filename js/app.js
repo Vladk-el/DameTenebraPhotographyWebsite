@@ -24,6 +24,7 @@
 	})
 
 	.config(function ($routeProvider, $locationProvider) {
+		$locationProvider.hashPrefix('');
 		$routeProvider
 			.when('/', {
 				templateUrl: 'partials/index.html',
