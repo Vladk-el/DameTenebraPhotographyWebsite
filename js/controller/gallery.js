@@ -1,14 +1,9 @@
 (function () {
 	'use strict';
 
-	angular.module('galleryService', ['bootstrapLightbox'])
+	angular.module('galleryService', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 
-	.config(function (LightboxProvider) {
-		// set a custom template
-		LightboxProvider.templateUrl = 'partials/templates/lightbox.html';
-	})
-
-	.controller('GalleryController', function ($scope, $http, $routeParams, $log, $filter, Lightbox) {
+	.controller('GalleryController', function ($scope, $http, $routeParams, $log, $filter, $uibModal, $document) {
 		//$log.info('GalleryController');
 		//$log.debug("$routeParams", $routeParams);
 
@@ -41,10 +36,50 @@
 				$log.error(error);
 			});
 
-		$scope.openLightboxModal = function (index) {
-			Lightbox.openModal($scope.images, index);
-		};
+		$scope.show = function (photo, parentSelector) {
+			var parentElem = parentSelector ?
+				angular.element($document[0].querySelector('.gallery-container ' + parentSelector)) : undefined;
+			var modal = $uibModal.open({
+				animation: true,
+				ariaLabelledBy: 'modal-title',
+				ariaDescribedBy: 'modal-body',
+				templateUrl: 'partials/templates/modals/viewer.tpl.html',
+				size: 'md',
+				controller: 'ViewerModalCtrl',
+				appendTo: parentElem,
+				resolve: {
+					photo: function () {
+						return photo;
+					}
+				}
+			});
 
-	});
+			return modal.result
+				.then(function () {
+					// success
+				}, function () {
+					// error or cancel
+					$log.info('modal-component dismissed at: ' + new Date());
+				});
+		}
+
+	})
+
+	.controller('ViewerModalCtrl', function ($scope, $log, $uibModalInstance, photo) {
+
+		$log.debug("Enter ViewerModalCtrl with photo", photo);
+
+		$scope.photo = photo;
+
+		$scope.closeModalDialog = function () {
+			$uibModalInstance.close();
+		}
+
+		$scope.cancelModalDialog = function () {
+			$uibModalInstance.dismiss('cancel');
+		}
+	})
+
+	;
 
 })(angular);

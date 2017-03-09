@@ -20,7 +20,7 @@
 			$http.post('php/services/message/message_insert.php', form)
 				.then(function (response) {
 					//$log.debug(response);
-					if (response.indexOf("success") != -1) {
+					if (response.data.indexOf("success") != -1) {
 						toaster.pop({
 							type: 'success',
 							title: 'Thanks !',
@@ -30,7 +30,7 @@
 							}
 						});
 					} else {
-						$log.error(status + " ==> " + response);
+						$log.error(response.status + " ==> " + response);
 						toaster.pop('error', 'Error', 'A problem has been detected, please try again later.');
 					}
 				})
