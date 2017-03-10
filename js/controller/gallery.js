@@ -44,7 +44,7 @@
 				ariaLabelledBy: 'modal-title',
 				ariaDescribedBy: 'modal-body',
 				templateUrl: 'partials/templates/modals/viewer.tpl.html',
-				size: 'md',
+				size: 'lg',
 				controller: 'ViewerModalCtrl',
 				appendTo: parentElem,
 				resolve: {

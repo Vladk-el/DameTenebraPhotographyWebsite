@@ -45,13 +45,6 @@ a:hover,
 .carousel-inner > .carousel-item > a > img {
 	margin: auto;
 }
-.modal-content {
-	background-color: rgb(51, 51, 51);
-}
-.modal {
-	/* NEEDED for angularUi modals */
-	display: block;
-}
 .h3links {
 	cursor: pointer;
 }
@@ -77,4 +70,11 @@ a:hover,
 }
 body > [uib-modal-window]:not([modal-render]) {
 	display: none;
+}
+.modal {
+	opacity: 1;
+	color: black;
+}
+.modal-dialog {
+	top: 10em;
 }
