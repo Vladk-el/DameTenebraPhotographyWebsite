@@ -8,6 +8,7 @@
         //$log.debug("$routeParams", $routeParams);
 
         $scope.category_id = $routeParams.category_id;
+        $scope.photo_id = $routeParams.photo_id;
         $scope.category = {};
         $scope.photos = [];
         $scope.images = [];
@@ -37,6 +38,7 @@
             });
 
         $scope.show = function (photo, parentSelector) {
+            /*$state.go('.', { photo_id: 1 }, { notify: false });*/
             var parentElem = parentSelector ?
                 angular.element($document[0].querySelector('.gallery-container ' + parentSelector)) : undefined;
             var modal = $uibModal.open({
