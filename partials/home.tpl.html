@@ -12,11 +12,11 @@
 	<div id="indexCarousel" class="carousel slide" data-ride="carousel" data-interval="5000">
 
 		<ol class="carousel-indicators">
-			<li ng-repeat="photo in photos" data-target="#indexCarousel" data-slide-to="{{ $index }}" ng-class="{ 'active': photo.index == 0 }"></li>
+			<li ng-repeat="photo in photos" data-target="#indexCarousel" data-slide-to="{{ $index }}" ng-class="{ 'active': $index == 0 }"></li>
 		</ol>
 
 		<div class="carousel-inner" role="listbox">
-			<div class="carousel-item" ng-repeat="photo in photos" ng-class="{ 'active': photo.index == 0 }">
+			<div class="carousel-item" ng-repeat="photo in photos" ng-class="{ 'active': $index == 0 }">
 				<img class="d-block img-fluid" ng-src="img/full/{{ photo.photo_link }}" alt="{{ photo.photo_name }}">
 			</div>
 		</div>

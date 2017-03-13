@@ -1,3 +1,7 @@
 # Gallery
     lazy loading
         10 first then others 10 by 10
+			==> add param "size" to service
+		
+# Back
+	add FOR ALL : remove !active if display param
