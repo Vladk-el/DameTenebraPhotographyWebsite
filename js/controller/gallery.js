@@ -4,7 +4,7 @@ angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 	$stateProvider
 		.state('gallery', {
 			parent: '',
-			url: '/gallery/:category_id',
+			url: '/gallery/:category_id?:photo_id',
 			views: {
 				'main@': {
 					controller: 'GalleryController',
@@ -25,29 +25,68 @@ angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 		});
 })
 
-.controller('GalleryController', function ($scope, $http, $log, $uibModal, $document, category, photos) {
+.controller('GalleryController', function ($scope, $http, $log, $uibModal, $document, $state, $stateParams, category, photos) {
 	//$log.info('GalleryController');
 
 	$scope.category = category.data;
-	$scope.photos = photos.data;
-	/*$scope.photo_id = $routeParams.photo_id;*/
+	$scope.h = [];
+	$scope.v = [];
 
+	// use it for the viewer
 	var enrichPhotos = function (photos) {
-		var imgs = [];
-		for (var i in $scope.photos) {
-			var img = {};
-			img.url = "img/full/" + photos[i].photo_link;
-			img.title = photos[i].photo_name;
-			img.caption = photos[i].photo_description;
-			imgs.push(img);
-		}
+		photos.forEach(function (photo) {
+			if (photo.active === '1') {
+				var img = {};
+				img.id = photo.photo_id;
+				img.url = "img/full/" + photo.photo_link;
+				img.title = photo.photo_name;
+				img.caption = photo.photo_description;
+				if (photo.photo_width > photo.photo_height) {
+					img.h = true;
+					$scope.h.push(img);
+				} else {
+					img.v = true;
+					$scope.v.push(img);
+				}
+			}
+		});
+
+		var imgs = {};
+		var first = null;
+		var last = null;
+		$scope.h.forEach(function (img) {
+			if (last && last.id) {
+				img.previous = last.id;
+				imgs[last.id].next = img.id;
+			} else {
+				first = img.id;
+			}
+			imgs[img.id] = img;
+			last = img;
+		});
+		$scope.v.forEach(function (img) {
+			if (last && last.id) {
+				img.previous = last.id;
+				imgs[last.id].next = img.id;
+			} else {
+				first = img.id;
+			}
+			imgs[img.id] = img;
+			last = img;
+		});
+		imgs[last.id].next = first;
+		imgs[first].previous = last.id;
 		return imgs;
 	}
 
-	$scope.imgs = enrichPhotos(photos.data);
-
-	$scope.show = function (photo, parentSelector) {
-		/*$state.go('.', { photo_id: 1 }, { notify: false });*/
+	$scope.show = function (id, parentSelector) {
+		$log.debug("show photo", id);
+		$state.go('.', {
+			category_id: $scope.category.category_id,
+			photo_id: id
+		}, {
+			notify: false
+		});
 		var parentElem = parentSelector ?
 			angular.element($document[0].querySelector('.gallery-container ' + parentSelector)) : undefined;
 		var modal = $uibModal.open({
@@ -59,8 +98,11 @@ angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 			controller: 'ViewerModalCtrl',
 			appendTo: parentElem,
 			resolve: {
-				photo: function () {
-					return photo;
+				photos: function () {
+					return $scope.photos;
+				},
+				id: function () {
+					return id;
 				}
 			}
 		});
@@ -74,13 +116,19 @@ angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 			});
 	}
 
+	$scope.photos = enrichPhotos(photos.data);
+
+	/*if ($stateParams.photo_id) {
+		$scope.show($scope.photos[$stateParams.photo_id]);
+	}*/
+
 })
 
-.controller('ViewerModalCtrl', function ($scope, $log, $uibModalInstance, photo) {
+.controller('ViewerModalCtrl', function ($scope, $log, $uibModalInstance, photos, id) {
 
-	$log.debug("Enter ViewerModalCtrl with photo", photo);
+	$log.debug("Enter ViewerModalCtrl with photo", photos[id]);
 
-	$scope.photo = photo;
+	$scope.photo = photos[id];
 
 	$scope.closeModalDialog = function () {
 		$uibModalInstance.close();
@@ -91,11 +139,11 @@ angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 	}
 
 	$scope.next = function () {
-
+		$scope.photo = photos[$scope.photo.next];
 	}
 
 	$scope.previous = function () {
-
+		$scope.photo = photos[$scope.photo.previous];
 	}
 })
 

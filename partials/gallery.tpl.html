@@ -12,10 +12,10 @@
 
 	<div class="row">
 
-		<div ng-repeat="photo in photos" class="col-sm-4" ng-show="photo.photo_width > photo.photo_height && photo.active == 1">
-			<div title="{{ photo.photo_description }}" ng-click="show(photo)">
+		<div ng-repeat="img in h" class="col-sm-4" ng-show="img.h">
+			<div title="{{ img.caption }}" ng-click="show(img.id)">
 				<h3 class="img-title" ng-bind="photo.photo_name"></h3>
-				<img ng-src="img/full/{{ photo.photo_link }}" class="img-fluid" alt="{{ photo.photo_name }}">
+				<img ng-src="{{ img.url }}" class="img-fluid" alt="{{ img.title }}">
 			</div>
 		</div>
 
@@ -23,10 +23,10 @@
 
 	<div class="row">
 
-		<div ng-repeat="photo in photos" class="col-sm-4" ng-show="photo.photo_width < photo.photo_height && photo.active == 1">
-			<div title="{{ photo.photo_description }}" ng-click="show(photo)">
+		<div ng-repeat="img in v" class="col-sm-4" ng-show="img.v">
+			<div title="{{ img.caption }}" ng-click="show(img.id)">
 				<h3 class="img-title" ng-bind="photo.photo_name"></h3>
-				<img ng-src="img/full/{{ photo.photo_link }}" class="img-fluid" alt="{{ photo.photo_name }}">
+				<img ng-src="{{ img.url }}" class="img-fluid" alt="{{ img.title }}">
 			</div>
 		</div>
 

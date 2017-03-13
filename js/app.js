@@ -27,42 +27,6 @@
 		$urlRouterProvider.otherwise('/home');
 	})
 
-	/*.config(function ($routeProvider, $locationProvider) {
-		$locationProvider.hashPrefix('');
-		$routeProvider
-			.when('/', {
-				templateUrl: 'partials/index.html',
-				controller: 'IndexController'
-			})
-			.when('/portfolio', {
-				templateUrl: 'partials/portfolio.html',
-				controller: 'PortfolioController'
-			})
-			.when('/gallery/:category_id', {
-				templateUrl: 'partials/gallery.html',
-				controller: 'GalleryController'
-			})
-			.when('/contact', {
-				templateUrl: 'partials/contact.html',
-				controller: 'ContactController'
-			})
-			.when('/links', {
-				templateUrl: 'partials/links.html',
-				controller: 'LinksController'
-			})
-			.when('/biography', {
-				templateUrl: 'partials/biography.html',
-				controller: 'BiographyController'
-			})
-			.when('/legal_notice', {
-				templateUrl: 'partials/legal_notice.html',
-				controller: 'LegalNoticeController'
-			})
-			.otherwise({
-				redirectTo: '/'
-			});
-	})*/
-
 	.filter('objectToArray', function () {
 		return function (input) {
 			var out = [];
