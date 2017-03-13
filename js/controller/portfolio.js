@@ -1,26 +1,30 @@
-(function () {
-	'use strict';
+angular.module('portfolio', [])
 
-	angular.module('portfolioService', [])
+.config(function config($stateProvider) {
+	$stateProvider
+		.state('portfolio', {
+			parent: '',
+			url: '/portfolio',
+			views: {
+				'main@': {
+					controller: 'PortfolioController',
+					templateUrl: 'partials/portfolio.tpl.html'
+				}
+			},
+			data: {
+				pageTitle: 'Portfolio'
+			},
+			resolve: {
+				categories: function ($http) {
+					return $http.get('php/services/category/categories.php?display=true');
+				}
+			}
+		});
+})
 
-	.controller('PortfolioController', function ($scope, $http, $location, $log) {
-		//$log.info('PortfolioController');
+.controller('PortfolioController', function ($scope, $log, categories) {
+	//$log.info('PortfolioController');
 
-		$scope.categories = [];
+	$scope.categories = categories.data;
 
-		$http.get('php/services/category/categories.php?display=true')
-			.then(function (response) {
-				$scope.categories = response.data;
-				//$log.debug(data);
-			})
-			.catch(function (error) {
-				$log.error(error);
-			});
-
-		$scope.go = function (path) {
-			$location.path(path);
-		}
-
-	});
-
-})(angular);
+});
