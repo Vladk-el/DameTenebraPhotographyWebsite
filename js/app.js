@@ -1,18 +1,19 @@
 (function (angular) {
 	'use strict';
 
-	angular.module('ngApp', ['ngRoute', 'indexService', 'portfolioService', 'galleryService', 'linkService', 'contactService'])
+	angular.module('ngApp', ['ui.router', 'indexService'])
+		// , 'indexService', 'portfolioService', 'galleryService', 'linkService', 'contactService'
 
-	.controller('MainController', function ($scope, $route, $routeParams, $location) {
-		$scope.$route = $route;
+	.controller('MainController', function ($scope, $location) {
+		/*$scope.$route = $route;
 		$scope.$location = $location;
-		$scope.$routeParams = $routeParams;
+		$scope.$routeParams = $routeParams;*/
 		$scope.currenDate = new Date();
 
-		$scope.isActive = function (viewLocation) {
+		/*$scope.isActive = function (viewLocation) {
 			var active = (viewLocation === $location.path());
 			return active;
-		};
+		};*/
 	})
 
 	.controller('BiographyController', function ($scope, $log) {
@@ -23,7 +24,12 @@
 		//$log.info('LegalNoticeController');
 	})
 
-	.config(function ($routeProvider, $locationProvider) {
+	.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {
+		$locationProvider.hashPrefix('');
+		$urlRouterProvider.otherwise('/home');
+	})
+
+	/*.config(function ($routeProvider, $locationProvider) {
 		$locationProvider.hashPrefix('');
 		$routeProvider
 			.when('/', {
@@ -57,7 +63,7 @@
 			.otherwise({
 				redirectTo: '/'
 			});
-	})
+	})*/
 
 	.filter('objectToArray', function () {
 		return function (input) {
