@@ -1,4 +1,4 @@
-angular.module('indexService', ['ngAnimate', 'ui.bootstrap'])
+angular.module('home', ['ngAnimate', 'ui.bootstrap'])
 
 .config(function config($stateProvider) {
 	$stateProvider
@@ -7,8 +7,8 @@ angular.module('indexService', ['ngAnimate', 'ui.bootstrap'])
 			url: '/home',
 			views: {
 				'main@': {
-					controller: 'IndexController',
-					templateUrl: 'partials/index.html'
+					controller: 'HomeController',
+					templateUrl: 'partials/home.tpl.html'
 				}
 			},
 			data: {
@@ -18,7 +18,7 @@ angular.module('indexService', ['ngAnimate', 'ui.bootstrap'])
 		});
 })
 
-.controller('IndexController', function ($scope, $http, $log) {
+.controller('HomeController', function ($scope, $http, $log) {
 	//$log.info('IndexController');
 
 	$scope.photos = [];

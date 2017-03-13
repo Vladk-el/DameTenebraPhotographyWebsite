@@ -1,7 +1,7 @@
 (function (angular) {
 	'use strict';
 
-	angular.module('ngApp', ['ui.router', 'indexService'])
+	angular.module('ngApp', ['ui.router', 'home', 'biography'])
 		// , 'indexService', 'portfolioService', 'galleryService', 'linkService', 'contactService'
 
 	.controller('MainController', function ($scope, $location) {
