@@ -1,19 +1,17 @@
 (function (angular) {
 	'use strict';
 
-	angular.module('ngApp', ['ui.router', 'home', 'biography'])
+	angular.module('ngApp', ['ui.router', 'home', 'biography', 'legalNotice'])
 		// , 'indexService', 'portfolioService', 'galleryService', 'linkService', 'contactService'
 
 	.controller('MainController', function ($scope, $location) {
-		/*$scope.$route = $route;
 		$scope.$location = $location;
-		$scope.$routeParams = $routeParams;*/
 		$scope.currenDate = new Date();
 
-		/*$scope.isActive = function (viewLocation) {
+		$scope.isActive = function (viewLocation) {
 			var active = (viewLocation === $location.path());
 			return active;
-		};*/
+		};
 	})
 
 	.controller('BiographyController', function ($scope, $log) {
