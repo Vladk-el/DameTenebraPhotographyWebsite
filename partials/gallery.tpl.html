@@ -1,9 +1,8 @@
 <div class="container-fluid">
 
 	<div class="jumbotron">
-		<h1> {{ category.category_name }} </h1>
-		<p ng-show="{{ category.category_description != '' }}"> {{ category.category_description }} </p>
-		<p ng-show="{{ category.category_description == '' }}"> Here is all photos for the category "{{ category.category_name }}" </p>
+		<h1 ng-bind="category.category_name"></h1>
+		<p ng-bind="category.category_description" class="special-color"></p>
 	</div>
 
 </div>
@@ -13,9 +12,9 @@
 	<div class="row">
 
 		<div ng-repeat="img in photos | objectToArray | orderBy:'position'" class="col-sm-4" ng-show="img.h">
-			<div title="{{ img.caption }}" ng-click="show(img.id)">
+			<div title="{{ img.caption }}">
 				<h3 class="img-title" ng-bind="img.title"></h3>
-				<img ng-src="{{ img.url }}" class="img-fluid" alt="{{ img.title }}">
+				<img ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" ng-click="show(img.id)">
 			</div>
 		</div>
 
@@ -24,9 +23,9 @@
 	<div class="row">
 
 		<div ng-repeat="img in photos | objectToArray | orderBy:'position'" class="col-sm-4" ng-show="img.v">
-			<div title="{{ img.caption }}" ng-click="show(img.id)">
+			<div title="{{ img.caption }}">
 				<h3 class="img-title" ng-bind="img.title"></h3>
-				<img ng-src="{{ img.url }}" class="img-fluid" alt="{{ img.title }}">
+				<img ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" ng-click="show(img.id)">
 			</div>
 		</div>
 

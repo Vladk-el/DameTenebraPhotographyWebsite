@@ -2,19 +2,19 @@
 
 	<div class="jumbotron">
 		<h1> Portfolio </h1>
-		<p> Here are all themes i like to photography. Let's watch ;) </p>
+		<p class="special-color"> Dans chaque détail, une éternité </p>
 	</div>
 
 </div>
 
-<div class="container-fluid" style="text-align: center;">
+<div class="container-fluid">
 
 	<div class="row">
 
-		<div ng-repeat="category in categories" class="col-sm-4" ng-show="category.photo_width > category.photo_height && category.active == 1">
-			<div ui-sref="gallery({category_id:category.category_id})" title="{{ category.category_description }}">
+		<div ng-repeat="category in categories" class="col-sm-4" ng-if="category.photo_width > category.photo_height && category.active == 1">
+			<div title="{{ category.category_description }}">
 				<h3 class="img-title" ng-bind="category.category_name"></h3>
-				<img ng-src="img/full/{{ category.photo_link }}" class="img-fluid" alt="{{ category.name }}">
+				<img ng-src="img/full/{{ category.photo_link }}" class="img-fluid hidedLinks" alt="{{ category.name }}" ui-sref="gallery({category_id:category.category_id})">
 			</div>
 		</div>
 
@@ -22,10 +22,10 @@
 
 	<div class="row">
 
-		<div ng-repeat="category in categories" class="col-sm-4" ng-show="category.photo_width < category.photo_height && category.active == 1">
-			<div ui-sref="gallery({category_id:category.category_id})" title="{{ category.category_description }}">
+		<div ng-repeat="category in categories" class="col-sm-4" ng-if="category.photo_width < category.photo_height && category.active == 1">
+			<div title="{{ category.category_description }}">
 				<h3 class="img-title" ng-bind="category.category_name"></h3>
-				<img ng-src="img/full/{{ category.photo_link }}" class="img-fluid" alt="{{ category.name }}">
+				<img ng-src="img/full/{{ category.photo_link }}" class="img-fluid hidedLinks" alt="{{ category.name }}" ui-sref="gallery({category_id:category.category_id})">
 			</div>
 		</div>
 
