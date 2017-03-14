@@ -12,7 +12,7 @@
 
 	<div class="row">
 
-		<div ng-repeat="img in h" class="col-sm-4" ng-show="img.h">
+		<div ng-repeat="img in photos | objectToArray | orderBy:'position'" class="col-sm-4" ng-show="img.h">
 			<div title="{{ img.caption }}" ng-click="show(img.id)">
 				<h3 class="img-title" ng-bind="img.title"></h3>
 				<img ng-src="{{ img.url }}" class="img-fluid" alt="{{ img.title }}">
@@ -23,7 +23,7 @@
 
 	<div class="row">
 
-		<div ng-repeat="img in v" class="col-sm-4" ng-show="img.v">
+		<div ng-repeat="img in photos | objectToArray | orderBy:'position'" class="col-sm-4" ng-show="img.v">
 			<div title="{{ img.caption }}" ng-click="show(img.id)">
 				<h3 class="img-title" ng-bind="img.title"></h3>
 				<img ng-src="{{ img.url }}" class="img-fluid" alt="{{ img.title }}">

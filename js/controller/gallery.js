@@ -14,10 +14,11 @@ angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 			data: {
 				pageTitle: 'Gallery'
 			},
-			reloadOnSearch: false,
+			reloadOnSearch: true,
 			resolve: {
-				stored: function (galleryService) {
-					return galleryService.getCurrentCategory() ? true : false;
+				stored: function ($stateParams, galleryService) {
+					var category = galleryService.getCurrentCategory();
+					return category && (category.category_id == $stateParams.category_id || category.category_id && !$stateParams.category_id) ? true : false;
 				},
 				category: function ($stateParams, $http, stored) {
 					return stored ? null : $http.get('php/services/category/category.php?category=' + $stateParams.category_id);
@@ -29,33 +30,45 @@ angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 		});
 })
 
-.controller('GalleryController', function ($scope, $http, $log, $uibModal, $document, $state, $stateParams, galleryService, category, photos) {
+.controller('GalleryController', function ($scope, $http, $log, $uibModal, $document, $state, $stateParams, galleryService, stored, category, photos) {
 	$log.info('GalleryController');
 
 	var init = function () {
-		var stored = galleryService.getCurrentCategory();
-		$scope.h = [];
-		$scope.v = [];
 
 		if (stored) {
 			$log.debug("Already stored !");
-			$scope.category = stored;
-			$scope.photos = enrichPhotos(galleryService.getPhotos());
+			$scope.category = galleryService.getCurrentCategory();
+			$scope.photos = galleryService.getPhotos();
 		} else {
 			$scope.category = category.data;
 			galleryService.storeCurrentCategory($scope.category);
 			$scope.photos = enrichPhotos(photos.data);
-			galleryService.storePhotos(photos.data);
+			galleryService.storePhotos($scope.photos);
+		}
+
+		if (!$stateParams.category_id) {
+			if (stored) {
+				$state.go('.', {
+					category_id: $scope.category.category_id
+				}, {
+					notify: false,
+					inherit: false
+				});
+			} else {
+				$state.go('portfolio');
+			}
 		}
 
 		if ($stateParams.photo_id) {
 			$log.debug("$stateParams.photo_id seems like not null : ", $stateParams.photo_id);
-			//$scope.show($scope.photos[$stateParams.photo_id]);
+			viewer($stateParams.photo_id);
 		}
 	}
 
 	// use it for the viewer
 	var enrichPhotos = function (photos) {
+		var h = [];
+		var v = [];
 		photos.forEach(function (photo) {
 			if (photo.active === '1') {
 				var img = {};
@@ -65,10 +78,10 @@ angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 				img.caption = photo.photo_description;
 				if (photo.photo_width > photo.photo_height) {
 					img.h = true;
-					$scope.h.push(img);
+					h.push(img);
 				} else {
 					img.v = true;
-					$scope.v.push(img);
+					v.push(img);
 				}
 			}
 		});
@@ -76,7 +89,9 @@ angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 		var imgs = {};
 		var first = null;
 		var last = null;
-		$scope.h.forEach(function (img) {
+		var cpt = 0;
+		h.forEach(function (img) {
+			img.position = cpt++;
 			if (last && last.id) {
 				img.previous = last.id;
 				imgs[last.id].next = img.id;
@@ -86,13 +101,14 @@ angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 			imgs[img.id] = img;
 			last = img;
 		});
-		$scope.v.forEach(function (img) {
-			if (last && last.id) {
-				img.previous = last.id;
-				imgs[last.id].next = img.id;
-			} else {
-				first = img.id;
-			}
+		v.forEach(function (img) {
+			img.position = cpt++
+				if (last && last.id) {
+					img.previous = last.id;
+					imgs[last.id].next = img.id;
+				} else {
+					first = img.id;
+				}
 			imgs[img.id] = img;
 			last = img;
 		});
@@ -146,7 +162,7 @@ angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 				category_id: $scope.category.category_id,
 				photo_id: id
 			}, {
-				notify: true
+				notify: false
 			});
 		}
 		var parentElem = parentSelector ?
