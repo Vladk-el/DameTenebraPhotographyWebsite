@@ -2,7 +2,6 @@
 	'use strict';
 
 	angular.module('ngApp', ['ui.router', 'home', 'links', 'biography', 'portfolio', 'gallery', 'contact', 'legalNotice'])
-		// , 'indexService', 'portfolioService', 'galleryService', 'linkService', 'contactService'
 
 	.controller('MainController', function ($scope, $location) {
 		$scope.$location = $location;
@@ -20,6 +19,20 @@
 
 	.controller('LegalNoticeController', function ($scope, $log) {
 		//$log.info('LegalNoticeController');
+	})
+
+	.service('storageService', function ($window) {
+		this.getFromSession = function (key) {
+			var stringValue = $window.sessionStorage.getItem(key);
+			if (stringValue) {
+				return JSON.parse(stringValue);
+			}
+			return undefined;
+		};
+
+		this.storeToSession = function (key, value) {
+			$window.sessionStorage.setItem(key, JSON.stringify(value));
+		};
 	})
 
 	.config(function ($stateProvider, $locationProvider, $urlRouterProvider) {

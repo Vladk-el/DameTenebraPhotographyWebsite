@@ -14,23 +14,45 @@ angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 			data: {
 				pageTitle: 'Gallery'
 			},
+			reloadOnSearch: false,
 			resolve: {
-				category: function ($stateParams, $http) {
-					return $http.get('php/services/category/category.php?category=' + $stateParams.category_id);
+				stored: function (galleryService) {
+					return galleryService.getCurrentCategory() ? true : false;
 				},
-				photos: function ($stateParams, $http) {
-					return $http.get('php/services/photo/photos_by_category.php?category=' + $stateParams.category_id)
+				category: function ($stateParams, $http, stored) {
+					return stored ? null : $http.get('php/services/category/category.php?category=' + $stateParams.category_id);
+				},
+				photos: function ($stateParams, $http, stored) {
+					return stored ? null : $http.get('php/services/photo/photos_by_category.php?category=' + $stateParams.category_id)
 				}
 			}
 		});
 })
 
-.controller('GalleryController', function ($scope, $http, $log, $uibModal, $document, $state, $stateParams, category, photos) {
-	//$log.info('GalleryController');
+.controller('GalleryController', function ($scope, $http, $log, $uibModal, $document, $state, $stateParams, galleryService, category, photos) {
+	$log.info('GalleryController');
 
-	$scope.category = category.data;
-	$scope.h = [];
-	$scope.v = [];
+	var init = function () {
+		var stored = galleryService.getCurrentCategory();
+		$scope.h = [];
+		$scope.v = [];
+
+		if (stored) {
+			$log.debug("Already stored !");
+			$scope.category = stored;
+			$scope.photos = enrichPhotos(galleryService.getPhotos());
+		} else {
+			$scope.category = category.data;
+			galleryService.storeCurrentCategory($scope.category);
+			$scope.photos = enrichPhotos(photos.data);
+			galleryService.storePhotos(photos.data);
+		}
+
+		if ($stateParams.photo_id) {
+			$log.debug("$stateParams.photo_id seems like not null : ", $stateParams.photo_id);
+			//$scope.show($scope.photos[$stateParams.photo_id]);
+		}
+	}
 
 	// use it for the viewer
 	var enrichPhotos = function (photos) {
@@ -79,23 +101,14 @@ angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 		return imgs;
 	}
 
-	$scope.show = function (id, parentSelector) {
-		$log.debug("show photo", id);
-		$state.go('.', {
-			category_id: $scope.category.category_id,
-			photo_id: id
-		}, {
-			notify: false
-		});
-		var parentElem = parentSelector ?
-			angular.element($document[0].querySelector('.gallery-container ' + parentSelector)) : undefined;
+	var viewer = function (id, parentElem) {
 		var modal = $uibModal.open({
 			animation: true,
 			ariaLabelledBy: 'modal-title',
 			ariaDescribedBy: 'modal-body',
 			templateUrl: 'partials/templates/modals/viewer.tpl.html',
 			size: 'lg',
-			controller: 'ViewerModalCtrl',
+			controller: 'ViewerCtrl',
 			appendTo: parentElem,
 			resolve: {
 				photos: function () {
@@ -107,44 +120,42 @@ angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
 			}
 		});
 
+		var cleanState = function () {
+			$state.go('.', {
+				category_id: $scope.category.category_id
+			}, {
+				notify: true,
+				inherit: false
+			});
+		}
+
 		return modal.result
 			.then(function () {
-				// success
+				cleanState();
 			}, function () {
 				// error or cancel
+				cleanState();
 				$log.info('modal-component dismissed at: ' + new Date());
 			});
 	}
 
-	$scope.photos = enrichPhotos(photos.data);
-
-	/*if ($stateParams.photo_id) {
-		$scope.show($scope.photos[$stateParams.photo_id]);
-	}*/
-
-})
-
-.controller('ViewerModalCtrl', function ($scope, $log, $uibModalInstance, photos, id) {
-
-	$log.debug("Enter ViewerModalCtrl with photo", photos[id]);
-
-	$scope.photo = photos[id];
-
-	$scope.closeModalDialog = function () {
-		$uibModalInstance.close();
+	$scope.show = function (id, parentSelector) {
+		$log.debug("show photo", id);
+		if (!$stateParams.photo_id) {
+			$state.go('.', {
+				category_id: $scope.category.category_id,
+				photo_id: id
+			}, {
+				notify: true
+			});
+		}
+		var parentElem = parentSelector ?
+			angular.element($document[0].querySelector('.gallery-container ' + parentSelector)) : undefined;
+		viewer(id, parentElem);
 	}
 
-	$scope.cancelModalDialog = function () {
-		$uibModalInstance.dismiss('cancel');
-	}
+	init();
 
-	$scope.next = function () {
-		$scope.photo = photos[$scope.photo.next];
-	}
-
-	$scope.previous = function () {
-		$scope.photo = photos[$scope.photo.previous];
-	}
 })
 
 ;

@@ -89,14 +89,14 @@ body > [uib-modal-window]:not([modal-render]) {
 	top: 10em;
 }
 .modal-content {
-	/*background-color: rgb(51, 51, 51);*/
-	background-color: transparent;
+	background-color: rgb(51, 51, 51);
+	/*background-color: transparent;*/
 }
 .modal-header {
 	border-bottom: none;
 }
 .modal-backdrop.fade {
-	opacity: 0.8;
+	opacity: 0.7;
 }
 .viewer-description {
 	margin-top: 0.5rem;
