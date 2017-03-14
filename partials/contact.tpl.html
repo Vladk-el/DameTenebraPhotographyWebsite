@@ -1,102 +1,77 @@
 <div class="container-fluid contact">
 
-    <div class="jumbotron">
-        <h1> Contact </h1>
-        <p>Want to contact me ? You can do it right now with this simple form ;)</p>
-    </div>
+	<div class="jumbotron">
+		<h1> Contact </h1>
+		<p>Want to contact me ? You can do it right now with this simple form ;)</p>
+	</div>
 
+	<div class="row">
+		<form name="contact_form" ng-submit="submit()" class="offset-md-3 col-md-6 text-align-left">
 
-    <form name="contact_form" ng-submit="submit()">
+			<div class="form-group row">
+				<label for="name" class="col-2 col-form-label">Name*</label>
+				<div class="col-10" ng-class="{'has-danger':contact_form.name.$error.required&&contact_form.name.$dirty}">
+					<input class="form-control" ng-class="{'form-control-danger':contact_form.name.$error.required&&contact_form.name.$dirty}" type="text" name="name" ng-model="fields.name" id="name" required>
+					<p class="error" ng-show="contact_form.name.$dirty && contact_form.name.$invalid">
+						<span class="form-control-feedback" ng-show="contact_form.name.$error.required">
+							Your name is required.
+						</span>
+					</p>
+				</div>
+			</div>
 
-        <div class="container">
-            <p>
-                <label>Your name*</label>
-            </p>
-            <p>
-                <input type="text" name="name" ng-model="fields.name" required />
-                <p class="error" ng-show="contact_form.name.$dirty && contact_form.name.$invalid">
-                    <span class="label label-danger" ng-show="contact_form.name.$error.required">
-                        Your name is required.
-                    </span>
-                </p>
-            </p>
-        </div>
+			<div class="form-group row">
+				<label for="website" class="col-2 col-form-label">Website</label>
+				<div class="col-10">
+					<input class="form-control" type="text" name="website" ng-model="fields.website">
+				</div>
+			</div>
 
-        <div class="container">
-            <p>
-                <label>Your website</label>
-            </p>
-            <p>
-                <input type="text" name="website" ng-model="fields.website" />
-            </p>
-        </div>
+			<div class="form-group row">
+				<label for="email" class="col-2 col-form-label">Email*</label>
+				<div class="col-10" ng-class="{'has-danger':contact_form.email.$invalid&&contact_form.email.$dirty}">
+					<input class="form-control" ng-class="{'form-control-danger':contact_form.email.$invalid&&contact_form.email.$dirty}" type="email" name="email" ng-model="fields.email" ng-model-options='{ debounce: 500 }' ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" placeholder="name@example.com" required />
+					<p class="error" ng-show="contact_form.email.$dirty && contact_form.email.$invalid">
+						<span class="form-control-feedback" ng-show="contact_form.email.$error.required">
+                        	<span class="glyphicon glyphicon-remove"></span> Your email is required.
+						</span>
+						<span class="form-control-feedback" ng-show="contact_form.email.$invalid && !contact_form.email.$error.required">
+                        	<span class="glyphicon glyphicon-remove"></span> This looks like not to be a valid email.
+						</span>
+					</p>
+				</div>
+			</div>
 
-        <div class="container">
-            <p>
-                <label>Your email*</label>
-            </p>
-            <p>
-                <input type="email" name="email" ng-model="fields.email" ng-pattern="/^[_a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/" required />
-                <p class="error" ng-show="contact_form.email.$dirty && contact_form.email.$invalid">
-                    <span class="label label-danger" ng-show="contact_form.email.$error.required">
-                        <span class="glyphicon glyphicon-remove"></span> Your email is required.
-                    </span>
-                    <span class="label label-danger" ng-show="contact_form.email.$invalid && !contact_form.email.$error.required">
-                        <span class="glyphicon glyphicon-remove"></span> This looks like not to be a valid email.
-                    </span>
-                </p>
-                <p class="success" ng-show="contact_form.email.$dirty && contact_form.email.$valid">
-                    <span class="label label-success">
-                        <span class="glyphicon glyphicon-ok"></span>
-                    </span>
-                </p>
+			<div class="form-group row">
+				<label for="subject" class="col-2 col-form-label">Subject*</label>
+				<div class="col-10" ng-class="{'has-danger':contact_form.subject.$invalid&&contact_form.subject.$dirty}">
+					<input class="form-control" ng-class="{'form-control-danger':contact_form.subject.$invalid&&contact_form.subject.$dirty}" type="text" name="subject" ng-model="fields.subject" id="subject" required>
+					<p class="error" ng-show="contact_form.subject.$dirty && contact_form.subject.$invalid">
+						<span class="form-control-feedback" ng-show="contact_form.subject.$error.required">
+							Your subject is required.
+						</span>
+					</p>
+				</div>
+			</div>
 
-            </p>
-        </div>
+			<div class="form-group row">
+				<label for="message" class="col-2 col-form-label">Message</label>
+				<div class="col-10" ng-class="{'has-danger':contact_form.subject.$invalid&&contact_form.subject.$dirty}">
+					<textarea class="form-control" ng-class="{'form-control-danger':contact_form.message.$invalid&&contact_form.message.$dirty}" name="message" id="message" ng-model="fields.message" rows="7" required></textarea>
+					<p class="error" ng-show="contact_form.subject.$dirty && contact_form.subject.$invalid">
+						<span class="form-control-feedback" ng-show="contact_form.subject.$error.required">
+							Your message is required.
+						</span>
+					</p>
+					<small class="form-text text-muted">(Fields with "*" needs to be filled to continue)</small>
+				</div>
+			</div>
 
-        <div class="container">
-            <p>
-                <label>Subject*</label>
-            </p>
-            <p>
-                <input type="text" name="subject" ng-model="fields.subject" required />
-                <p class="error" ng-show="contact_form.subject.$dirty && contact_form.subject.$invalid">
-                    <span class="label label-danger" ng-show="contact_form.subject.$error.required">
-                        Your subject is required.
-                    </span>
-                </p>
-            </p>
+			<div class="container-fluid text-align-right">
+				<button type="submit" class="btn" ng-class="{true: 'btn-success', false: 'btn-default'}[contact_form.$valid]" ng-disabled="!contact_form.$valid">Send</button>
+			</div>
 
-        </div>
-
-        <div class="container">
-            <p>
-                <label>Message*</label>
-            </p>
-            <p>
-                <textarea rows="4" cols="32" name="message" ng-model="fields.message" required></textarea>
-                <p class="error" ng-show="contact_form.message.$dirty && contact_form.message.$invalid">
-                    <span class="label label-danger" ng-show="contact_form.message.$error.required">
-                        Your message is required.
-                    </span>
-                </p>
-            </p>
-
-        </div>
-
-        <div class="container">
-            <p>
-                (Fields with "*" needs to be filled to continue)
-            </p>
-        </div>
-
-        <div class="container">
-            <button type="submit" class="btn" ng-class="{true: 'btn-success', false: 'btn-default'}[contact_form.$valid]" ng-disabled="!contact_form.$valid">Send</button>
-        </div>
-
-
-
-
-    </form>
+		</form>
+	</div>
 
 </div>
