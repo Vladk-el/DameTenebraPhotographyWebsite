@@ -5,7 +5,7 @@
 	</button>
 </div>
 <div class="modal-body">
-	<img ng-src="{{ photo.url }}" class="img-fluid viewer-img" alt="{{ photo.title }}">
+	<img ng-src="{{ photo.url }}" class="img-fluid viewer-img nonDraggableImage" alt="{{ photo.title }}" ng-swipe-left="previous()" ng-swipe-right="next()">
 	<p class="viewer-description" ng-bind="photo.caption"></p>
 	<p class="viewer-description">
 		<button type="button" class="btn btn-primary btn-sm pull-left" ng-click="previous()">

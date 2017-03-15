@@ -114,6 +114,9 @@ body > [uib-modal-window]:not([modal-render]) {
 .viewer-img {
 	max-height: 600px;
 }
+.nonDraggableImage {
+	-webkit-user-drag: none;
+}
 
 /* Biography */
 

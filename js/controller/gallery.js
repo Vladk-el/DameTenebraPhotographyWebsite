@@ -1,4 +1,4 @@
-angular.module('gallery', ['ngAnimate', 'ngSanitize', 'ui.bootstrap'])
+angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap'])
 
 .config(function config($stateProvider) {
 	$stateProvider
