@@ -58,6 +58,27 @@ angular.module('gallery')
 		});
 		$stateParams.photo_id = id;
 	}
+
+	var keys = {
+		37: {
+			code: 37,
+			action: function () {
+				$scope.previous();
+			}
+		},
+		39: {
+			code: 39,
+			action: function () {
+				$scope.next();
+			}
+		}
+	};
+
+	$scope.$on('keyup', function (msg, obj) {
+		if (keys[obj.code]) {
+			keys[obj.code].action();
+		}
+	});
 })
 
 ;

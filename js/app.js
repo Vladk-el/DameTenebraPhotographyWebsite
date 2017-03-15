@@ -13,12 +13,14 @@
 		};
 	})
 
-	.controller('BiographyController', function ($scope, $log) {
-		//$log.info('BiographyController');
-	})
-
-	.controller('LegalNoticeController', function ($scope, $log) {
-		//$log.info('LegalNoticeController');
+	.directive('keyTrap', function () {
+		return function (scope, elem) {
+			elem.bind('keyup', function (event) {
+				scope.$broadcast('keyup', {
+					code: event.keyCode
+				});
+			});
+		};
 	})
 
 	.service('storageService', function ($window) {

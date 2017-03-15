@@ -2,6 +2,12 @@
     lazy loading
         10 first then others 10 by 10
 			==> add param "size" to service
+	viewer
+		navigation
+			touch slide 
+			
+# Home
+	make this fucking viewer responsive
 		
 # Back
-	add FOR ALL : remove !active if display param
+	add FOR ALL services : remove !active if display param
