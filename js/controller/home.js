@@ -1,4 +1,4 @@
-angular.module('home', ['ngAnimate', 'ui.bootstrap'])
+angular.module('home', ['ngAnimate', 'ngTouch', 'ui.bootstrap'])
 
 .config(function config($stateProvider) {
 	$stateProvider
@@ -26,5 +26,34 @@ angular.module('home', ['ngAnimate', 'ui.bootstrap'])
 	//$log.info('IndexController');
 
 	$scope.photos = photos.data;
+
+	$scope.previous = function () {
+		$(".carousel").carousel('prev');
+	}
+
+	$scope.next = function () {
+		$(".carousel").carousel('next');
+	}
+
+	var keys = {
+		37: {
+			code: 37,
+			action: function () {
+				$scope.previous();
+			}
+		},
+		39: {
+			code: 39,
+			action: function () {
+				$scope.next();
+			}
+		}
+	};
+
+	$scope.$on('keyup', function (msg, obj) {
+		if (keys[obj.code]) {
+			keys[obj.code].action();
+		}
+	});
 
 });

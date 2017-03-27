@@ -73,6 +73,16 @@ $ grunt dev
 $ grunt prod
 ```
 
+
+## Libs
+
+* angularjs : 1.6.2
+* angular-ui-bootstrap : 2.5.0
+* angular-ui-router : 0.4.2
+* bootstrap : 4.0.0-alpha.6
+* jquery : 3.1.1
+
+
 ## Contact
 
 Contact me at [eliott.laversin@gmail.com](mailto:eliott.laversin@gmail.com?subject=[DTPV2]-subject) for any request.

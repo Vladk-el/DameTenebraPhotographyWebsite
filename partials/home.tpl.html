@@ -9,7 +9,7 @@
 
 <div class="container-fluid">
 
-	<div id="homeCarousel" class="carousel slide" data-ride="carousel" data-interval="0">
+	<div id="homeCarousel" class="carousel slide" data-ride="carousel" data-interval="0" ng-swipe-left="next()" ng-swipe-right="previous()">
 
 		<ol class="carousel-indicators">
 			<li ng-repeat="photo in photos" data-target="#homeCarousel" data-slide-to="{{ $index }}" ng-class="{ 'active': $index == 0 }"></li>
