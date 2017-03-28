@@ -1,4 +1,5 @@
-/img
+/img/full
+/img/mini
 out/
 test-output/
 *.iml
