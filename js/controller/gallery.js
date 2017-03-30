@@ -30,7 +30,7 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 		});
 })
 
-.controller('GalleryController', function ($scope, $http, $log, $uibModal, $document, $state, $stateParams, galleryService, stored, category, photos) {
+.controller('GalleryController', function ($rootScope, $scope, $http, $log, $uibModal, $document, $state, $stateParams, galleryService, stored, category, photos) {
 
 	var init = function () {
 
@@ -164,6 +164,13 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 			angular.element($document[0].querySelector('.gallery-container ' + parentSelector)) : undefined;
 		viewer(id, parentElem);
 	}
+
+	// scroll top if visitor come from portfolio
+	$rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {
+		if (from.name === 'portfolio') {
+			$('body').scrollTop(0);
+		}
+	});
 
 	init();
 
