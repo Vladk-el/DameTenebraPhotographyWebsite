@@ -18,6 +18,4 @@ angular.module('legalNotice', [])
 		});
 })
 
-.controller('LegalNoticeController', function ($scope, $http, $log) {
-	//$log.info('IndexController');
-});
+.controller('LegalNoticeController', function ($scope, $http, $log) {});

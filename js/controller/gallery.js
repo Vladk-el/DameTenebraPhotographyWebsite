@@ -31,12 +31,10 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 })
 
 .controller('GalleryController', function ($scope, $http, $log, $uibModal, $document, $state, $stateParams, galleryService, stored, category, photos) {
-	$log.info('GalleryController');
 
 	var init = function () {
 
 		if (stored) {
-			$log.debug("Already stored !");
 			$scope.category = galleryService.getCurrentCategory();
 			$scope.photos = galleryService.getPhotos();
 		} else {
@@ -60,7 +58,6 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 		}
 
 		if ($stateParams.photo_id) {
-			$log.debug("$stateParams.photo_id seems like not null : ", $stateParams.photo_id);
 			viewer($stateParams.photo_id);
 		}
 	}
@@ -151,12 +148,10 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 			}, function () {
 				// error or cancel
 				cleanState();
-				$log.info('modal-component dismissed at: ' + new Date());
 			});
 	}
 
 	$scope.show = function (id, parentSelector) {
-		$log.debug("show photo", id);
 		if (!$stateParams.photo_id) {
 			$state.go('.', {
 				category_id: $scope.category.category_id,

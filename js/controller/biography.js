@@ -18,6 +18,4 @@ angular.module('biography', [])
 		});
 })
 
-.controller('BiographyController', function ($scope, $http, $log) {
-	//$log.info('IndexController');
-});
+.controller('BiographyController', function ($scope, $http, $log) {});

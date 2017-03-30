@@ -25,8 +25,6 @@ angular.module('gallery')
 
 .controller('ViewerCtrl', function ($scope, $log, $uibModalInstance, $state, $stateParams, photos, id) {
 
-	$log.debug("Enter ViewerCtrl with photo id ", id);
-
 	$scope.photo = photos[id];
 
 	$scope.closeModalDialog = function () {
@@ -52,7 +50,6 @@ angular.module('gallery')
 			category_id: $stateParams.category_id,
 			photo_id: id
 		};
-		$log.debug("updateState with options", options);
 		$state.go('.', options, {
 			notify: false
 		});

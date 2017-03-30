@@ -19,7 +19,6 @@ angular.module('contact', ['toaster'])
 })
 
 .controller('ContactController', function ($scope, $log, $filter, $http, toaster, $state) {
-	//$log.info('ContactController');
 
 	$scope.submit = function () {
 		var form = $scope.fields;
@@ -30,11 +29,9 @@ angular.module('contact', ['toaster'])
 		form.subject = $scope.escapeQuotes(form.subject);
 		form.message = $scope.escapeQuotes(form.message);
 
-		//$log.debug(form);
 
 		$http.post('php/services/message/message_insert.php', form)
 			.then(function (response) {
-				//$log.debug(response);
 				if (response.data.indexOf("success") != -1) {
 					toaster.pop({
 						type: 'success',

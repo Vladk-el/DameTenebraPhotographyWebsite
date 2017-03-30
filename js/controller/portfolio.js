@@ -23,7 +23,6 @@ angular.module('portfolio', [])
 })
 
 .controller('PortfolioController', function ($scope, $log, categories) {
-	//$log.info('PortfolioController');
 
 	$scope.categories = categories.data;
 

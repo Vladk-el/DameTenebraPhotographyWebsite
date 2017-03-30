@@ -23,7 +23,6 @@ angular.module('home', ['ngAnimate', 'ngTouch', 'ui.bootstrap'])
 })
 
 .controller('HomeController', function ($scope, $http, $log, photos) {
-	//$log.info('IndexController');
 
 	$scope.photos = photos.data;
 

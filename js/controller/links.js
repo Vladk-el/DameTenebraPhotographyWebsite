@@ -23,22 +23,7 @@ angular.module('links', [])
 })
 
 .controller('LinksController', function ($scope, $http, $log, owners) {
-	//$log.info('LinksController');
 
 	$scope.owners = owners.data;
 
-	/*
-	function resizeDivLinks() {
-		var maxSize = null;
-		$(".divlinks").each(function () {
-			if (maxSize == null || $(this).height() > maxSize) {
-				maxSize = $(this).height();
-			}
-		});
-		$(".divlinks").each(function () {
-			$(this).height(maxSize);
-		});
-	}
-	resizeDivLinks();
-	*/
 });
