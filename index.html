@@ -17,23 +17,9 @@
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
 
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
 
-	<link rel="stylesheet" type="text/css" href="lib/vendor/bootstrap/css/bootstrap.min.css" />
-	<link rel="stylesheet" type="text/css" href="lib/vendor/angularjs-toaster/toaster.min.css" />
-	<link rel="stylesheet" type="text/css" href="css/client.css" />
-
-	<script src="lib/vendor/jquery/jquery.min.js"></script>
-	<script src="lib/vendor/angular/angular.min.js"></script>
-	<script src="lib/vendor/angular-animate/angular-animate.min.js"></script>
-	<script src="lib/vendor/angular-sanitize/angular-sanitize.min.js"></script>
-	<script src="lib/vendor/angular-route/angular-route.min.js"></script>
-	<script src="lib/vendor/angular-touch/angular-touch.min.js"></script>
-	<script src="lib/vendor/angular-ui-bootstrap/ui-bootstrap-tpls.js"></script>
-	<script src="lib/vendor/angular-ui-router/angular-ui-router.min.js"></script>
-	<script src="lib/vendor/tether/js/tether.min.js"></script>
-	<script src="lib/vendor/bootstrap/js/bootstrap.min.js"></script>
-	<script src="lib/vendor/angularjs-toaster/toaster.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/dist.css" />
 
 	<toaster-container toaster-options="{
           'closeButton': true,
@@ -49,32 +35,85 @@
           'showMethod': 'fadeIn',
           'hideMethod': 'fadeOut'
         }"></toaster-container>
-
-	<script src="js/client.js"></script>
-
 </head>
 
 <body ng-app="ngApp" key-trap>
 
 	<div ng-controller="MainController">
 
-		<div ng-include="'partials/header.tpl.html'"></div>
+		<!-- Header -->
+		<nav class="navbar navbar-inverse navbar-toggleable-md bg-faded">
+			<div class="navbar-header text-align-left">
+				<a class="navbar-brand" ui-sref="home" ng-if="isActive('/home')">DameTenebra Photography</a>
+				<a class="navbar-brand" ui-sref="home" ng-if="!isActive('/home')">
+					<img src="img/logo_50.png" class="img-fluid nonDraggableImage header-logo" alt="Dame Tenebra Photography" />
+				</a>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item" ng-class="{ active: isActive('/home') }">
+						<a class="nav-link" ui-sref="home">Accueil</a>
+					</li>
+					<li class="nav-item" ng-class="{ active: isActive('/links') }">
+						<a class="nav-link" ui-sref="links">Liens</a>
+					</li>
+					<li class="nav-item" ng-class="{ active: isActive('/biography') }">
+						<a class="nav-link" ui-sref="biography">À propos</a>
+					</li>
+					<li class="nav-item" ng-class="{ active: isActive('/portfolio') }">
+						<a class="nav-link" ui-sref="portfolio">Portfolio</a>
+					</li>
+					<li class="nav-item" ng-class="{ active: isActive('/gallery/1') }">
+						<a class="nav-link" ui-sref="gallery({category_id:1})">Modèle</a>
+					</li>
+					<li class="nav-item" ng-class="{ active: isActive('/contact') }">
+						<a class="nav-link" ui-sref="contact">Contact</a>
+					</li>
+					<li class="nav-item" ng-class="{ active: isActive('/legalNotice') }">
+						<a class="nav-link" ui-sref="legalNotice">Mentions légales</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+		<!-- /Header -->
 
 		<div ui-view="modal" autoscroll="false"></div>
 
 		<div ui-view="main"></div>
 
-		<div ng-include="'partials/footer.tpl.html'"></div>
+		<!-- Footer -->
+		<div class="container-fluid">
+			<br />
+			<br />
+			<br />
+			<div class="well well-sm no-border footer">
+				<p>&copy; <span class="titleSpecialFont">Dametenebra Photography {{ currenDate | date:'yyyy' }}</span></p>
+			</div>
+		</div>
+		<!-- /Footer -->
 
 	</div>
 
 </body>
 
-
+<script type="text/javascript" src="js/dist.js"></script>
 <script>
-	/*(function(i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function() { (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o), m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m) })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga'); ga('create', 'UA-70940445-1', 'auto'); ga('send', 'pageview');*/
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+	ga('create', 'UA-70940445-1', 'auto');
+	ga('send', 'pageview');
 
 </script>
-
 
 </html>

@@ -1,41 +1,43 @@
 {
-    "name": "dame-tenebra-website",
-    "version": "2.0.2",
-    "description": "Dame Ténébra photography website",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/Vladk-el/dtpv2.git"
-    },
-    "author": "ela",
-    "license": "ISC",
-    "devDependencies": {
-        "grunt": "latest",
-        "grunt-contrib-clean": "latest",
-        "grunt-contrib-concat": "latest",
-        "grunt-contrib-uglify": "latest",
-        "grunt-contrib-watch": "latest",
-        "grunt-ng-annotate": "latest",
-        "grunt-contrib-copy": "latest"
-    },
-    "dependencies": {
-        "angular": "1.6.2",
-        "angular-animate": "1.6.2",
-        "angular-sanitize": "1.6.2",
-        "angular-route": "1.6.2",
-        "angular-touch": "1.6.2",
-        "angular-ui-bootstrap": "2.5.0",
-        "angular-ui-router": "0.4.2",
-        "angularjs-toaster": "2.1.0",
-        "tether": "1.4.0",
-        "bootstrap": "4.0.0-alpha.6",
-        "jquery": "3.1.1"
-    },
-    "bugs": {
-        "url": "https://github.com/Vladk-el/dtpv2/issues"
-    },
-    "homepage": "https://github.com/Vladk-el/dtpv2#readme"
+	"name": "dame-tenebra-website",
+	"version": "2.0.2",
+	"description": "Dame Ténébra photography website",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Vladk-el/dtpv2.git"
+	},
+	"author": "ela",
+	"license": "ISC",
+	"devDependencies": {
+		"grunt": "latest",
+		"grunt-contrib-clean": "latest",
+		"grunt-contrib-concat": "latest",
+		"grunt-contrib-uglify": "latest",
+		"grunt-contrib-cssmin": "latest",
+		"grunt-contrib-watch": "latest",
+		"grunt-ng-annotate": "latest",
+		"grunt-contrib-copy": "latest"
+	},
+	"dependencies": {
+		"angular": "1.6.3",
+		"angular-animate": "1.6.3",
+		"angular-sanitize": "1.6.3",
+		"angular-route": "1.6.3",
+		"angular-touch": "1.6.3",
+		"angular-ui-bootstrap": "2.5.0",
+		"angular-ui-router": "0.4.2",
+		"angularjs-toaster": "2.1.0",
+		"tether": "1.4.0",
+		"bootstrap": "4.0.0-alpha.6",
+		"jquery": "3.1.1",
+		"font-awesome": "4.7.0"
+	},
+	"bugs": {
+		"url": "https://github.com/Vladk-el/dtpv2/issues"
+	},
+	"homepage": "https://github.com/Vladk-el/dtpv2#readme"
 }

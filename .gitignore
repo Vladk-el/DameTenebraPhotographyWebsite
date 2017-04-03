@@ -23,5 +23,5 @@ npm-debug.log
 
 # nodejs libs & grunt generation
 lib/vendor
-css/client.css
-js/client.js
+css/dist.css
+js/dist.js
