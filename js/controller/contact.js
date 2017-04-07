@@ -25,7 +25,7 @@ angular.module('contact', ['toaster'])
 
 		form.date = $filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
 		form.name = $scope.escapeQuotes(form.name);
-		form.website = form.website != null ? $scope.escapeQuotes(form.website) : "";
+		form.website = form.website !== null ? $scope.escapeQuotes(form.website) : "";
 		form.subject = $scope.escapeQuotes(form.subject);
 		form.message = $scope.escapeQuotes(form.message);
 
@@ -50,10 +50,10 @@ angular.module('contact', ['toaster'])
 				$log.error(error);
 				toaster.pop('error', 'Error', 'A problem has been detected, please try again later.');
 			});
-	}
+	};
 
 	$scope.escapeQuotes = function (str) {
 		return str.replace(/"/g, '\\"');
-	}
+	};
 
 });

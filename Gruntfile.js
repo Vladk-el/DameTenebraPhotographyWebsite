@@ -84,7 +84,24 @@ module.exports = function (grunt) {
 			}
 		},
 		concat: {
-			js_dist: {
+			js_dev: {
+				src: [
+                    'lib/vendor/angular/angular.js',
+                    'lib/vendor/angular-animate/angular-animate.js',
+                    'lib/vendor/angular-sanitize/angular-sanitize.js',
+                    'lib/vendor/angular-route/angular-route.js',
+                    'lib/vendor/angular-touch/angular-touch.js',
+                    'lib/vendor/angular-ui-bootstrap/ui-bootstrap-tpls.js',
+                    'lib/vendor/angular-ui-router/angular-ui-router.js',
+                    'lib/vendor/tether/js/tether.js',
+                    'lib/vendor/bootstrap/js/bootstrap.js',
+                    'lib/vendor/angularjs-toaster/toaster.js',
+					'./js/**/*.js',
+                    '!./js/dist.js'
+                ],
+				dest: 'js/dist.js'
+			},
+			js_prod: {
 				src: [
                     'lib/vendor/angular/angular.min.js',
                     'lib/vendor/angular-animate/angular-animate.min.js',
@@ -155,14 +172,23 @@ module.exports = function (grunt) {
 			css: ['./css/dist.css'],
 			lib: ['./lib/vendor']
 		},
+		jshint: {
+			fileToFile: [
+				'./js/**/*.js',
+                '!./js/dist.js'
+			],
+			generated: [
+				'./js/dist.js'
+			]
+		},
 		watch: {
 			scripts: {
 				files: ['./**/*.js', '!./js/dist.js'],
-				tasks: ['js']
+				tasks: ['js_dev']
 			},
 			css: {
 				files: ['./**/*.css', '!./css/dist.css'],
-				tasks: ['css']
+				tasks: ['css_dev']
 			},
 			configFiles: {
 				files: ['Gruntfile.js'],
@@ -180,14 +206,17 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-clean');
+	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	// Définition des tâches Grunt
-	grunt.registerTask('js', ['clean:js', 'concat:js_dev']);
-	grunt.registerTask('css', ['clean:css', 'concat:css_dev']);
+	grunt.registerTask('js_dev', ['clean:js', 'jshint:fileToFile', 'concat:js_dev']);
+	grunt.registerTask('js_prod', ['clean:js', 'jshint:fileToFile', 'concat:js_prod', 'ngAnnotate:dist', 'uglify:dist']);
+	grunt.registerTask('css_dev', ['clean:css', 'concat:css_client', 'concat:css_dist']);
+	grunt.registerTask('css_prod', ['clean:css', 'concat:css_client', 'cssmin', 'concat:css_dist']);
 	grunt.registerTask('move_vendor', ['copy:jquery', 'copy:angular', 'copy:angular_animate', 'copy:angular_sanitize', 'copy:angular_route', 'copy:angular_touch', 'copy:angular_ui_bootstrap', 'copy:angular_ui_router', 'copy:angular_ui_bootstrap_tpl', 'copy:tether', 'copy:bootstrap', 'copy:angularjs_toaster', 'copy:font_awesome']);
 
-	grunt.registerTask('dev', ['clean:lib', 'move_vendor', 'clean:css', 'concat:css_dev', 'clean:js', 'concat:js_dev']);
-	grunt.registerTask('prod', ['clean:lib', 'move_vendor', 'clean:css', 'clean:js', 'concat:css_client', 'cssmin', 'concat:css_dist', 'concat:js_dist', 'ngAnnotate:dist', 'uglify:dist']);
+	grunt.registerTask('dev', ['clean:lib', 'move_vendor', 'css_dev', 'js_dev']);
+	grunt.registerTask('prod', ['clean:lib', 'move_vendor', 'css_prod', 'js_prod']);
 
 }

@@ -20,7 +20,8 @@
 		"grunt-contrib-cssmin": "latest",
 		"grunt-contrib-watch": "latest",
 		"grunt-ng-annotate": "latest",
-		"grunt-contrib-copy": "latest"
+		"grunt-contrib-copy": "latest",
+		"grunt-contrib-jshint": "latest"
 	},
 	"dependencies": {
 		"angular": "1.6.3",

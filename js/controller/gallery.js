@@ -24,7 +24,7 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 					return stored ? null : $http.get('php/services/category/category.php?category=' + $stateParams.category_id);
 				},
 				photos: function ($stateParams, $http, stored) {
-					return stored ? null : $http.get('php/services/photo/photos_by_category.php?category=' + $stateParams.category_id)
+					return stored ? null : $http.get('php/services/photo/photos_by_category.php?category=' + $stateParams.category_id);
 				}
 			}
 		});
@@ -60,7 +60,7 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 		if ($stateParams.photo_id) {
 			viewer($stateParams.photo_id);
 		}
-	}
+	};
 
 	// use it for the viewer
 	var enrichPhotos = function (photos) {
@@ -99,20 +99,20 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 			last = img;
 		});
 		v.forEach(function (img) {
-			img.position = cpt++
-				if (last && last.id) {
-					img.previous = last.id;
-					imgs[last.id].next = img.id;
-				} else {
-					first = img.id;
-				}
+			img.position = cpt++;
+			if (last && last.id) {
+				img.previous = last.id;
+				imgs[last.id].next = img.id;
+			} else {
+				first = img.id;
+			}
 			imgs[img.id] = img;
 			last = img;
 		});
 		imgs[last.id].next = first;
 		imgs[first].previous = last.id;
 		return imgs;
-	}
+	};
 
 	var viewer = function (id, parentElem) {
 		var modal = $uibModal.open({
@@ -140,7 +140,7 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 				notify: true,
 				inherit: false
 			});
-		}
+		};
 
 		return modal.result
 			.then(function () {
@@ -149,7 +149,7 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 				// error or cancel
 				cleanState();
 			});
-	}
+	};
 
 	$scope.show = function (id, parentSelector) {
 		if (!$stateParams.photo_id) {
@@ -163,7 +163,7 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 		var parentElem = parentSelector ?
 			angular.element($document[0].querySelector('.gallery-container ' + parentSelector)) : undefined;
 		viewer(id, parentElem);
-	}
+	};
 
 	// scroll top if visitor come from portfolio
 	$rootScope.$on('$stateChangeSuccess', function (ev, to, toParams, from, fromParams) {

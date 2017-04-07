@@ -28,11 +28,11 @@ angular.module('home', ['ngAnimate', 'ngTouch', 'ui.bootstrap'])
 
 	$scope.previous = function () {
 		$(".carousel").carousel('prev');
-	}
+	};
 
 	$scope.next = function () {
 		$(".carousel").carousel('next');
-	}
+	};
 
 	var keys = {
 		37: {

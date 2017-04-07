@@ -49,7 +49,7 @@
 				out.push(input[i]);
 			}
 			return out;
-		}
+		};
 	});
 
 })(window.angular);
