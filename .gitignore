@@ -25,3 +25,4 @@ npm-debug.log
 lib/vendor
 css/dist.css
 js/dist.js
+prod

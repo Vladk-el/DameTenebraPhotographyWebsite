@@ -18,6 +18,7 @@
 		"grunt-contrib-concat": "latest",
 		"grunt-contrib-uglify": "latest",
 		"grunt-contrib-cssmin": "latest",
+		"grunt-contrib-htmlmin": "latest",
 		"grunt-contrib-watch": "latest",
 		"grunt-ng-annotate": "latest",
 		"grunt-contrib-copy": "latest",

@@ -81,6 +81,38 @@ module.exports = function (grunt) {
 				src: './node_modules/font-awesome/css/*',
 				dest: './lib/vendor/font-awesome/',
 				flatten: true
+			},
+			prod: {
+				files: [
+					{
+						expand: true,
+						src: ['css/dist.css'],
+						dest: 'prod',
+						filter: 'isFile'
+					},
+					{
+						expand: true,
+						src: ['img/*'],
+						dest: 'prod',
+						filter: 'isFile'
+					},
+					{
+						expand: true,
+						src: ['js/dist.js'],
+						dest: 'prod',
+						filter: 'isFile'
+					},
+					{
+						expand: true,
+						src: ['php/services/**', '!php/services/connection/connection.php'],
+						dest: 'prod'
+					},
+					{
+						src: ['index.html'],
+						dest: 'prod/index.html',
+						filter: 'isFile'
+					}
+				]
 			}
 		},
 		concat: {
@@ -167,10 +199,30 @@ module.exports = function (grunt) {
 				}
 			}
 		},
+		htmlmin: {
+			prod: {
+				options: {
+					removeComments: true,
+					collapseWhitespace: true
+				},
+				files: [
+					{
+						expand: true,
+						cwd: 'partials/',
+						src: '**/*.html',
+						dest: 'prod/partials'
+					}, {
+						src: 'index.html',
+						dest: 'prod/index.html'
+					}
+				]
+			}
+		},
 		clean: {
 			js: ['./js/dist.js'],
 			css: ['./css/dist.css'],
-			lib: ['./lib/vendor']
+			lib: ['./lib/vendor'],
+			prod: ['./prod']
 		},
 		jshint: {
 			fileToFile: [
@@ -205,6 +257,7 @@ module.exports = function (grunt) {
 	grunt.loadNpmTasks('grunt-ng-annotate');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
+	grunt.loadNpmTasks('grunt-contrib-htmlmin');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-watch');
@@ -217,6 +270,6 @@ module.exports = function (grunt) {
 	grunt.registerTask('move_vendor', ['copy:jquery', 'copy:angular', 'copy:angular_animate', 'copy:angular_sanitize', 'copy:angular_route', 'copy:angular_touch', 'copy:angular_ui_bootstrap', 'copy:angular_ui_router', 'copy:angular_ui_bootstrap_tpl', 'copy:tether', 'copy:bootstrap', 'copy:angularjs_toaster', 'copy:font_awesome']);
 
 	grunt.registerTask('dev', ['clean:lib', 'move_vendor', 'css_dev', 'js_dev']);
-	grunt.registerTask('prod', ['clean:lib', 'move_vendor', 'css_prod', 'js_prod']);
+	grunt.registerTask('prod', ['clean:lib', 'move_vendor', 'css_prod', 'js_prod', 'clean:prod', 'copy:prod', 'htmlmin:prod']);
 
 }
