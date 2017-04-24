@@ -43,11 +43,15 @@
 	})
 
 	// add GA tracking
-	.run(function ($rootScope, $window, $location) {
+	.run(function ($rootScope, $window, $location, $log) {
 		$window.ga('create', 'UA-70940445-1', 'none');
 
 		$rootScope.$on('$stateChangeSuccess', function (event) {
 			$window.ga('send', 'pageview', $location.path());
+		});
+
+		$rootScope.$on('viewerChange', function (event) {
+			$window.ga('send', 'pageview', $location.url());
 		});
 	})
 

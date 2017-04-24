@@ -23,7 +23,7 @@ angular.module('gallery')
 	};
 })
 
-.controller('ViewerCtrl', function ($scope, $log, $uibModalInstance, $state, $stateParams, photos, id) {
+.controller('ViewerCtrl', function ($rootScope, $scope, $log, $uibModalInstance, $state, $stateParams, photos, id) {
 
 	$scope.photo = photos[id];
 
@@ -54,6 +54,9 @@ angular.module('gallery')
 			notify: false
 		});
 		$stateParams.photo_id = id;
+		$rootScope.$emit('viewerChange', {
+			id: id
+		});
 	};
 
 	var keys = {
