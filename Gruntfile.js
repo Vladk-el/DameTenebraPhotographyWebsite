@@ -235,11 +235,11 @@ module.exports = function (grunt) {
 		},
 		watch: {
 			scripts: {
-				files: ['./**/*.js', '!./js/dist.js'],
+				files: ['./js/*.js', '!./js/dist.js'],
 				tasks: ['js_dev']
 			},
 			css: {
-				files: ['./**/*.css', '!./css/dist.css'],
+				files: ['./css/*.css', '!./css/dist.css'],
 				tasks: ['css_dev']
 			},
 			configFiles: {

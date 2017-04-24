@@ -42,6 +42,15 @@
 		$urlRouterProvider.otherwise('/home');
 	})
 
+	// add GA tracking
+	.run(function ($rootScope, $window, $location) {
+		$window.ga('create', 'UA-70940445-1', 'none');
+
+		$rootScope.$on('$stateChangeSuccess', function (event) {
+			$window.ga('send', 'pageview', $location.path());
+		});
+	})
+
 	.filter('objectToArray', function () {
 		return function (input) {
 			var out = [];
