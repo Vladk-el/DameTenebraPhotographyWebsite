@@ -115,6 +115,33 @@ module.exports = function (grunt) {
 				]
 			}
 		},
+		htmlbuild: {
+			index: {
+				src: 'templates/index.tpl.html',
+				dest: './index.html',
+				options: {
+					beautify: true,
+					prefix: '',
+					relative: true,
+					basePath: false,
+					scripts: {
+						required: [
+							'https://code.jquery.com/jquery-3.2.1.slim.min.js'
+						],
+						all: ['js/dist.js']
+					},
+					sections: {
+						layout: {
+							header: 'templates/layout/header.layout.html',
+							footer: 'templates/layout/footer.layout.html'
+						}
+					},
+					styles: {
+						all: ['css/dist.css']
+					}
+				}
+			}
+		},
 		concat: {
 			js_dev: {
 				src: [
@@ -222,6 +249,7 @@ module.exports = function (grunt) {
 			js: ['./js/dist.js'],
 			css: ['./css/dist.css'],
 			lib: ['./lib/vendor'],
+			html: ['./index.html'],
 			prod: ['./prod']
 		},
 		jshint: {
@@ -242,6 +270,10 @@ module.exports = function (grunt) {
 				files: ['./css/*.css', '!./css/dist.css'],
 				tasks: ['css_dev']
 			},
+			html: {
+				files: ['templates/index.tpl.html', 'templates/layout/*.html'],
+				tasks: ['html']
+			},
 			configFiles: {
 				files: ['Gruntfile.js'],
 				options: {
@@ -253,6 +285,7 @@ module.exports = function (grunt) {
 
 	// Load npm tasks
 	grunt.loadNpmTasks('grunt-contrib-copy');
+	grunt.loadNpmTasks('grunt-html-build');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-ng-annotate');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -267,9 +300,10 @@ module.exports = function (grunt) {
 	grunt.registerTask('js_prod', ['clean:js', 'jshint:fileToFile', 'concat:js_prod', 'ngAnnotate:dist', 'uglify:dist']);
 	grunt.registerTask('css_dev', ['clean:css', 'concat:css_client', 'concat:css_dist']);
 	grunt.registerTask('css_prod', ['clean:css', 'concat:css_client', 'cssmin', 'concat:css_dist']);
+	grunt.registerTask('html', ['clean:html', 'htmlbuild:index']);
 	grunt.registerTask('move_vendor', ['copy:jquery', 'copy:angular', 'copy:angular_animate', 'copy:angular_sanitize', 'copy:angular_route', 'copy:angular_touch', 'copy:angular_ui_bootstrap', 'copy:angular_ui_router', 'copy:angular_ui_bootstrap_tpl', 'copy:tether', 'copy:bootstrap', 'copy:angularjs_toaster', 'copy:font_awesome']);
 
-	grunt.registerTask('dev', ['clean:lib', 'move_vendor', 'css_dev', 'js_dev']);
-	grunt.registerTask('prod', ['clean:lib', 'move_vendor', 'css_prod', 'js_prod', 'clean:prod', 'copy:prod', 'htmlmin:prod']);
+	grunt.registerTask('dev', ['clean:lib', 'move_vendor', 'css_dev', 'js_dev', 'html']);
+	grunt.registerTask('prod', ['clean:lib', 'move_vendor', 'css_prod', 'js_prod', 'html', 'clean:prod', 'copy:prod', 'htmlmin:prod']);
 
 }

@@ -53,6 +53,7 @@ ftp.pwd={password of your ftp server}
 * all meta tags
 * header title
 * footer title
+* all imgs
 
 #### Update : 
 
@@ -65,18 +66,18 @@ ftp.pwd={password of your ftp server}
 $ npm install
 ```
 ```bash
-# dev build (with non min css && js)
+# dev build : index.html, css & js
 $ grunt dev
 ```
 ```bash
-# prod build (with min css && js)
+# prod build : index.html, minified css & js + prod folder with all you need to instant deploy (all minified partials, css, js, index built & minified, imgs, services)
 $ grunt prod
 ```
 
 
 ## Libs
 
-* angularjs : 1.6.2
+* angularjs : 1.6.3
 * angular-ui-bootstrap : 2.5.0
 * angular-ui-router : 0.4.2
 * bootstrap : 4.0.0-alpha.6

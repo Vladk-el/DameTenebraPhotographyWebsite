@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr-FR">
+
+<head>
+	<title>Dame Ténébra Photography</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="description" content="J'ai ouvert ma gallerie sur DeviantArt afin de voir ce que les autres pouvaient éventuellement penser de mon travail et j'ai été agréablement surprise par les compliments! C'est pourquoi j'ai fait ce site, bonne visite ;)" />
+	<meta name="keywords" content="DameTénébra, DameTenebra, Dame Ténébra, Dame Tenebra, dameténébra, dametenebra, dame ténébra, dame tenebra" />
+
+	<!-- Facebook way -->
+	<meta property="og:url" content="http://dametenebra.com/" />
+	<meta property="og:title" content="Dame Ténébra Photography" />
+	<meta property="og:description" content="J'ai ouvert ma gallerie sur DeviantArt afin de voir ce que les autres pouvaient éventuellement penser de mon travail et j'ai été agréablement surprise par les compliments! C'est pourquoi j'ai fait ce site, bonne visite ;)" />
+	<meta property="og:image" content="http://dametenebra.com/img/base_facebook_img.png" />
+
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon" />
+
+	<!-- build:script required -->
+	<!-- /build -->
+
+	<!-- build:style all -->
+	<!-- /build -->
+
+	<toaster-container toaster-options="{
+          'closeButton': true,
+          'debug': false,
+          'position-class': 'toast-center',
+          'onclick': null,
+          'showDuration': '200',
+          'hideDuration': '1000',
+          'timeOut': '5000',
+          'extendedTimeOut': '1000',
+          'showEasing': 'swing',
+          'hideEasing': 'linear',
+          'showMethod': 'fadeIn',
+          'hideMethod': 'fadeOut'
+        }"></toaster-container>
+</head>
+
+<body ng-app="ngApp" key-trap>
+
+	<div ng-controller="MainController">
+
+		<!-- build:section layout.header -->
+		<!-- /build -->
+
+		<div ui-view="modal" autoscroll="false"></div>
+
+		<div ui-view="main"></div>
+
+		<!-- build:section layout.footer -->
+		<!-- /build -->
+
+	</div>
+
+</body>
+
+<!-- build:script all -->
+<!-- /build -->
+<script>
+	(function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+</script>
+
+</html>

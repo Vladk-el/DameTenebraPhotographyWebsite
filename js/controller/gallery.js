@@ -119,7 +119,7 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 			animation: true,
 			ariaLabelledBy: 'modal-title',
 			ariaDescribedBy: 'modal-body',
-			templateUrl: 'partials/templates/modals/viewer.tpl.html',
+			templateUrl: 'partials/modals/viewer.tpl.html',
 			size: 'lg',
 			controller: 'ViewerCtrl',
 			appendTo: parentElem,

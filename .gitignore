@@ -21,8 +21,9 @@ conf.properties
 node_modules/
 npm-debug.log
 
-# nodejs libs & grunt generation
+# produce
 lib/vendor
+index.html
 css/dist.css
 js/dist.js
 prod
