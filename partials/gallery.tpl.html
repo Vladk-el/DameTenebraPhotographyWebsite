@@ -9,26 +9,18 @@
 
 <div class="container-fluid gallery-container" style="text-align: center;">
 
-	<div class="row">
-
-		<div ng-repeat="img in photos | objectToArray | orderBy:'position'" class="col-sm-4" ng-show="img.h">
-			<div title="{{ img.caption }}">
-				<h3 class="img-title" ng-bind="img.title"></h3>
-				<img ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" ng-click="show(img.id)">
-			</div>
+	<div class="row" ng-repeat="imgs in hDisplay">
+		<div ng-repeat="img in imgs track by $index" class="col-sm-4" ng-class="{ 'offset-sm-4': imgs.length === 1, 'offset-sm-2': imgs.length === 2 && $index === 0 }">
+			<h3 class="img-title" ng-bind="img.title"></h3>
+			<img ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" ng-click="show(img.id)">
 		</div>
-
 	</div>
 
-	<div class="row">
-
-		<div ng-repeat="img in photos | objectToArray | orderBy:'position'" class="col-sm-4" ng-show="img.v">
-			<div title="{{ img.caption }}">
-				<h3 class="img-title" ng-bind="img.title"></h3>
-				<img ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" ng-click="show(img.id)">
-			</div>
+	<div class="row" ng-repeat="imgs in vDisplay">
+		<div ng-repeat="img in imgs track by $index" class="col-sm-4" ng-class="{ 'offset-sm-4': imgs.length === 1, 'offset-sm-2': imgs.length === 2 && $index === 0}">
+			<h3 class="img-title" ng-bind="img.title"></h3>
+			<img ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" ng-click="show(img.id)">
 		</div>
-
 	</div>
 
 </div>

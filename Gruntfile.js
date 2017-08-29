@@ -263,7 +263,7 @@ module.exports = function (grunt) {
 		},
 		watch: {
 			scripts: {
-				files: ['./js/*.js', '!./js/dist.js'],
+				files: ['./js/**/*.js', '!./js/dist.js'],
 				tasks: ['js_dev']
 			},
 			css: {
@@ -271,7 +271,7 @@ module.exports = function (grunt) {
 				tasks: ['css_dev']
 			},
 			html: {
-				files: ['templates/index.tpl.html', 'templates/layout/*.html'],
+				files: ['templates/index.tpl.html', 'templates/layout/*.html', 'partials/**/*.html'],
 				tasks: ['html']
 			},
 			configFiles: {
