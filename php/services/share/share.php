@@ -3,11 +3,16 @@
     include '../connection/connection.php';
     $photos = mysqli_query($con, 'SELECT * FROM photo WHERE photo_id = ' . $_GET['photo'] . ';');
 	$photo = mysqli_fetch_array($photos);
-    mysqli_close($con);
-	if(!isset($photo)) {
+	$size = getimagesize("../../../img/full/" . $photo['photo_link']);
+	if(!isset($photo) || !$size) {
 		header('Location: http://dametenebra.com');
-  		exit();
-	}
+		exit();
+	}	
+	list($width, $height) = $size;
+	$photo['photo_width'] = $width;
+	$photo['photo_height'] = $height;
+    mysqli_close($con);
+	/* Make a redirect if no photo found */
 ?>
 
 	<html>
@@ -17,10 +22,13 @@
 		<title>
 			<?php echo $photo['photo_name']; ?>
 		</title>
+		<meta property="fb:app_id" content="698165167044112" />
 		<meta property="og:url" content="http://dametenebra.com/php/services/share/share.php?photo=<?php echo $photo['photo_id']; ?>" />
 		<meta property="og:title" content="<?php echo $photo['photo_name']; ?>" />
 		<meta property="og:description" content="<?php echo $photo['photo_description']; ?>" />
 		<meta property="og:image" content="http://dametenebra.com/img/full/<?php echo rawurlencode($photo['photo_link']); ?>" />
+		<meta property="og:image:width" content="<?php echo $photo['photo_width']; ?>" />
+		<meta property="og:image:height" content="<?php echo $photo['photo_height']; ?>" />
 		<link rel="shortcut icon" href="../../../img/favicon.ico" type="image/x-icon" />
 		<link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
 		<link type="text/css" rel="stylesheet" href="../../../css/dist.css">

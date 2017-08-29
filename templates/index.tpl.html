@@ -9,6 +9,7 @@
 	<meta name="keywords" content="DameTénébra, DameTenebra, Dame Ténébra, Dame Tenebra, dameténébra, dametenebra, dame ténébra, dame tenebra" />
 
 	<!-- Facebook way -->
+	<meta property="fb:app_id" content="698165167044112" />
 	<meta property="og:url" content="http://dametenebra.com/" />
 	<meta property="og:title" content="Dame Ténébra Photography" />
 	<meta property="og:description" content="J'ai ouvert ma gallerie sur DeviantArt afin de voir ce que les autres pouvaient éventuellement penser de mon travail et j'ai été agréablement surprise par les compliments! C'est pourquoi j'ai fait ce site, bonne visite ;)" />
@@ -40,6 +41,20 @@
 </head>
 
 <body ng-app="ngApp" key-trap>
+
+	<div id="fb-root"></div>
+	<script>
+		FB = null;
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.10&appId=698165167044112";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+
+	</script>
 
 	<div ng-controller="MainController">
 
