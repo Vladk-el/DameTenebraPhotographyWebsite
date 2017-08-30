@@ -52,8 +52,6 @@
 
 		$rootScope.$on('viewerChange', function (event, params) {
 			$window.ga('send', 'pageview', $location.url());
-			var link = $('iframe').attr('src');
-			$('iframe').attr('src', link.replace("photo%3D" + params.lastId, "photo%3D" + params.newId));
 		});
 	})
 

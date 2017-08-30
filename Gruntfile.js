@@ -82,11 +82,29 @@ module.exports = function (grunt) {
 				dest: './lib/vendor/font-awesome/',
 				flatten: true
 			},
+			font_awesome_fonts: {
+				expand: true,
+				src: './node_modules/font-awesome/fonts/*',
+				dest: './fonts',
+				flatten: true
+			},
 			prod: {
 				files: [
 					{
 						expand: true,
 						src: ['css/dist.css'],
+						dest: 'prod',
+						filter: 'isFile'
+					},
+					{
+						expand: true,
+						src: ['fonts/*'],
+						dest: 'prod',
+						filter: 'isFile'
+					},
+					{
+						expand: true,
+						src: ['css/polices/*'],
 						dest: 'prod',
 						filter: 'isFile'
 					},
@@ -301,7 +319,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('css_dev', ['clean:css', 'concat:css_client', 'concat:css_dist']);
 	grunt.registerTask('css_prod', ['clean:css', 'concat:css_client', 'cssmin', 'concat:css_dist']);
 	grunt.registerTask('html', ['clean:html', 'htmlbuild:index']);
-	grunt.registerTask('move_vendor', ['copy:jquery', 'copy:angular', 'copy:angular_animate', 'copy:angular_sanitize', 'copy:angular_route', 'copy:angular_touch', 'copy:angular_ui_bootstrap', 'copy:angular_ui_router', 'copy:angular_ui_bootstrap_tpl', 'copy:tether', 'copy:bootstrap', 'copy:angularjs_toaster', 'copy:font_awesome']);
+	grunt.registerTask('move_vendor', ['copy:jquery', 'copy:angular', 'copy:angular_animate', 'copy:angular_sanitize', 'copy:angular_route', 'copy:angular_touch', 'copy:angular_ui_bootstrap', 'copy:angular_ui_router', 'copy:angular_ui_bootstrap_tpl', 'copy:tether', 'copy:bootstrap', 'copy:angularjs_toaster', 'copy:font_awesome', 'copy:font_awesome_fonts']);
 
 	grunt.registerTask('dev', ['clean:lib', 'move_vendor', 'css_dev', 'js_dev', 'html']);
 	grunt.registerTask('prod', ['clean:lib', 'move_vendor', 'css_prod', 'js_prod', 'html', 'clean:prod', 'copy:prod', 'htmlmin:prod']);

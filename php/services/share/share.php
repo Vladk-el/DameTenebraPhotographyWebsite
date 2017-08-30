@@ -36,7 +36,21 @@
 
 	<body>
 
-		<div class="row">
+		<div id="fb-root"></div>
+		<script>
+			FB = null;
+			(function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js = d.createElement(s);
+				js.id = id;
+				js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.10&appId=698165167044112";
+				fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+
+		</script>
+
+		<div class="row" style="margin: 0px; width: 100%;">
 			<div class="col-sm-12 text-center">
 				<br />
 				<h2><?php echo $photo['photo_name']; ?></h2>
@@ -46,10 +60,22 @@
 
 		<img class="img-fluid" src="../../../img/full/<?php echo $photo['photo_link']; ?>">
 
-		<div class="row">
+		<div class="row" style="margin: 0px; width: 100%;">
 			<div class="col-sm-12 text-center">
 				<br />
-				<a class="btn btn-outline-secondary" href="../../../#/gallery/<?php echo $photo['category_photo']; ?>?photo_id=<?php echo $photo['photo_id']; ?>" role="button">Continue your visit</a>
+
+				<a class="btn btn-sm btn-outline-secondary return" href="../../../#/gallery/<?php echo $photo['category_photo']; ?>?photo_id=<?php echo $photo['photo_id']; ?>" role="button">
+					<div>
+						<span class="_49vh _2pi7">Retour au site</span>
+					</div>
+				</a>&nbsp;&nbsp;&nbsp;
+
+				<div class="fb-share-button" data-href="http://www.dametenebra.com/php/services/share/share.php?photo=<?php echo $photo['photo_id']; ?>" data-layout="button_count" data-size="large" data-mobile-iframe="true">
+					<a class="fb-xfbml-parse-ignore" target="_blank" ng-href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.dametenebra.com%2Fphp%2Fservices%2Fshare%2Fshare.php?photo=<?php echo $photo['photo_id']; ?>}&amp;src=sdkpreparse">
+						Partager
+					</a>
+				</div>
+
 				<br />
 				<br />
 			</div>

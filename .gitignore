@@ -25,5 +25,6 @@ npm-debug.log
 lib/vendor
 index.html
 css/dist.css
+fonts
 js/dist.js
 prod
