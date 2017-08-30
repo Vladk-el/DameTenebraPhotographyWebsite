@@ -88,7 +88,6 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 			last = null,
 			cpt = 0;
 
-		$scope.vDisplay = [];
 		var interDisplay = [],
 			interCpt = 0,
 			interArray = [];
