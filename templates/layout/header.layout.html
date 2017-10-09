@@ -1,3 +1,20 @@
+<div class="alert alert-info alert-dismissible fade show" role="alert" x-ng-if="!miningCookieExists">
+    <div>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        Hello! I let my work free on this website, but the server is not payed by itself.
+        To avoid ads, i use <a href="https://en.wikipedia.org/wiki/Cloud_mining" target="_blank">Cloud mining</a>.
+        If you want to help me, allow me to use a few seconds of your CPU calcul power, just during your navigation by clicking on "Accept" and by disabling you ad blocker on my domain.
+        If you don't want, just click on "Decline" and you'll not be anoyed by this anymore.
+        In both case, a simple cookie will be set in your browser to remember your decision.
+        Enjoy your visit !
+    </div>
+    <div>
+        <button type="button" class="btn btn-outline-danger btn-sm" ng-click="allowMining(false)">Decline</button>
+        <button type="button" class="btn btn-outline-success btn-sm" ng-click="allowMining(true)">Accept</button>
+    </div>
+</div>
 <nav class="navbar navbar-inverse navbar-toggleable-md bg-faded">
 	<div class="navbar-header text-align-left">
 		<a class="navbar-brand" ui-sref="home" ng-if="isActive('/home')">DameTenebra Photography</a>

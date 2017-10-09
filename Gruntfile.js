@@ -40,6 +40,12 @@ module.exports = function (grunt) {
 				dest: './lib/vendor/angular-touch/',
 				flatten: true
 			},
+			angular_cookies: {
+				expand: true,
+				src: './node_modules/angular-cookies/*',
+				dest: './lib/vendor/angular-cookies/',
+				flatten: true
+			},
 			angular_ui_bootstrap: {
 				expand: true,
 				src: './node_modules/angular-ui-bootstrap/dist/*',
@@ -171,6 +177,7 @@ module.exports = function (grunt) {
                     'lib/vendor/angular-sanitize/angular-sanitize.js',
                     'lib/vendor/angular-route/angular-route.js',
                     'lib/vendor/angular-touch/angular-touch.js',
+                    'lib/vendor/angular-cookies/angular-cookies.js',
                     'lib/vendor/angular-ui-bootstrap/ui-bootstrap-tpls.js',
                     'lib/vendor/angular-ui-router/angular-ui-router.js',
                     'lib/vendor/tether/js/tether.js',
@@ -188,6 +195,7 @@ module.exports = function (grunt) {
                     'lib/vendor/angular-sanitize/angular-sanitize.min.js',
                     'lib/vendor/angular-route/angular-route.min.js',
                     'lib/vendor/angular-touch/angular-touch.min.js',
+                    'lib/vendor/angular-cookies/angular-cookies.min.js',
                     'lib/vendor/angular-ui-bootstrap/ui-bootstrap-tpls.js',
                     'lib/vendor/angular-ui-router/angular-ui-router.min.js',
                     'lib/vendor/tether/js/tether.min.js',
@@ -322,7 +330,7 @@ module.exports = function (grunt) {
 	grunt.registerTask('css_dev', ['clean:css', 'concat:css_client', 'concat:css_dist']);
 	grunt.registerTask('css_prod', ['clean:css', 'concat:css_client', 'cssmin', 'concat:css_dist']);
 	grunt.registerTask('html', ['clean:html', 'htmlbuild:index']);
-	grunt.registerTask('move_vendor', ['copy:jquery', 'copy:angular', 'copy:angular_animate', 'copy:angular_sanitize', 'copy:angular_route', 'copy:angular_touch', 'copy:angular_ui_bootstrap', 'copy:angular_ui_router', 'copy:angular_ui_bootstrap_tpl', 'copy:tether', 'copy:bootstrap', 'copy:angularjs_toaster', 'copy:font_awesome', 'copy:font_awesome_fonts']);
+	grunt.registerTask('move_vendor', ['copy:jquery', 'copy:angular', 'copy:angular_animate', 'copy:angular_sanitize', 'copy:angular_route', 'copy:angular_touch', 'copy:angular_cookies', 'copy:angular_ui_bootstrap', 'copy:angular_ui_router', 'copy:angular_ui_bootstrap_tpl', 'copy:tether', 'copy:bootstrap', 'copy:angularjs_toaster', 'copy:font_awesome', 'copy:font_awesome_fonts']);
 
 	grunt.registerTask('dev', ['clean:lib', 'move_vendor', 'css_dev', 'js_dev', 'html']);
 	grunt.registerTask('prod', ['clean:lib', 'move_vendor', 'css_prod', 'js_prod', 'html', 'clean:prod', 'copy:prod', 'htmlmin:prod']);
