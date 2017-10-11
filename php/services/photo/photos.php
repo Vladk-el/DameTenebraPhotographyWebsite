@@ -5,7 +5,7 @@
 	$sql = 'SELECT * FROM photo';
 
 	if(isset($_GET['home'])) {
-		$sql = $sql . ' ORDER BY photo_date DESC LIMIT 50;';
+		$sql = $sql . ' WHERE active = 1 ORDER BY photo_date DESC LIMIT 50;';
 	}
 
     $response = mysqli_query($con, $sql);
@@ -16,7 +16,7 @@
 	while($row = mysqli_fetch_assoc($response)) {
 
         $size = getimagesize("../../../img/full/" . $row['photo_link']);
-		
+
         if($size) {
             list($width, $height) = $size;
             $row['photo_width'] = $width;
@@ -30,7 +30,7 @@
 				}
 			} else {
 				array_push($photos, $row);
-			}            
+			}
         }
 
     }
