@@ -1,26 +1,26 @@
 <div class="container-fluid">
 
-	<div class="jumbotron">
-		<h1 ng-bind="category.category_name"></h1>
-		<p ng-bind="category.category_description" class="special-color"></p>
-	</div>
+    <div class="jumbotron">
+        <h1 ng-bind="category.category_name"></h1>
+        <p ng-bind="category.category_description" class="special-color"></p>
+    </div>
 
 </div>
 
 <div class="container-fluid gallery-container" style="text-align: center;">
 
-	<div class="row" ng-repeat="imgs in hDisplay">
-		<div ng-repeat="img in imgs track by $index" class="col-sm-4" ng-class="{ 'offset-sm-4': imgs.length === 1, 'offset-sm-2': imgs.length === 2 && $index === 0 }">
-			<h3 class="img-title" ng-bind="img.title"></h3>
-			<img ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" ng-click="show(img.id)">
-		</div>
-	</div>
+    <div class="row" ng-repeat="imgs in hDisplay">
+        <div ng-repeat="img in imgs track by $index" class="col-sm-4" ng-class="{ 'offset-sm-4': imgs.length === 1, 'offset-sm-2': imgs.length === 2 && $index === 0 }">
+            <h3 class="img-title" ng-bind="img.title"></h3>
+            <img ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" ng-click="show(img.id)">
+        </div>
+    </div>
 
-	<div class="row" ng-repeat="imgs in vDisplay">
-		<div ng-repeat="img in imgs track by $index" class="col-sm-4" ng-class="{ 'offset-sm-4': imgs.length === 1, 'offset-sm-2': imgs.length === 2 && $index === 0}">
-			<h3 class="img-title" ng-bind="img.title"></h3>
-			<img ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" ng-click="show(img.id)">
-		</div>
-	</div>
+    <div class="row" ng-repeat="imgs in vDisplay">
+        <div ng-repeat="img in imgs track by $index" class="col-sm-3" ng-class="{ 'offset-sm-5': imgs.length === 1, 'offset-sm-3': imgs.length === 2 && $index === 0, 'offset-sm-2': imgs.length === 3 && $index === 0}">
+            <h5 class="img-title" ng-bind="img.title"></h5>
+            <img ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" ng-click="show(img.id)">
+        </div>
+    </div>
 
 </div>
