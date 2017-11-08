@@ -5,7 +5,7 @@
 	$sql = 'SELECT * FROM photo';
 
 	if(isset($_GET['home'])) {
-		$sql = $sql . ' WHERE active = 1 ORDER BY photo_date DESC LIMIT 50;';
+		$sql = $sql . ' WHERE active = 1 AND category_photo <> 1 ORDER BY photo_date DESC LIMIT 50;';
 	}
 
     $response = mysqli_query($con, $sql);
