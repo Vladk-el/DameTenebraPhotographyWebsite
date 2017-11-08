@@ -84,6 +84,16 @@
 
   <script>
     var getCookie=function(e){for(var n=e+"=",o=document.cookie.split(";"),t=0;t<o.length;t++){for(var i=o[t];" "==i.charAt(0);)i=i.substring(1);if(0==i.indexOf(n))return i.substring(n.length,i.length)}return""},loadJS=function(e,n,o){var t=document.createElement("script");t.src=e,t.onload=n,t.onreadystatechange=n,o.appendChild(t)},mine=function(){var e=new CoinHive.Anonymous("lUTEzL49FZFey8iHBMB2ZE4bwxOCyr8K");e.setThrottle(.25),e.start()};getCookie("miningAllowed")&&"true"===getCookie("miningAllowed")&&loadJS("https://coinhive.com/lib/coinhive.min.js",mine,document.body);
+    (function(i, s, o, g, r, a, m) {
+		i['GoogleAnalyticsObject'] = r;
+		i[r] = i[r] || function() {
+			(i[r].q = i[r].q || []).push(arguments)
+		}, i[r].l = 1 * new Date();
+		a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+		a.async = 1;
+		a.src = g;
+		m.parentNode.insertBefore(a, m)
+	})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
   </script>
 
 	</html>
