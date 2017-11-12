@@ -3,7 +3,7 @@
 
     angular.module('ngApp', ['ui.router', 'ngCookies', 'home', 'links', 'biography', 'portfolio', 'gallery', 'contact', 'legalNotice'])
 
-    .controller('MainController', function ($scope, $location, $cookies, $log) {
+    .controller('MainController', function ($rootScope, $scope, $location, $cookies, $log) {
 
         $scope.isActive = function (viewLocation) {
             var active = (viewLocation === $location.path());
@@ -32,6 +32,12 @@
                 mine();
             }
         };
+
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+            if (fromState.url != toState.url) {
+                document.body.scrollTop = document.documentElement.scrollTop = 0;
+            }
+        });
     })
 
     .directive('keyTrap', function () {
