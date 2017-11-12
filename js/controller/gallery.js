@@ -34,6 +34,8 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 
     var init = function () {
 
+        var toRevert = [1, 21];
+
         if (stored) {
             $scope.category = galleryService.getCurrentCategory();
             $scope.photos = enrichPhotos(galleryService.getPhotos());
@@ -60,6 +62,8 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
         if ($stateParams.photo_id) {
             viewer($stateParams.photo_id);
         }
+
+        $scope.inverted = toRevert.includes(parseInt($scope.category.category_id));
     };
 
     // use it for the viewer
