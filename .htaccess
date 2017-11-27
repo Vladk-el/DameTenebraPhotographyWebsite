@@ -51,3 +51,8 @@ FileETag none
 # Disable cookies
 Header unset Set-Cookie
 RequestHeader unset Cookie
+
+# Redirect http to https
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
