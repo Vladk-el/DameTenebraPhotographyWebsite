@@ -64,11 +64,11 @@ module.exports = function (grunt) {
 				src: '**/*',
 				dest: './lib/vendor/angular-ui-bootstrap/tpl'
 			},
-			tether: {
+			popper: {
 				expand: true,
-				cwd: './node_modules/tether/dist/',
+				cwd: './node_modules/popper.js/dist/umd/',
 				src: '**/*',
-				dest: './lib/vendor/tether/'
+				dest: './lib/vendor/popper/'
 			},
 			bootstrap: {
 				expand: true,
@@ -149,12 +149,9 @@ module.exports = function (grunt) {
 					relative: true,
 					basePath: false,
 					scripts: {
-						required: [
-							'https://code.jquery.com/jquery-3.2.1.slim.min.js'
-						],
+						required: [],
 						all: [
-						    'js/dist.js',
-						    'https://coinhive.com/lib/coinhive.min.js'
+							'js/dist.js'
 						]
 					},
 					sections: {
@@ -172,45 +169,47 @@ module.exports = function (grunt) {
 		concat: {
 			js_dev: {
 				src: [
-                    'lib/vendor/angular/angular.js',
-                    'lib/vendor/angular-animate/angular-animate.js',
-                    'lib/vendor/angular-sanitize/angular-sanitize.js',
-                    'lib/vendor/angular-route/angular-route.js',
-                    'lib/vendor/angular-touch/angular-touch.js',
-                    'lib/vendor/angular-cookies/angular-cookies.js',
-                    'lib/vendor/angular-ui-bootstrap/ui-bootstrap-tpls.js',
-                    'lib/vendor/angular-ui-router/angular-ui-router.js',
-                    'lib/vendor/tether/js/tether.js',
-                    'lib/vendor/bootstrap/js/bootstrap.js',
-                    'lib/vendor/angularjs-toaster/toaster.js',
+					'lib/vendor/jquery/jquery.slim.js',
+					'lib/vendor/angular/angular.js',
+					'lib/vendor/angular-animate/angular-animate.js',
+					'lib/vendor/angular-sanitize/angular-sanitize.js',
+					'lib/vendor/angular-route/angular-route.js',
+					'lib/vendor/angular-touch/angular-touch.js',
+					'lib/vendor/angular-cookies/angular-cookies.js',
+					'lib/vendor/angular-ui-bootstrap/ui-bootstrap-tpls.js',
+					'lib/vendor/angular-ui-router/angular-ui-router.js',
+					'lib/vendor/popper/popper.js',
+					'lib/vendor/bootstrap/js/bootstrap.js',
+					'lib/vendor/angularjs-toaster/toaster.js',
 					'./js/**/*.js',
-                    '!./js/dist.js'
-                ],
+					'!./js/dist.js'
+				],
 				dest: 'js/dist.js'
 			},
 			js_prod: {
 				src: [
-                    'lib/vendor/angular/angular.min.js',
-                    'lib/vendor/angular-animate/angular-animate.min.js',
-                    'lib/vendor/angular-sanitize/angular-sanitize.min.js',
-                    'lib/vendor/angular-route/angular-route.min.js',
-                    'lib/vendor/angular-touch/angular-touch.min.js',
-                    'lib/vendor/angular-cookies/angular-cookies.min.js',
-                    'lib/vendor/angular-ui-bootstrap/ui-bootstrap-tpls.js',
-                    'lib/vendor/angular-ui-router/angular-ui-router.min.js',
-                    'lib/vendor/tether/js/tether.min.js',
-                    'lib/vendor/bootstrap/js/bootstrap.min.js',
-                    'lib/vendor/angularjs-toaster/toaster.min.js',
+					'lib/vendor/jquery/jquery.slim.min.js',
+					'lib/vendor/angular/angular.min.js',
+					'lib/vendor/angular-animate/angular-animate.min.js',
+					'lib/vendor/angular-sanitize/angular-sanitize.min.js',
+					'lib/vendor/angular-route/angular-route.min.js',
+					'lib/vendor/angular-touch/angular-touch.min.js',
+					'lib/vendor/angular-cookies/angular-cookies.min.js',
+					'lib/vendor/angular-ui-bootstrap/ui-bootstrap-tpls.js',
+					'lib/vendor/angular-ui-router/angular-ui-router.min.js',
+					'lib/vendor/popper/popper.min.js',
+					'lib/vendor/bootstrap/js/bootstrap.min.js',
+					'lib/vendor/angularjs-toaster/toaster.min.js',
 					'./js/**/*.js',
-                    '!./js/dist.js'
-                ],
+					'!./js/dist.js'
+				],
 				dest: 'js/dist.js'
 			},
 			css_client: {
 				src: [
-                    './css/*.css',
-                    '!./css/dist.css'
-                ],
+					'./css/*.css',
+					'!./css/dist.css'
+				],
 				dest: './css/dist.css'
 			},
 			css_dist: {
@@ -218,8 +217,8 @@ module.exports = function (grunt) {
 					'lib/vendor/bootstrap/css/bootstrap.min.css',
 					'lib/vendor/angularjs-toaster/toaster.min.css',
 					'lib/vendor/font-awesome/font-awesome.min.css',
-                    './css/dist.css'
-                ],
+					'./css/dist.css'
+				],
 				dest: './css/dist.css'
 			}
 		},
@@ -284,7 +283,7 @@ module.exports = function (grunt) {
 		jshint: {
 			fileToFile: [
 				'./js/**/*.js',
-                '!./js/dist.js'
+				'!./js/dist.js'
 			],
 			generated: [
 				'./js/dist.js'
@@ -330,7 +329,23 @@ module.exports = function (grunt) {
 	grunt.registerTask('css_dev', ['clean:css', 'concat:css_client', 'concat:css_dist']);
 	grunt.registerTask('css_prod', ['clean:css', 'concat:css_client', 'cssmin', 'concat:css_dist']);
 	grunt.registerTask('html', ['clean:html', 'htmlbuild:index']);
-	grunt.registerTask('move_vendor', ['copy:jquery', 'copy:angular', 'copy:angular_animate', 'copy:angular_sanitize', 'copy:angular_route', 'copy:angular_touch', 'copy:angular_cookies', 'copy:angular_ui_bootstrap', 'copy:angular_ui_router', 'copy:angular_ui_bootstrap_tpl', 'copy:tether', 'copy:bootstrap', 'copy:angularjs_toaster', 'copy:font_awesome', 'copy:font_awesome_fonts']);
+	grunt.registerTask('move_vendor', [
+		'copy:jquery',
+		'copy:angular',
+		'copy:angular_animate',
+		'copy:angular_sanitize',
+		'copy:angular_route',
+		'copy:angular_touch',
+		'copy:angular_cookies',
+		'copy:angular_ui_bootstrap',
+		'copy:angular_ui_router',
+		'copy:angular_ui_bootstrap_tpl',
+		'copy:popper',
+		'copy:bootstrap',
+		'copy:angularjs_toaster',
+		'copy:font_awesome',
+		'copy:font_awesome_fonts'
+	]);
 
 	grunt.registerTask('dev', ['clean:lib', 'move_vendor', 'css_dev', 'js_dev', 'html']);
 	grunt.registerTask('prod', ['clean:lib', 'move_vendor', 'css_prod', 'js_prod', 'html', 'clean:prod', 'copy:prod', 'htmlmin:prod']);

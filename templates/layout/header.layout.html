@@ -1,32 +1,30 @@
 <div class="alert alert-info alert-dismissible fade show" role="alert" x-ng-if="!miningCookieExists">
-    <div>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        Hello! I let my work free on this website, but the server is not payed by itself.
-        To avoid ads, i use <a href="https://en.wikipedia.org/wiki/Cloud_mining" target="_blank">Cloud mining</a>.
-        If you want to help me, allow me to use a few seconds of your CPU calcul power, just during your navigation by clicking on "Accept" and by disabling you ad blocker on my domain.
-        If you don't want, just click on "Decline" and you'll not be anoyed by this anymore.
-        In both case, a simple cookie will be set in your browser to remember your decision.
-        Enjoy your visit !
-    </div>
-    <div>
-        <button type="button" class="btn btn-outline-danger btn-sm" ng-click="allowMining(false)">Decline</button>
-        <button type="button" class="btn btn-outline-success btn-sm" ng-click="allowMining(true)">Accept</button>
-    </div>
-</div>
-<nav class="navbar navbar-inverse navbar-toggleable-md bg-faded">
-	<div class="navbar-header text-align-left">
-		<a class="navbar-brand" ui-sref="home" ng-if="isActive('/home')">DameTenebra Photography</a>
-		<a class="navbar-brand" ui-sref="home" ng-if="!isActive('/home')">
-			<img src="img/logo_50.png" class="img-fluid nonDraggableImage header-logo" alt="Dame Tenebra Photography" />
-		</a>
-		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
+	<div>
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
 		</button>
+		Hello! I let my work free on this website, but the server is not payed by itself. To avoid ads, i use
+		<a href="https://en.wikipedia.org/wiki/Cloud_mining" target="_blank">Cloud mining</a>. If you want to help me, allow me to use a few seconds of your CPU calcul power, just during your navigation
+		by clicking on "Accept" and by disabling you ad blocker on my domain. If you don't want, just click on "Decline" and you'll
+		not be anoyed by this anymore. In both case, a simple cookie will be set in your browser to remember your decision. Enjoy
+		your visit !
 	</div>
-	<div id="navbar" class="navbar-collapse collapse">
-		<ul class="navbar-nav mr-auto">
+	<div>
+		<button type="button" class="btn btn-outline-danger btn-sm" ng-click="allowMining(false)">Decline</button>
+		<button type="button" class="btn btn-outline-success btn-sm" ng-click="allowMining(true)">Accept</button>
+	</div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-dark">
+	<a class="navbar-brand" ui-sref="home" ng-if="isActive('/home')">DameTenebra Photography</a>
+	<a class="navbar-brand" ui-sref="home" ng-if="!isActive('/home')">
+		<img src="img/logo_50.png" class="img-fluid nonDraggableImage header-logo" alt="Dame Tenebra Photography" />
+	</a>
+	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+	 aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+	<div id="navbar" class="collapse navbar-collapse">
+		<ul class="nav navbar-nav mr-auto">
 			<li class="nav-item" ng-class="{ active: isActive('/home') }">
 				<a class="nav-link" ui-sref="home">Accueil</a>
 			</li>

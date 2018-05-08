@@ -5,3 +5,6 @@
 		
 # Back
 	add FOR ALL services : remove !active if display param
+
+# Linux encrypted disk
+    lsyncd -delay 1 -rsync /home/vladk/dev/other/DameTenebraPhotographyWebsite/ /var/www/html/dtp/
