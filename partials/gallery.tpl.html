@@ -1,33 +1,33 @@
 <div class="container-fluid">
 
-    <div class="jumbotron">
-        <h1 ng-bind="category.category_name"></h1>
-        <p ng-bind="category.category_description" class="special-color"></p>
-    </div>
+  <div class="jumbotron">
+    <h1 data-ng-bind="category.category_name"></h1>
+    <p data-ng-bind="category.category_description" class="special-color"></p>
+  </div>
 
 </div>
 
 <div class="container-fluid gallery-container" style="text-align: center;">
 
-    <div class="row justify-content-around" ng-repeat="imgs in vDisplay" ng-if="inverted">
-        <div ng-repeat="img in imgs track by $index" class="col-sm-3">
-            <h5 class="img-title" ng-bind="img.title"></h5>
-            <img ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" ng-click="show(img.id)">
-        </div>
+  <div class="row justify-content-around" data-ng-repeat="imgs in vDisplay" data-ng-if="inverted">
+    <div data-ng-repeat="img in imgs track by $index" class="col-sm-3">
+      <h5 class="img-title" data-ng-bind="img.title"></h5>
+      <img data-ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" data-ng-click="show(img.id)">
     </div>
+  </div>
 
-    <div class="row justify-content-around" ng-repeat="imgs in hDisplay">
-        <div ng-repeat="img in imgs track by $index" class="col-sm-4">
-            <h3 class="img-title" ng-bind="img.title"></h3>
-            <img ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" ng-click="show(img.id)">
-        </div>
+  <div class="row justify-content-around" data-ng-repeat="imgs in hDisplay">
+    <div data-ng-repeat="img in imgs track by $index" class="col-sm-4">
+      <h3 class="img-title" data-ng-bind="img.title"></h3>
+      <img data-ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" data-ng-click="show(img.id)">
     </div>
+  </div>
 
-    <div class="row justify-content-around" ng-repeat="imgs in vDisplay" ng-if="!inverted">
-        <div ng-repeat="img in imgs track by $index" class="col-sm-3">
-            <h5 class="img-title" ng-bind="img.title"></h5>
-            <img ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" ng-click="show(img.id)">
-        </div>
+  <div class="row justify-content-around" data-ng-repeat="imgs in vDisplay" data-ng-if="!inverted">
+    <div data-ng-repeat="img in imgs track by $index" class="col-sm-3">
+      <h5 class="img-title" data-ng-bind="img.title"></h5>
+      <img data-ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" data-ng-click="show(img.id)">
     </div>
+  </div>
 
 </div>

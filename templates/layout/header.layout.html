@@ -11,13 +11,13 @@
 <!-- </div> -->
 <!-- <div> -->
 <!-- TODO remove / update this & create a dedicated mining page -->
-<!-- <button type="button" class="btn btn-outline-danger btn-sm" ng-click="allowMining(false)">Decline</button> -->
-<!-- <button type="button" class="btn btn-outline-success btn-sm" ng-click="allowMining(true)">Accept</button> -->
+<!-- <button type="button" class="btn btn-outline-danger btn-sm" data-ng-click="allowMining(false)">Decline</button> -->
+<!-- <button type="button" class="btn btn-outline-success btn-sm" data-ng-click="allowMining(true)">Accept</button> -->
 <!--</div> -->
 <!--</div> -->
 <nav class="navbar navbar-expand-lg navbar-dark">
-  <a class="navbar-brand" ui-sref="home" ng-if="isActive('/home')">DameTenebra Photography</a>
-  <a class="navbar-brand" ui-sref="home" ng-if="!isActive('/home')">
+  <a class="navbar-brand" data-ui-sref="home" data-ng-if="isActive('/home')">DameTenebra Photography</a>
+  <a class="navbar-brand" data-ui-sref="home" data-ng-if="!isActive('/home')">
     <img src="img/logo_50.png" class="img-fluid nonDraggableImage header-logo" alt="Dame Tenebra Photography" />
   </a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
@@ -26,26 +26,26 @@
   </button>
   <div id="navbar" class="collapse navbar-collapse">
     <ul class="nav navbar-nav mr-auto">
-      <li class="nav-item" ng-class="{ active: isActive('/home') }">
-        <a class="nav-link" ui-sref="home">Accueil</a>
+      <li class="nav-item" data-ng-class="{ active: isActive('/home') }">
+        <a class="nav-link" data-ui-sref="home">Accueil</a>
       </li>
-      <li class="nav-item" ng-class="{ active: isActive('/links') }">
-        <a class="nav-link" ui-sref="links">Liens</a>
+      <li class="nav-item" data-ng-class="{ active: isActive('/links') }">
+        <a class="nav-link" data-ui-sref="links">Liens</a>
       </li>
-      <li class="nav-item" ng-class="{ active: isActive('/biography') }">
-        <a class="nav-link" ui-sref="biography">À propos</a>
+      <li class="nav-item" data-ng-class="{ active: isActive('/biography') }">
+        <a class="nav-link" data-ui-sref="biography">À propos</a>
       </li>
-      <li class="nav-item" ng-class="{ active: isActive('/portfolio') }">
-        <a class="nav-link" ui-sref="portfolio">Portfolio</a>
+      <li class="nav-item" data-ng-class="{ active: isActive('/portfolio') }">
+        <a class="nav-link" data-ui-sref="portfolio">Portfolio</a>
       </li>
-      <li class="nav-item" ng-class="{ active: isActive('/gallery/1') }">
-        <a class="nav-link" ui-sref="gallery({category_id:1})">Modèle</a>
+      <li class="nav-item" data-ng-class="{ active: isActive('/gallery/1') }">
+        <a class="nav-link" data-ui-sref="gallery({category_id:1})">Modèle</a>
       </li>
-      <li class="nav-item" ng-class="{ active: isActive('/contact') }">
-        <a class="nav-link" ui-sref="contact">Contact</a>
+      <li class="nav-item" data-ng-class="{ active: isActive('/contact') }">
+        <a class="nav-link" data-ui-sref="contact">Contact</a>
       </li>
-      <li class="nav-item" ng-class="{ active: isActive('/legalNotice') }">
-        <a class="nav-link" ui-sref="legalNotice">Mentions légales</a>
+      <li class="nav-item" data-ng-class="{ active: isActive('/legalNotice') }">
+        <a class="nav-link" data-ui-sref="legalNotice">Mentions légales</a>
       </li>
     </ul>
   </div>

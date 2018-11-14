@@ -1,74 +1,77 @@
 <div class="container-fluid">
 
-	<div class="jumbotron">
-		<h1> Liens </h1>
-	</div>
+  <div class="jumbotron">
+    <h1> Liens </h1>
+  </div>
 
 </div>
 
 <div class="container-fluid" style="text-align: center;">
 
-	<div id="accordion" role="tablist" aria-multiselectable="true">
+  <div id="accordion" role="tablist" aria-multiselectable="true">
 
-		<!-- Mes autres galleries (déplié) -->
-		<div class="card no-border">
-			<div class="card-header no-border" role="tab" id="headingOne">
-				<h3 class="mb-0 hidedLinks" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Mes autres galleries
-                </h3>
-			</div>
-			<div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-				<div class="card-block">
-					<div class="row">
-						<div class="col-sm-6 jumbotron">
-							<a href="http://dametenebra.deviantart.com/" target="_blank">Deviant Art</a>
-						</div>
-						<div class="col-sm-6 jumbotron">
-							<a href="http://500px.com/dametenebra" target="_blank">500px</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+    <!-- Mes autres galleries (déplié) -->
+    <div class="card no-border">
+      <div class="card-header no-border" role="tab" id="headingOne">
+        <h3 class="mb-0 hidedLinks" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="true"
+          aria-controls="collapseOne">
+          Mes autres galleries
+        </h3>
+      </div>
+      <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-sm-6 jumbotron">
+              <a href="http://dametenebra.deviantart.com/" target="_blank">Deviant Art</a>
+            </div>
+            <div class="col-sm-6 jumbotron">
+              <a href="http://500px.com/dametenebra" target="_blank">500px</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-		<div class="card no-border">
-			<div class="card-header no-border" role="tab" id="headingTwo">
-				<h3 class="mb-0 hidedLinks" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    Photographes, Modèles et Collaborateurs
-                </h3>
-			</div>
-			<div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
-				<div class="card-block">
-					<div class="row">
-						<div class="col-sm-6 jumbotron" ng-repeat="owner in owners" ng-show="owner.active == 1">
-							<ul class="list-group">
-								<li class="list-group-item active" ng-bind="owner.owner_name"></li>
-								<li ng-repeat="link in owner.links" ng-show="link.active == 1" class="list-group-item">
-									<a href="{{ link.link_link }}" class="link-without-hover" target="_blank"> {{ link.link_name }} </a>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+    <div class="card no-border">
+      <div class="card-header no-border" role="tab" id="headingTwo">
+        <h3 class="mb-0 hidedLinks" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" aria-expanded="true"
+          aria-controls="collapseTwo">
+          Photographes, Modèles et Collaborateurs
+        </h3>
+      </div>
+      <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+        <div class="card-block">
+          <div class="row">
+            <div class="col-sm-6 jumbotron" data-ng-repeat="owner in owners" data-ng-show="owner.active == 1">
+              <ul class="list-group">
+                <li class="list-group-item active" data-ng-bind="owner.owner_name"></li>
+                <li data-ng-repeat="link in owner.links" data-ng-show="link.active == 1" class="list-group-item">
+                  <a href="{{ link.link_link }}" class="link-without-hover" target="_blank"> {{ link.link_name }} </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-		<div class="card no-border">
-			<div class="card-header no-border" role="tab" id="headingThree">
-				<div class="panel-heading">
-					<h3 class="mb-0 hidedLinks" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                        Conseils photos et tutos
-                   </h3>
-				</div>
-				<div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
-					<div class="card-block">
-						<p>
-							(En construction, à venir prochainement)
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="card no-border">
+      <div class="card-header no-border" role="tab" id="headingThree">
+        <div class="panel-heading">
+          <h3 class="mb-0 hidedLinks" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" aria-expanded="false"
+            aria-controls="collapseThree">
+            Conseils photos et tutos
+          </h3>
+        </div>
+        <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="card-block">
+            <p>
+              (En construction, à venir prochainement)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>

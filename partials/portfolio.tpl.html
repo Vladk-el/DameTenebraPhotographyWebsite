@@ -1,26 +1,26 @@
 <div class="container-fluid">
 
-    <div class="jumbotron">
-        <h1> Portfolio </h1>
-        <p class="special-color"> Dans chaque détail, une éternité </p>
-    </div>
+  <div class="jumbotron">
+    <h1> Portfolio </h1>
+    <p class="special-color"> Dans chaque détail, une éternité </p>
+  </div>
 
 </div>
 
 <div class="container-fluid">
 
-    <div class="row justify-content-around" ng-repeat="categories in vDisplay">
-        <div ng-repeat="category in categories track by $index" class="col-sm-3" title="{{ category.category_description }}">
-            <h3 class="img-title" ng-bind="category.category_name"></h3>
-            <img ng-src="img/full/{{ category.photo_link }}" class="img-fluid hidedLinks" alt="{{ category.name }}" ui-sref="gallery({category_id:category.category_id})">
-        </div>
+  <div class="row justify-content-around" data-ng-repeat="categories in vDisplay">
+    <div data-ng-repeat="category in categories track by $index" class="col-sm-3" title="{{ category.category_description }}">
+      <h3 class="img-title" data-ng-bind="category.category_name"></h3>
+      <img data-ng-src="img/full/{{ category.photo_link }}" class="img-fluid hidedLinks" alt="{{ category.name }}" data-ui-sref="gallery({category_id:category.category_id})">
     </div>
+  </div>
 
-    <div class="row justify-content-around" ng-repeat="categories in hDisplay">
-        <div ng-repeat="category in categories track by $index" class="col-sm-4" title="{{ category.category_description }}">
-            <h3 class="img-title" ng-bind="category.category_name"></h3>
-            <img ng-src="img/full/{{ category.photo_link }}" class="img-fluid hidedLinks" alt="{{ category.name }}" ui-sref="gallery({category_id:category.category_id})">
-        </div>
+  <div class="row justify-content-around" data-ng-repeat="categories in hDisplay">
+    <div data-ng-repeat="category in categories track by $index" class="col-sm-4" title="{{ category.category_description }}">
+      <h3 class="img-title" data-ng-bind="category.category_name"></h3>
+      <img data-ng-src="img/full/{{ category.photo_link }}" class="img-fluid hidedLinks" alt="{{ category.name }}" data-ui-sref="gallery({category_id:category.category_id})">
     </div>
+  </div>
 
 </div>
