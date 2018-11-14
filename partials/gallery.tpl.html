@@ -9,22 +9,22 @@
 
 <div class="container-fluid gallery-container" style="text-align: center;">
 
-  <div class="row justify-content-around" data-ng-repeat="imgs in vDisplay" data-ng-if="inverted">
-    <div data-ng-repeat="img in imgs track by $index" class="col-sm-3">
+  <div class="row justify-content-center" data-ng-repeat="imgs in vDisplay" data-ng-if="inverted">
+    <div data-ng-repeat="img in imgs track by $index" class="col-sm-4">
       <h5 class="img-title" data-ng-bind="img.title"></h5>
       <img data-ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" data-ng-click="show(img.id)">
     </div>
   </div>
 
-  <div class="row justify-content-around" data-ng-repeat="imgs in hDisplay">
+  <div class="row justify-content-center" data-ng-repeat="imgs in hDisplay">
     <div data-ng-repeat="img in imgs track by $index" class="col-sm-4">
       <h3 class="img-title" data-ng-bind="img.title"></h3>
       <img data-ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" data-ng-click="show(img.id)">
     </div>
   </div>
 
-  <div class="row justify-content-around" data-ng-repeat="imgs in vDisplay" data-ng-if="!inverted">
-    <div data-ng-repeat="img in imgs track by $index" class="col-sm-3">
+  <div class="row justify-content-center" data-ng-repeat="imgs in vDisplay" data-ng-if="!inverted">
+    <div data-ng-repeat="img in imgs track by $index" class="col-sm-4">
       <h5 class="img-title" data-ng-bind="img.title"></h5>
       <img data-ng-src="{{ img.url }}" class="img-fluid hidedLinks" alt="{{ img.title }}" data-ng-click="show(img.id)">
     </div>

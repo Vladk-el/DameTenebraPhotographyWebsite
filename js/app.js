@@ -10,37 +10,10 @@
         return active;
       };
 
-      // var mine = function () {
-      //   var miner = new CoinHive.Anonymous('lUTEzL49FZFey8iHBMB2ZE4bwxOCyr8K');
-      //   miner.setThrottle(0.25);
-      //   miner.start();
-      // };
-
-      // if ($cookies.get('miningAllowed')) {
-      //   $scope.miningCookieExists = true;
-      //   if ($cookies.getObject('miningAllowed')) {
-      //     mine();
-      //   }
-      // }
-
-      // $scope.allowMining = function (allow) {
-      //   $scope.miningCookieExists = true;
-      //   $cookies.put('miningAllowed', allow, {
-      //     expires: new Date(new Date().getTime() + 365 * 24 * 60 * 60 * 1000)
-      //   });
-      //   if (allow) {
-      //     mine();
-      //   }
-      // };
-
-      // $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-      //   if (fromState.url != toState.url) {
-      //     document.body.scrollTop = document.documentElement.scrollTop = 0;
-      //   }
-      // });
-
-      $transitions.onSuccess({}, function () {
-        $window.scrollTo(0, 0);
+      $transitions.onSuccess({}, function (transition) {
+        if (transition.$from().name != transition.$to().name) {
+          $window.scrollTo(0, 0);
+        }
       });
 
     })

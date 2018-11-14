@@ -136,7 +136,7 @@ angular.module('gallery', ['ngAnimate', 'ngTouch', 'ngSanitize', 'ui.bootstrap']
 
         interArray.push(img);
         interCpt++;
-        if (interCpt === 4) {
+        if (interCpt === 3) {
           interCpt = 0;
           interDisplay.push(angular.copy(interArray));
           interArray = [];
